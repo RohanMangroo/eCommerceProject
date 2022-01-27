@@ -1,0 +1,16 @@
+.movies-container {
+  height: 82%;
+  background-color: rgb(73, 73, 73);
+}
+
+.movies-sub-container {
+  height: 98%;
+  width: 98%;
+  background-color: rgb(44, 44, 44);
+}
+
+.movie-card {
+  height: 20rem;
+  width: 15rem;
+  background-color: rgb(113, 113, 113);
+}

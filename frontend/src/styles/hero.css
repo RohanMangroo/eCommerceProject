@@ -1,0 +1,15 @@
+.hero {
+  height: 18%;
+  width: 100%;
+  display: flex;
+}
+
+.hero-left {
+  width: 30%;
+  background-color: rgb(61, 61, 61);
+}
+
+.hero-right {
+  width: 70%;
+  background-color: rgb(42, 42, 42);
+}
