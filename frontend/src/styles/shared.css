@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,4 +19,18 @@
 .flex-col {
   display: flex;
   flex-direction: column;
+}
+
+.btn {
+  height: 2rem;
+  width: 7rem;
+  border: none;
+  margin: auto;
+  background-color: rgb(178, 0, 0);
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(195, 0, 0);
+  cursor: pointer;
 }

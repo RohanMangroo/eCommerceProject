@@ -1,0 +1,54 @@
+.movie-card {
+  height: 20rem;
+  width: 12rem;
+  background-color: rgb(120, 16, 16);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.movie-image {
+  height: 15rem;
+  width: 100%;
+  background-size: cover;
+}
+
+.movie-rating {
+  height: 2rem;
+  width: 2rem;
+  background-color: rgb(47, 147, 107);
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'CrimsonPro', sans-serif;
+  font-size: 0.8rem;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.movie-info {
+  height: 4rem;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  color: white;
+  position: absolute;
+  font-family: 'CrimsonPro', sans-serif;
+  top: 100%;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.title {
+  font-weight: 800;
+  margin-top: 1rem;
+  color: rgb(13, 208, 248);
+}
+
+.date {
+  font-weight: 300;
+  margin-top: 0.3rem;
+  color: lightgrey;
+}
