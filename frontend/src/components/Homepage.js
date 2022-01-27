@@ -1,6 +1,6 @@
 import React from 'react';
+import Movies from './Movies';
 import '../styles/hero.css';
-import '../styles/movies.css';
 import '../styles/homepage.css';
 
 export default function Homepage() {
@@ -19,18 +19,4 @@ function Hero() {
       <div className="hero-right">Right Part</div>
     </section>
   );
-}
-
-function Movies() {
-  return (
-    <section className="movies-container center-items">
-      <div className="movies-sub-container">
-        <MovieCard />
-      </div>
-    </section>
-  );
-}
-
-function MovieCard() {
-  return <div className="movie-card"></div>;
 }
