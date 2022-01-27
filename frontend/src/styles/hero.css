@@ -1,15 +1,38 @@
 .hero {
-  height: 18%;
+  height: 25%;
   width: 100%;
   display: flex;
+  font-family: 'CrimsonPro', sans-serif;
+  position: relative;
 }
 
-.hero-left {
-  width: 30%;
-  background-color: rgb(61, 61, 61);
+.hero-image {
+  width: 100%;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
 }
 
-.hero-right {
-  width: 70%;
-  background-color: rgb(42, 42, 42);
+.carousel-btn {
+  height: 100%;
+  width: 4rem;
+  position: absolute;
+  border: none;
+  background: transparent;
+  color: rgb(125, 63, 1);
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.carousel-btn-left {
+  left: 0;
+}
+
+.carousel-btn-right {
+  right: 0;
+}
+
+.carousel-btn:hover {
+  color: rgb(188, 94, 0);
+  background: rgba(0, 0, 0, 0.4);
 }

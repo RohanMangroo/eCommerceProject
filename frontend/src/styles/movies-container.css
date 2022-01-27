@@ -1,5 +1,5 @@
 .movies-container {
-  height: 82%;
+  height: 75%;
   background-color: rgb(52, 52, 52);
 }
 
@@ -18,5 +18,6 @@
 }
 
 .page-btns button {
-  background-color: rgb(120, 120, 120);
+  border: solid thin lightgrey;
+  background: transparent;
 }
