@@ -33,7 +33,7 @@ function Carousel({ list }) {
   }
 
   if (list.length) {
-    const { backdrop_path } = list[currentPosition];
+    const { backdrop_path, title } = list[currentPosition];
     const imageOne = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
     return (
       <>
@@ -42,7 +42,9 @@ function Carousel({ list }) {
           style={{
             backgroundImage: `url(${imageOne})`,
           }}
-        ></div>
+        >
+          <span>{title}</span>
+        </div>
         <button
           onClick={clickHandler}
           className="carousel-btn-left carousel-btn"

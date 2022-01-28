@@ -1,6 +1,6 @@
 import MovieCard from './components/MovieCard';
 
-function createMovieCards(movieList) {
+function createMovieCards(movieList, removeRating = false) {
   const array = [];
   for (let i = 0; i < movieList.length; i++) {
     const movie = movieList[i];
@@ -18,6 +18,8 @@ function createMovieCards(movieList) {
         title={title}
         date={newDate}
         price={price}
+        id={id}
+        removeRating={removeRating}
       />
     );
   }
@@ -54,7 +56,7 @@ function changePage(target, prev) {
   return newPage;
 }
 
-export { createMovieCards, changePage };
+export { createMovieCards, changePage, trimDate };
 //API Key f4b964a7e615c3824313f9121ff9270d
 //Imge URL format https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg
 //GET Top Movies https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1

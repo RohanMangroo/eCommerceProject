@@ -7,12 +7,21 @@
 }
 
 .hero-image {
-  /* height: 500px; */
-
   width: 100%;
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
+  position: relative;
+}
+
+.hero-image span {
+  position: absolute;
+  color: rgb(202, 202, 202);
+  padding: 0 0 25px 25px;
+  font-size: 1.2rem;
+  bottom: 0;
+  left: 0;
+  font-weight: 100;
 }
 
 .carousel-btn {

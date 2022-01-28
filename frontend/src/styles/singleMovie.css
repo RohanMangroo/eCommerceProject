@@ -1,0 +1,107 @@
+.single-movie-container {
+  width: 100%;
+  height: 1525px;
+  background-color: rgb(72, 72, 72);
+}
+
+.single-movie-image {
+  width: 100%;
+  height: 600px;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+  font-family: 'CrimsonPro', sans-serif;
+}
+
+.single-movie-info {
+  height: 500px;
+  width: 100%;
+  background-color: rgb(59, 59, 59);
+}
+
+.single-movie-info > div:nth-child(1) {
+  height: 100%;
+  width: 30%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.single-movie-info > div:nth-child(2) {
+  height: 100%;
+  width: 70%;
+}
+
+.movie-details {
+  font-family: sans-serif;
+  color: rgb(234, 234, 234);
+  padding: 50px;
+  gap: 5px;
+}
+
+.movie-details > div span:nth-child(1) {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.movie-details > div span:nth-child(2) {
+  margin-left: 10px;
+  color: rgb(154, 154, 154);
+}
+
+.movie-details > span:nth-child(2) {
+  color: rgb(158, 158, 158);
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+}
+
+.movie-details > span:nth-child(3) {
+  margin-top: 30px;
+  color: rgb(158, 158, 158);
+  font-family: 'Source Serif 4', sans-serif;
+}
+
+.movie-details > span:nth-child(4) b {
+  color: rgb(198, 198, 198);
+  font-family: sans-serif;
+  margin-top: 2.5px;
+}
+
+.movie-details > span:nth-child(4) {
+  margin-top: 25px;
+  color: rgb(158, 158, 158);
+  font-family: 'Source Serif 4', sans-serif;
+  gap: 5px;
+}
+
+.movie-details > span:nth-child(5) {
+  color: rgb(198, 198, 198);
+  /* font-family: 'Source Serif 4', sans-serif; */
+  gap: 5px;
+}
+
+.movie-details > span:nth-child(5) span {
+  color: rgb(158, 158, 158);
+  font-family: 'Source Serif 4', sans-serif;
+  gap: 5px;
+}
+
+.cast {
+  gap: 13px;
+}
+
+.cast b {
+  color: rgb(198, 198, 198);
+  font-family: sans-serif;
+  margin-top: 2.5px;
+}
+
+.cast > span {
+  color: rgb(158, 158, 158);
+  font-family: 'Source Serif 4', sans-serif;
+}
+
+.related {
+  height: 425px;
+  overflow: scroll;
+}
