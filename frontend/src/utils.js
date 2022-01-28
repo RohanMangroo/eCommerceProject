@@ -4,10 +4,11 @@ function createMovieCards(movieList) {
   const array = [];
   for (let i = 0; i < movieList.length; i++) {
     const movie = movieList[i];
-    const { poster_path, vote_average, title, release_date } = movie;
+    const { id, poster_path, vote_average, title, release_date } = movie;
 
     const image = `https://image.tmdb.org/t/p/w500/${poster_path}`;
     const newDate = trimDate(release_date);
+    const price = getPrice(id);
 
     array.push(
       <MovieCard
@@ -16,11 +17,25 @@ function createMovieCards(movieList) {
         rating={vote_average}
         title={title}
         date={newDate}
+        price={price}
       />
     );
   }
 
   return array;
+}
+
+function getPrice(id) {
+  const prices = ['19.99', '4.99', '15.99', '7.99'];
+  const num =
+    id
+      .toString()
+      .split('')
+      .reduce((num, acc) => {
+        return Number(num) + acc;
+      }, 0) % 4;
+
+  return prices[num];
 }
 
 function trimDate(date) {

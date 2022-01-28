@@ -17,8 +17,8 @@ export default function Navbar() {
           <CartIcon />
         </button>
       </Link>
-      <Link to="/">
-        <span className="movie-go-title">
+      <Link className="movie-go-title" to="/">
+        <span>
           MOVI<b>e</b>GO
         </span>
       </Link>

@@ -47,8 +47,20 @@
   color: rgb(13, 208, 248);
 }
 
+.movie-info div {
+  gap: 5px;
+  margin-top: 0.3rem;
+  color: rgb(47, 147, 107);
+}
+
 .date {
   font-weight: 300;
-  margin-top: 0.3rem;
   color: lightgrey;
+}
+
+.sale {
+  background-color: yellow;
+  margin-left: 10px;
+  color: red;
+  font-weight: bold;
 }
