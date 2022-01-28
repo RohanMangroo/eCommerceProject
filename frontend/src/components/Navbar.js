@@ -9,13 +9,18 @@ export default function Navbar() {
       <Link className="nav-link" to="/signUp">
         <button>Sign Up</button>
       </Link>
-      <Link className="nav-link" to="/logIn">
+      <Link className="nav-link" to="/">
         <button>Log In</button>
       </Link>
       <Link to="/logIn">
         <button className="cart">
           <CartIcon />
         </button>
+      </Link>
+      <Link to="/">
+        <span className="movie-go-title">
+          MOVI<b>e</b>GO
+        </span>
       </Link>
     </div>
   );

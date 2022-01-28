@@ -1,0 +1,69 @@
+.sign-up-page {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(39, 39, 39);
+  font-family: sans-serif;
+}
+
+.form-container {
+  height: 70%;
+  width: 40%;
+}
+
+.form-container form {
+  height: 70%;
+  width: 100%;
+  justify-content: space-evenly;
+  background-color: rgb(28, 28, 28);
+}
+
+.form-container span {
+  height: 15%;
+  background-color: rgb(28, 28, 28);
+  width: 100%;
+}
+
+.form-container form label {
+  font-size: 1.2rem;
+  width: 70%;
+  color: lightgrey;
+  font-weight: 100;
+}
+
+.form-container form input {
+  height: 8%;
+  width: 70%;
+  background-color: rgb(74, 74, 74);
+  border: none;
+}
+
+.form-container form input:focus {
+  background-color: rgb(158, 158, 158);
+}
+
+.form-container form button {
+  height: 15%;
+  width: 40%;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(147, 47, 47);
+  color: rgb(226, 226, 226);
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+.sign-up {
+  font-size: 3rem;
+  color: lightgrey;
+}
+
+.already-member {
+  font-size: 1.5rem;
+  color: lightgrey;
+  font-weight: 100;
+}
+
+.bold {
+  color: rgb(47, 147, 107);
+  margin-left: 10px;
+}
