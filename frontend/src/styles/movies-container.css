@@ -1,23 +1,29 @@
 .movies-container {
-  height: 75%;
+  height: 1800px;
   background-color: rgb(52, 52, 52);
+  overflow: auto;
+  justify-content: flex-end;
 }
 
 .movies-sub-container {
-  height: 93%;
+  height: 90%;
   width: 90%;
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: flex-start;
   gap: 4rem;
+  margin: auto;
 }
 
 .page-btns {
-  gap: 1rem;
+  gap: 2rem;
+  height: 100px;
+  background-color: rgb(40, 40, 40);
 }
 
 .page-btns button {
   border: solid thin lightgrey;
   background: transparent;
+  margin: 0;
 }

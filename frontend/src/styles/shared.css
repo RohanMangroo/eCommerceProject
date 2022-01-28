@@ -37,3 +37,23 @@ body {
   background-color: rgb(195, 0, 0);
   cursor: pointer;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #383838;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 0, 0);
+}

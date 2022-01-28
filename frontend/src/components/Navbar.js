@@ -1,18 +1,17 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/navbar.css';
 import { ReactComponent as CartIcon } from '../images/cartIcon.svg';
 
-export default function Navbar() {
+export default function Navbar({ toggleLogin }) {
   return (
     <div className="navbar flex-row">
-      <Link className="nav-link" to="/signUp">
-        <button>Sign Up</button>
+      <Link className="nav-link center-items" to="/signUp">
+        <button className="nav-btn">Sign Up</button>
       </Link>
-      <Link className="nav-link" to="/">
-        <button>Log In</button>
-      </Link>
-      <Link to="/logIn">
+      <button className="nav-btn login-btn" onClick={toggleLogin}>
+        Log In
+      </button>
+      <Link to="/">
         <button className="cart">
           <CartIcon />
         </button>

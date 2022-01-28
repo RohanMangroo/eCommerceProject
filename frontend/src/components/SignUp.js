@@ -4,9 +4,21 @@ import '../styles/form.css';
 export default function SignUp() {
   return (
     <div className="sign-up-page center-items">
+      <div
+        className="form-aside"
+        style={{
+          backgroundImage:
+            'url(https://image.tmdb.org/t/p/w500/l6hQWH9eDksNJNiXWYRkWqikOdu.jpg)',
+        }}
+      >
+        <div className="overlay flex-col"></div>
+      </div>
       <div className="form-container flex-col center-items">
         <span className="sign-up center-items">Sign Up</span>
-
+        <span className="form-text">
+          {`Let's get you set up so you can begin watching your favorite movies
+          and TV shows...`}
+        </span>
         <form className="flex-col center-items">
           <label htmlFor="username">Username</label>
           <input type="text" name="username" id="username" required></input>

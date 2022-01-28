@@ -1,0 +1,17 @@
+.login-container {
+  height: 200px;
+  width: 500px;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  right: 9.85%;
+  top: 5.45%;
+  z-index: 9;
+}
+
+.open {
+  height: 200px;
+}
+
+.close {
+  height: 0;
+}

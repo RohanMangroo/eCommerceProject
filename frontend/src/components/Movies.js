@@ -25,9 +25,13 @@ export default function Movies() {
   }
 
   return (
-    <section className="movies-container flex-col center-items">
-      <div className="movies-sub-container">{createMovieCards(movieList)}</div>
-      <div onClick={clickHandler} className="page-btns flex-row">
+    <>
+      <section className="movies-container flex-col">
+        <div className="movies-sub-container">
+          {createMovieCards(movieList)}
+        </div>
+      </section>
+      <div onClick={clickHandler} className="page-btns flex-row center-items">
         <button className="btn" value="prev">
           Prev Page
         </button>
@@ -35,6 +39,6 @@ export default function Movies() {
           Next Page
         </button>
       </div>
-    </section>
+    </>
   );
 }
