@@ -1,4 +1,5 @@
 import MovieCard from './components/MovieCard';
+import { v4 as uuidv4 } from 'uuid';
 
 function createMovieCards(movieList, removeRating = false) {
   const array = [];
@@ -10,18 +11,17 @@ function createMovieCards(movieList, removeRating = false) {
     const newDate = trimDate(release_date);
     const price = getPrice(id);
 
-    array.push(
-      <MovieCard
-        key={`${i}`}
-        background={image}
-        rating={vote_average}
-        title={title}
-        date={newDate}
-        price={price}
-        id={id}
-        removeRating={removeRating}
-      />
-    );
+    const movieData = {
+      background: image,
+      rating: vote_average,
+      title: title,
+      date: newDate,
+      price: price,
+      id: id,
+      removeRating: removeRating,
+    };
+
+    array.push(<MovieCard key={`${i}`} movieData={movieData} />);
   }
 
   return array;
@@ -56,7 +56,24 @@ function changePage(target, prev) {
   return newPage;
 }
 
-export { createMovieCards, changePage, trimDate };
+function createItemRows(items) {
+  console.log(items);
+  const array = [];
+  for (let i = 0; i < items.length; i++) {
+    array.push(
+      <div key={uuidv4()} className="cart-row">
+        <span>{items[i].title}</span>
+        <span>{items[i].price}</span>
+        <span></span>
+        <span></span>
+      </div>
+    );
+  }
+
+  return array;
+}
+
+export { createMovieCards, changePage, trimDate, createItemRows };
 //API Key f4b964a7e615c3824313f9121ff9270d
 //Imge URL format https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg
 //GET Top Movies https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1

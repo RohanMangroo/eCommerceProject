@@ -1,7 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/form.css';
+import Axios from 'axios';
+import { connect } from 'react-redux';
+import { updateAuth } from '../store/authReducer';
 
-export default function SignUp() {
+function SignUp({ updateAuth_ }) {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function onSubmitHandler(event) {
+    event.preventDefault();
+
+    const response = await Axios.post('http://localhost:5000/signUp', {
+      username,
+      email,
+      password,
+    });
+
+    if (response.data.isLoggedIn) {
+      updateAuth_(response.data);
+      localStorage.setItem('token', response.data.token);
+      console.log(response.data);
+      navigate('/');
+    } else {
+      navigate('/signUp');
+      console.log(response.data);
+    }
+  }
+
+  function changeHandler(event) {
+    const input = event.target.name;
+    const value = event.target.value;
+    if (input === 'username') setUsername(value);
+    else if (input === 'email') setEmail(value);
+    else setPassword(value);
+  }
+
   return (
     <div className="sign-up-page center-items">
       <div
@@ -15,19 +52,36 @@ export default function SignUp() {
       </div>
       <div className="form-container flex-col center-items">
         <span className="sign-up center-items">Sign Up</span>
-        <span className="form-text">
-          {`Let's get you set up so you can begin watching your favorite movies
-          and TV shows...`}
-        </span>
-        <form className="flex-col center-items">
+        <form onSubmit={onSubmitHandler} className="flex-col center-items">
           <label htmlFor="username">Username</label>
-          <input type="text" name="username" id="username" required></input>
+          <input
+            onChange={changeHandler}
+            type="text"
+            name="username"
+            id="username"
+            required
+          ></input>
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" required></input>
+          <input
+            onChange={changeHandler}
+            type="email"
+            name="email"
+            id="email"
+            required
+          ></input>
           <label html="password">Password</label>
-          <input type="text" name="password" id="password" required></input>
-          <button className="my-btn">Sign Up</button>
+          <input
+            onChange={changeHandler}
+            type="text"
+            name="password"
+            id="password"
+            required
+          ></input>
+          <button type="submit" className="my-btn">
+            Sign Up
+          </button>
         </form>
+
         <span className="already-member center-items">
           Already a member? <b className="bold"> Log In </b>
         </span>
@@ -35,3 +89,13 @@ export default function SignUp() {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateAuth_: (data) => {
+      return dispatch(updateAuth(data));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SignUp);

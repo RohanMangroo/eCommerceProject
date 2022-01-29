@@ -1,45 +1,57 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/movie-card.css';
+import { connect } from 'react-redux';
+import { updateCart } from '../store/cartReducer';
 
-export default function MovieCard({
-  background,
-  title,
-  rating,
-  date,
-  price,
-  id,
-  removeRating,
-}) {
-  const sale = price === '4.99' ? 'SALE' : '';
+function MovieCard({ movieData, updateCart_ }) {
+  function clickHandler() {
+    console.log('add to cart...');
+    updateCart_(movieData);
+  }
+  const sale = movieData.price === '4.99' ? 'SALE' : '';
 
   return (
-    <Link className="card-link" to={`/movie/${id}`}>
+    <div>
       <div className="movie-card flex-col">
-        <div
-          className="movie-image"
-          style={{
-            backgroundImage: `url(${background})`,
-          }}
-        ></div>
-        <button className="btn">Add To Cart</button>
-        {removeRating ? (
+        <Link className="card-link" to={`/movie/${movieData.id}`}>
+          <div
+            className="movie-image"
+            style={{
+              backgroundImage: `url(${movieData.background})`,
+            }}
+          ></div>
+        </Link>
+        <button onClick={clickHandler} className="btn">
+          Add To Cart
+        </button>
+        {movieData.removeRating ? (
           ''
         ) : (
-          <span className="movie-rating center-items">{rating}</span>
+          <span className="movie-rating center-items">{movieData.rating}</span>
         )}
 
         <div className="movie-info flex-col">
-          <span className="title">{title}</span>
+          <span className="title">{movieData.title}</span>
           <div className="flex-row">
-            <span className="date">{date}</span>
+            <span className="date">{movieData.date}</span>
             <span className="price">
-              <span>{price}</span>
+              <span>{movieData.price}</span>
               <span className="sale">{sale}</span>
             </span>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateCart_: (data) => {
+      return dispatch(updateCart(data));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(MovieCard);

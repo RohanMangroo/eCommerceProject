@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import '../styles/navbar.css';
 import { ReactComponent as CartIcon } from '../images/cartIcon.svg';
+import { connect } from 'react-redux';
 
-export default function Navbar({ toggleLogin }) {
+function Navbar({ toggleLogin, cart, auth }) {
+  console.log(auth);
   return (
     <div className="navbar flex-row">
       <Link className="nav-link center-items" to="/signUp">
@@ -14,6 +16,7 @@ export default function Navbar({ toggleLogin }) {
       <Link to="/cart">
         <button className="cart">
           <CartIcon />
+          <span className="cart-count center-items">{cart.items.length}</span>
         </button>
       </Link>
       <Link className="movie-go-title" to="/">
@@ -24,3 +27,12 @@ export default function Navbar({ toggleLogin }) {
     </div>
   );
 }
+
+const mapStateToProps = ({ cart, auth }) => {
+  return {
+    cart,
+    auth,
+  };
+};
+
+export default connect(mapStateToProps, null)(Navbar);
