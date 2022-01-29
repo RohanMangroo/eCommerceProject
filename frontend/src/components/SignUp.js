@@ -23,6 +23,7 @@ function SignUp({ updateAuth_ }) {
     if (response.data.isLoggedIn) {
       updateAuth_(response.data);
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('id', response.data.userId);
       console.log(response.data);
       navigate('/');
     } else {

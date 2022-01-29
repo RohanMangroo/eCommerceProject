@@ -22,6 +22,7 @@ function LogIn({ toggleLogin, updateAuth_ }) {
       console.log(response.data);
       updateAuth_(response.data);
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('id', response.data.userId);
       navigate('/');
     } else {
       console.log(response.data);

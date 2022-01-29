@@ -3,6 +3,6 @@ export function createUser({ username, email, hashedPassword }) {
 }
 
 export function findUserInfo(username) {
-  const query = `SELECT Users.username, Users.password FROM Users WHERE Users.username = '${username}';`;
+  const query = `SELECT Users.id, Users.username, Users.password FROM Users WHERE Users.username = '${username}';`;
   return query;
 }

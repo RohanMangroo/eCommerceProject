@@ -57,6 +57,7 @@ app.post('/logIn', async (req, res) => {
         { username: username, id: rows[0].id },
         'mySuperSecret'
       );
+      console.log(rows);
       res.json({ userId: rows[0].id, token, isLoggedIn: true });
     } else res.send('Credentials Are Incorrect');
   }
