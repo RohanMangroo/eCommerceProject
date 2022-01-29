@@ -47,6 +47,7 @@
   width: 3rem;
   border: none;
   background-color: red;
+  cursor: pointer;
 }
 
 .movie-go-title {

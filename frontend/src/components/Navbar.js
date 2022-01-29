@@ -11,7 +11,7 @@ export default function Navbar({ toggleLogin }) {
       <button className="nav-btn login-btn" onClick={toggleLogin}>
         Log In
       </button>
-      <Link to="/">
+      <Link to="/cart">
         <button className="cart">
           <CartIcon />
         </button>
