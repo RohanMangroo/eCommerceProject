@@ -29,6 +29,9 @@ function SignUp({ updateAuth_ }) {
       updateAuth_(response.data);
       updateLocalStorage(response.data.token, response.data.userId);
       navigate('/');
+      setUsername('');
+      setEmail('');
+      setPassword('');
       return;
     }
 

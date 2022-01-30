@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/navbar/Navbar';
 import UniversalRoutes from './components/UniversalRoutes';
 import Footer from './components/footer/Footer';
-// import LogIn from './components/auth/LogIn';
 import { connect } from 'react-redux';
 import { updateAuth } from './store/authReducer';
+import { toggleLogin } from './store/logInReducer';
 import './styles/app.css';
 
-function App({ updateAuth_ }) {
-  // const [closed, setClosed] = useState(true);
-
+function App({ updateAuth_, toggleLogin_ }) {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token)
@@ -21,13 +19,12 @@ function App({ updateAuth_ }) {
   });
 
   // function clickHandler() {
-  //   setClosed(!closed);
+  //   toggleLogin_(true);
   // }
 
   return (
     <div className="app-container">
       <Navbar />
-      {/* <LogIn /> */}
       <UniversalRoutes />
       <Footer />
     </div>
@@ -38,6 +35,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateAuth_: (data) => {
       return dispatch(updateAuth(data));
+    },
+    toggleLogin_: (boolean) => {
+      return dispatch(toggleLogin(boolean));
     },
   };
 };

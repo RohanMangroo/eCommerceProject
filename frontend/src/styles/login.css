@@ -1,7 +1,7 @@
 .login-container {
   height: 200px;
   width: 500px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgb(0, 0, 0, 0.9);
   position: absolute;
   top: 100%;
   right: 0;
