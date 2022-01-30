@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Homepage from './Homepage';
-import Cart from './Cart';
-import SignUp from './SignUp';
-import SingleMovie from './SingleMovie';
+import Cart from './cart/Cart';
+import SignUp from './auth/SignUp';
+import SingleMovie from './movies/SingleMovie';
 
 export default function UniversalRoutes() {
   return (

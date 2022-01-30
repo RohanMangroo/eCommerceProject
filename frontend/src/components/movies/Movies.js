@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { createMovieCards, changePage } from '../utils';
-import '../styles/movies-container.css';
+import { createMovieCards, changePage } from '../../utils';
+import '../../styles/movies-container.css';
 
 export default function Movies() {
   const [page, setPage] = useState(1);

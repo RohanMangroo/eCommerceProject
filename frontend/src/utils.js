@@ -1,4 +1,4 @@
-import MovieCard from './components/MovieCard';
+import MovieCard from './components/movies/MovieCard';
 import { v4 as uuidv4 } from 'uuid';
 
 function createMovieCards(movieList, removeRating = false) {
@@ -57,7 +57,6 @@ function changePage(target, prev) {
 }
 
 function createItemRows(items) {
-  console.log(items);
   const array = [];
   for (let i = 0; i < items.length; i++) {
     array.push(
@@ -73,7 +72,35 @@ function createItemRows(items) {
   return array;
 }
 
-export { createMovieCards, changePage, trimDate, createItemRows };
+function updateLocalStorage(token, id) {
+  localStorage.setItem('token', token);
+  localStorage.setItem('id', id);
+}
+
+function changeHandler(event, setPassword, setUsername) {
+  const input = event.target.name;
+  const value = event.target.value;
+  if (input === 'username') setUsername(value);
+  else setPassword(value);
+}
+
+function changeHandlerSignUp(event, setUsername, setEmail, setPassword) {
+  const input = event.target.name;
+  const value = event.target.value;
+  if (input === 'username') setUsername(value);
+  else if (input === 'email') setEmail(value);
+  else setPassword(value);
+}
+
+export {
+  createMovieCards,
+  changePage,
+  trimDate,
+  createItemRows,
+  updateLocalStorage,
+  changeHandler,
+  changeHandlerSignUp,
+};
 //API Key f4b964a7e615c3824313f9121ff9270d
 //Imge URL format https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg
 //GET Top Movies https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1

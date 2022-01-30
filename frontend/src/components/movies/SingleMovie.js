@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
-import { createMovieCards, trimDate } from '../utils';
+import { createMovieCards, trimDate } from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
-import '../styles/singleMovie.css';
+import '../../styles/singleMovie.css';
 
 export default function SingleMovie() {
   const [movieData, setMovieData] = useState();

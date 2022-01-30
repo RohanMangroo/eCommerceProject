@@ -1,6 +1,6 @@
 import React from 'react';
-import Movies from './Movies';
-import Hero from './Hero';
+import Movies from './movies/Movies';
+import Hero from './hero/Hero';
 import '../styles/hero.css';
 import '../styles/homepage.css';
 

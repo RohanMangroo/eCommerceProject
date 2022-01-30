@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/movie-card.css';
+import '../../styles/movie-card.css';
 import { connect } from 'react-redux';
-import { updateCart } from '../store/cartReducer';
+import { updateCart } from '../../store/cartReducer';
 
 function MovieCard({ movieData, updateCart_ }) {
   function clickHandler() {
