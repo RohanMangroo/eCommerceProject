@@ -23,7 +23,7 @@ function sendResponse(res, passwordMatch, username, id) {
   if (passwordMatch) {
     const token = jwt.sign({ username: username, id: id }, 'mySuperSecret');
 
-    res.json({ userId: id, token, isLoggedIn: true });
+    res.json({ userId: id, token, isLoggedIn: true, username });
   } else res.send('Credentials Are Incorrect');
 }
 

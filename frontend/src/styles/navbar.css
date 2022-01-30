@@ -75,5 +75,9 @@
   width: 100%;
   background-color: rgb(195, 56, 56);
   color: rgb(255, 255, 255);
-  border-radius: ;
+  /* border-radius: ; */
+}
+
+.temp {
+  color: white;
 }

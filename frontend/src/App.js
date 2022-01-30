@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/navbar/Navbar';
 import UniversalRoutes from './components/UniversalRoutes';
 import Footer from './components/footer/Footer';
-import LogIn from './components/auth/LogIn';
+// import LogIn from './components/auth/LogIn';
 import { connect } from 'react-redux';
 import { updateAuth } from './store/authReducer';
 import './styles/app.css';
 
 function App({ updateAuth_ }) {
-  const [closed, setClosed] = useState(true);
+  // const [closed, setClosed] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -20,14 +20,14 @@ function App({ updateAuth_ }) {
       });
   });
 
-  function clickHandler() {
-    setClosed(!closed);
-  }
+  // function clickHandler() {
+  //   setClosed(!closed);
+  // }
 
   return (
     <div className="app-container">
-      <Navbar toggleLogin={clickHandler} />
-      <LogIn toggleLogin={closed} />
+      <Navbar />
+      {/* <LogIn /> */}
       <UniversalRoutes />
       <Footer />
     </div>

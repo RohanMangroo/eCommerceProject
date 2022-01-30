@@ -6,11 +6,15 @@ import { updateAuth } from '../../store/authReducer';
 import { changeHandlerSignUp, updateLocalStorage } from '../../utils';
 import '../../styles/form.css';
 
+import Modal from '../modal/Modal';
+
 function SignUp({ updateAuth_ }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [error, setError] = useState(null);
 
   async function onSubmitHandler(event) {
     event.preventDefault();
@@ -25,9 +29,14 @@ function SignUp({ updateAuth_ }) {
       updateAuth_(response.data);
       updateLocalStorage(response.data.token, response.data.userId);
       navigate('/');
-    } else navigate('/signUp');
+      return;
+    }
 
-    console.log(response.data);
+    setError('Bad Username');
+  }
+
+  function toggleModal() {
+    setError(null);
   }
 
   return (
@@ -59,6 +68,7 @@ function SignUp({ updateAuth_ }) {
           Already a member? <b className="bold"> Log In </b>
         </span>
       </div>
+      {error && <Modal error={error} toggle={toggleModal} />}
     </div>
   );
 }

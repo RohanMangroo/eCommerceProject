@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { updateAuth } from '../../store/authReducer';
 import { connect } from 'react-redux';
 import { updateLocalStorage, changeHandler } from '../../utils';
+import { toggleLogin } from '../../store/logInReducer';
+import Modal from '../modal/Modal';
 import '../../styles/login.css';
 
-function LogIn({ toggleLogin, updateAuth_ }) {
-  const navigate = useNavigate();
+function LogIn({ toggleLogin_, updateAuth_, open }) {
+  // const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const [error, setError] = useState(null);
 
   async function onSubmitHandler(event) {
     event.preventDefault();
@@ -18,18 +22,22 @@ function LogIn({ toggleLogin, updateAuth_ }) {
       username,
       password,
     });
-    console.log(response.data);
+
     if (response.data.isLoggedIn) {
       updateAuth_(response.data);
       updateLocalStorage(response.data.token, response.data.userId);
-      navigate('/');
-    }
+      toggleLogin_(!open.open);
+    } else setError('No User Found');
+  }
+
+  function toggleModal() {
+    setError(null);
   }
 
   const loginClass =
-    toggleLogin === true ? 'login-container close' : 'login-container open';
+    open.open === true ? 'login-container open' : 'login-container close';
   const formClass =
-    toggleLogin === true ? 'login-form display-none' : 'login-form display';
+    open.open === true ? 'login-form display' : 'login-form display-none';
 
   return (
     <div className={loginClass}>
@@ -48,6 +56,7 @@ function LogIn({ toggleLogin, updateAuth_ }) {
         />
         <button className="btn">Submit</button>
       </form>
+      {error && <Modal error={error} toggle={toggleModal} />}
     </div>
   );
 }
@@ -82,12 +91,21 @@ function PasswordInput({ changeHandler, password }) {
   );
 }
 
+const mapStateToProps = ({ open }) => {
+  return {
+    open,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     updateAuth_: (data) => {
       return dispatch(updateAuth(data));
     },
+    toggleLogin_: (boolean) => {
+      return dispatch(toggleLogin(boolean));
+    },
   };
 };
 
-export default connect(null, mapDispatchToProps)(LogIn);
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

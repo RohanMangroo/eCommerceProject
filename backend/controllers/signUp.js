@@ -13,12 +13,12 @@ export default async function signUp(req, res) {
       createUser({ username, email, hashedPassword })
     );
 
-    const id = data.rows.id;
-
+    const id = data.rows[0].id;
     const token = jwt.sign({ username: username, id: id }, 'mySuperSecret');
 
-    res.json({ userId: rows[0].id, token, isLoggedIn: true });
+    res.json({ userId: id, token, isLoggedIn: true });
   } catch (err) {
-    res.send('Sorry, that username is taken!');
+    // console.log(err);
+    res.send('Username Taken');
   }
 }
