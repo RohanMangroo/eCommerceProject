@@ -15,7 +15,7 @@ function SignUp({ updateAuth_ }) {
   async function onSubmitHandler(event) {
     event.preventDefault();
 
-    const response = await Axios.post('http://localhost:5000/signUp', {
+    const response = await Axios.post('http://localhost:5000/auth/signUp', {
       username,
       email,
       password,

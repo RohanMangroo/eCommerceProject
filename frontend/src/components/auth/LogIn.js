@@ -14,7 +14,7 @@ function LogIn({ toggleLogin, updateAuth_ }) {
   async function onSubmitHandler(event) {
     event.preventDefault();
 
-    const response = await Axios.post('http://localhost:5000/logIn', {
+    const response = await Axios.post('http://localhost:5000/auth/logIn', {
       username,
       password,
     });
