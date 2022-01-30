@@ -7,15 +7,15 @@ export default async function signUp(req, res) {
   const { username, email, password } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 12);
+
   try {
-    const { rows } = await db.query(
+    const data = await db.query(
       createUser({ username, email, hashedPassword })
     );
 
-    const token = jwt.sign(
-      { username: username, id: rows[0].id },
-      'mySuperSecret'
-    );
+    const id = data.rows.id;
+
+    const token = jwt.sign({ username: username, id: id }, 'mySuperSecret');
 
     res.json({ userId: rows[0].id, token, isLoggedIn: true });
   } catch (err) {

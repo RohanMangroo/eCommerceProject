@@ -3,22 +3,28 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { findUserInfo } from '../db/queries.js';
 
-export default async function logIn(req, res) {
+async function logIn(req, res) {
   const { username, password } = req.body;
 
-  const { rows } = await db.query(findUserInfo(username));
+  const data = await db.query(findUserInfo(username));
+  const dataLength = data.rowCount;
 
-  if (!rows.length) res.send('No User Found');
-  else {
-    const comparePassword = await bcrypt.compare(password, rows[0].password);
+  if (dataLength === 0) return res.send('No User Found...');
 
-    if (comparePassword) {
-      const token = jwt.sign(
-        { username: username, id: rows[0].id },
-        'mySuperSecret'
-      );
-      console.log(rows);
-      res.json({ userId: rows[0].id, token, isLoggedIn: true });
-    } else res.send('Credentials Are Incorrect');
-  }
+  const userData = data.rows[0];
+  const passwordMatch = await bcrypt.compare(password, userData.password);
+
+  sendResponse(res, passwordMatch, username, userData.id);
 }
+
+//===============================================================//
+
+function sendResponse(res, passwordMatch, username, id) {
+  if (passwordMatch) {
+    const token = jwt.sign({ username: username, id: id }, 'mySuperSecret');
+
+    res.json({ userId: id, token, isLoggedIn: true });
+  } else res.send('Credentials Are Incorrect');
+}
+
+export default logIn;

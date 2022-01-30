@@ -18,7 +18,7 @@ function LogIn({ toggleLogin, updateAuth_ }) {
       username,
       password,
     });
-
+    console.log(response.data);
     if (response.data.isLoggedIn) {
       updateAuth_(response.data);
       updateLocalStorage(response.data.token, response.data.userId);
