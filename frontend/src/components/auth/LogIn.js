@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
 import { updateAuth } from '../../store/authReducer';
 import { connect } from 'react-redux';
 import { updateLocalStorage, changeHandler } from '../../utils';
 import { toggleLogin } from '../../store/logInReducer';
 import Modal from '../modal/Modal';
+import { AiOutlineUser } from 'react-icons/ai';
+import { RiLockPasswordLine } from 'react-icons/ri';
 import '../../styles/login.css';
 
 function LogIn({ toggleLogin_, updateAuth_, open }) {
@@ -57,8 +58,12 @@ function LogIn({ toggleLogin_, updateAuth_, open }) {
   const formClass =
     open.open === true ? 'login-form display' : 'login-form display-none';
 
+  const modalClass = error ? 'open' : 'close';
+
   return (
-    <div ref={ref} className={loginClass}>
+    <div ref={ref} className={`${loginClass}`}>
+      <header className="login-header">MEMBER LOGIN</header>
+      <span className="login-line"></span>
       <form className={formClass} onSubmit={onSubmitHandler}>
         <UsernameInput
           changeHandler={(event) =>
@@ -72,18 +77,25 @@ function LogIn({ toggleLogin_, updateAuth_, open }) {
           }
           password={password}
         />
-        <button className="btn">Submit</button>
+        <button className="btn">L O G I N</button>
       </form>
-      {error && <Modal error={error} toggle={toggleModal} />}
+      {error && (
+        <Modal modalClass={modalClass} error={error} toggle={toggleModal} />
+      )}
     </div>
   );
 }
 
-function UsernameInput({ changeHandler, username }) {
+export function UsernameInput({ changeHandler, username }) {
   return (
     <div>
-      <label htmlFor="username">Username</label>
+      <label htmlFor="username"></label>
+      <div className="icon-container center-items">
+        <AiOutlineUser className="username-icon" />
+      </div>
+
       <input
+        placeholder="Username"
         onChange={changeHandler}
         value={username}
         type="text"
@@ -97,8 +109,12 @@ function UsernameInput({ changeHandler, username }) {
 function PasswordInput({ changeHandler, password }) {
   return (
     <div>
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password"></label>
+      <div className="icon-container center-items">
+        <RiLockPasswordLine className="username-icon" />
+      </div>
       <input
+        placeholder="Password"
         onChange={changeHandler}
         value={password}
         type="text"

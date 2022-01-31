@@ -52,6 +52,7 @@ function SignUp({ updateAuth_ }) {
             changeHandler={(event) =>
               changeHandlerSignUp(event, setUsername, setEmail, setPassword)
             }
+            username={username}
           />
           <EmailInput
             changeHandler={(event) =>
