@@ -44,11 +44,11 @@ function LogIn({ toggleLogin_, updateAuth_, open }) {
       }
     };
 
-    document.addEventListener('mousedown', checkIfClickedOutside);
+    document.addEventListener('click', checkIfClickedOutside);
 
     return () => {
       // Cleanup the event listener
-      document.removeEventListener('mousedown', checkIfClickedOutside);
+      document.removeEventListener('click', checkIfClickedOutside);
     };
   }, [open.open, toggleLogin_]);
 

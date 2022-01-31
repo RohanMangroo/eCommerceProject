@@ -6,7 +6,7 @@ import SignUp from './auth/SignUp';
 import SingleMovie from './movies/SingleMovie';
 
 export default function UniversalRoutes() {
-  console.log('rendering...');
+  // console.log('rendering...');
   return (
     <>
       <Routes>

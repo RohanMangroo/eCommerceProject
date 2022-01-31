@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import { toggleLogin } from '../../store/logInReducer';
 
 function NavBtns({ handleLogOut, auth, toggleLogin_, open }) {
+  console.log(open);
+  function clickHandler(event) {
+    toggleLogin_(!open.open);
+    event.stopPropagation();
+  }
+
   if (!auth) {
     return (
       <>
@@ -12,7 +18,7 @@ function NavBtns({ handleLogOut, auth, toggleLogin_, open }) {
         </Link>
         <button
           className="nav-btn login-btn"
-          onClick={() => toggleLogin_(!open.open)}
+          onClick={(event) => clickHandler(event)}
         >
           Log In
         </button>
