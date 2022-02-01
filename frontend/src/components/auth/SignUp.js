@@ -44,7 +44,7 @@ function SignUp({ updateAuth_ }) {
 
   return (
     <div className="sign-up-page center-items">
-      <SignUpImage />
+      {/* <SignUpImage /> */}
       <div className="form-container flex-col center-items">
         <span className="sign-up center-items">Sign Up</span>
         <form onSubmit={onSubmitHandler} className="flex-col center-items">
@@ -132,16 +132,16 @@ function PasswordInput({ changeHandler }) {
   );
 }
 
-function SignUpImage() {
-  return (
-    <div
-      className="form-aside"
-      style={{
-        backgroundImage:
-          'url(https://image.tmdb.org/t/p/w500/l6hQWH9eDksNJNiXWYRkWqikOdu.jpg)',
-      }}
-    >
-      <div className="overlay flex-col"></div>
-    </div>
-  );
-}
+// function SignUpImage() {
+//   return (
+//     <div
+//       className="form-aside"
+//       style={{
+//         backgroundImage:
+//           'url(https://image.tmdb.org/t/p/w500/l6hQWH9eDksNJNiXWYRkWqikOdu.jpg)',
+//       }}
+//     >
+//       <div className="overlay flex-col"></div>
+//     </div>
+//   );
+// }

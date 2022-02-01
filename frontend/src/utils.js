@@ -86,10 +86,12 @@ function changeHandler(event, setPassword, setUsername) {
 
 function changeHandlerSignUp(event, setUsername, setEmail, setPassword) {
   const input = event.target.name;
+
   const value = event.target.value;
+
   if (input === 'username') setUsername(value);
   else if (input === 'email') setEmail(value);
-  else setPassword(value);
+  else if (input === 'password') setPassword(value);
 }
 
 export {

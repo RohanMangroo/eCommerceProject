@@ -1,22 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleLogin } from '../../store/logInReducer';
+import { toggleSignUp } from '../../store/signUpReducer';
 
-function NavBtns({ handleLogOut, auth, toggleLogin_, open }) {
-  console.log(open);
+function NavBtns({
+  handleLogOut,
+  auth,
+  toggleLogin_,
+  open,
+  signUp,
+  toggleSignUp_,
+}) {
+  // console.log(open);
+
   function clickHandler(event) {
-    toggleLogin_(!open.open);
+    const value = event.target.value;
+    if (value === 'logIn') {
+      toggleLogin_(!open.open);
+      signUp.open && toggleSignUp_(!signUp.open);
+    } else {
+      toggleSignUp_(!signUp.open);
+      open.open && toggleLogin_(!open.open);
+    }
+
     event.stopPropagation();
   }
 
   if (!auth) {
     return (
       <>
-        <Link className="nav-link center-items" to="/signUp">
-          <button className="nav-btn">Sign Up</button>
-        </Link>
         <button
+          value="signUp"
+          className="nav-btn"
+          onClick={(event) => clickHandler(event)}
+        >
+          Sign Up
+        </button>
+
+        <button
+          value="logIn"
           className="nav-btn login-btn"
           onClick={(event) => clickHandler(event)}
         >
@@ -36,9 +59,10 @@ function NavBtns({ handleLogOut, auth, toggleLogin_, open }) {
   }
 }
 
-const mapStateToProps = ({ open }) => {
+const mapStateToProps = ({ open, signUp }) => {
   return {
     open,
+    signUp,
   };
 };
 
@@ -46,6 +70,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     toggleLogin_: (boolean) => {
       return dispatch(toggleLogin(boolean));
+    },
+    toggleSignUp_: (boolean) => {
+      return dispatch(toggleSignUp(boolean));
     },
   };
 };

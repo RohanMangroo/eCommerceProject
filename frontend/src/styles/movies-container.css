@@ -1,6 +1,6 @@
 .movies-container {
   height: 1800px;
-  background-color: rgb(52, 52, 52);
+  background-color: rgba(46, 46, 46, 1);
   overflow: auto;
   justify-content: flex-end;
 }

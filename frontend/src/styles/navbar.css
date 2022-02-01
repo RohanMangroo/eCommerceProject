@@ -23,30 +23,32 @@
 .nav-btn {
   height: 70%;
   width: 5rem;
-  background: transparent;
-  border: none;
+  background-color: transparent;
+  border: solid thin rgb(197, 28, 28);
   color: white;
-  border: solid thin white;
   cursor: pointer;
+  border-radius: 1px;
+  transition: background-color 200ms ease-in-out;
 }
 
 .login-btn {
-  background-color: rgb(47, 147, 107);
-  border: none;
+  background-color: transparent;
+  border: solid thin rgb(47, 147, 107);
+  border-radius: 1px;
 }
 
 .nav-btn:hover {
-  background-color: rgb(47, 147, 107);
+  background-color: rgb(120, 16, 16);
 }
 
 .login-btn:hover {
-  background-color: rgb(31, 185, 72);
+  background-color: rgb(47, 147, 107);
 }
 .cart {
   height: 3rem;
   width: 3rem;
   border: none;
-  background-color: red;
+  background-color: rgb(178, 0, 0);
   cursor: pointer;
   position: relative;
   display: flex;
@@ -73,7 +75,7 @@
   right: 0;
   height: 40%;
   width: 100%;
-  background-color: rgb(195, 56, 56);
+  background-color: rgb(178, 0, 0);
   color: rgb(255, 255, 255);
   /* border-radius: ; */
 }

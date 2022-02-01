@@ -17,6 +17,13 @@ function LogIn({ toggleLogin_, updateAuth_, open }) {
 
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    if (!open.open) {
+      setUsername('');
+      setPassword('');
+    }
+  }, [open.open]);
+
   async function onSubmitHandler(event) {
     event.preventDefault();
 
@@ -64,6 +71,7 @@ function LogIn({ toggleLogin_, updateAuth_, open }) {
     <div ref={ref} className={`${loginClass}`}>
       <header className="login-header">MEMBER LOGIN</header>
       <span className="login-line"></span>
+
       <form className={formClass} onSubmit={onSubmitHandler}>
         <UsernameInput
           changeHandler={(event) =>
@@ -86,7 +94,7 @@ function LogIn({ toggleLogin_, updateAuth_, open }) {
   );
 }
 
-export function UsernameInput({ changeHandler, username }) {
+function UsernameInput({ changeHandler, username }) {
   return (
     <div>
       <label htmlFor="username"></label>

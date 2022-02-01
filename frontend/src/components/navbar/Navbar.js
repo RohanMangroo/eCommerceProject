@@ -4,6 +4,7 @@ import NavBtns from './NavBtns';
 import CartBtn from './CartBtn';
 import Logo from './Logo';
 import LogIn from '../auth/LogIn';
+import SignUpAlt from '../auth/SignUpAlt';
 import { updateAuth } from '../../store/authReducer';
 import '../../styles/navbar.css';
 
@@ -23,6 +24,7 @@ function Navbar({ toggleLogin, cart, auth, updateAuth_ }) {
       <CartBtn cart={cart} />
       <Logo />
       <LogIn />
+      <SignUpAlt />
     </div>
   );
 }

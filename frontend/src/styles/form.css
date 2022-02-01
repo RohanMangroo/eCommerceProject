@@ -43,7 +43,7 @@
 
 .form-container span {
   height: 15%;
-  /* background-color: rgb(28, 28, 28); */
+  background-color: rgb(28, 28, 28);
   width: 100%;
 }
 
@@ -54,12 +54,12 @@
   font-weight: 100;
 }
 
-.form-container form input {
+/* .form-container form input {
   height: 8%;
   width: 70%;
   background-color: rgb(74, 74, 74);
   border: none;
-}
+} */
 
 .form-container form input:focus {
   background-color: rgb(158, 158, 158);
@@ -108,3 +108,7 @@
   background-color: rgb(28, 28, 28);
   padding-top: 30px;
 }
+
+/* .temp {
+  z-index: 8;
+} */
