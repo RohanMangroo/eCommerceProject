@@ -27,12 +27,15 @@ function NavBtns({
     event.stopPropagation();
   }
 
+  const signUpBtn = signUp.open ? 'sign-up-btn-active' : '';
+  const loginUpBtn = open.open ? 'login-btn-ative' : '';
+
   if (!auth) {
     return (
       <>
         <button
           value="signUp"
-          className="nav-btn"
+          className={`nav-btn ${signUpBtn}`}
           onClick={(event) => clickHandler(event)}
         >
           Sign Up
@@ -40,7 +43,7 @@ function NavBtns({
 
         <button
           value="logIn"
-          className="nav-btn login-btn"
+          className={`nav-btn login-btn ${loginUpBtn}`}
           onClick={(event) => clickHandler(event)}
         >
           Log In

@@ -33,7 +33,7 @@
 
 .login-btn {
   background-color: transparent;
-  border: solid thin rgb(47, 147, 107);
+  border: solid thin rgb(69, 216, 157);
   border-radius: 1px;
 }
 
@@ -80,6 +80,10 @@
   /* border-radius: ; */
 }
 
-.temp {
-  color: white;
+.login-btn-ative {
+  background-color: rgb(47, 147, 107);
+}
+
+.sign-up-btn-active {
+  background-color: rgb(120, 16, 16);
 }
