@@ -16,8 +16,8 @@
 
 .cart-total-container {
   height: 100%;
-  width: 30%;
-  background-color: rgb(112, 112, 112);
+  width: 31%;
+  background-color: rgba(46, 46, 46, 1);
 }
 
 .cart-total-subcontainer {
@@ -31,16 +31,23 @@
   height: 35px;
   width: 100%;
   /* background-color: rgb(59, 59, 59); */
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: large;
-  font-weight: bold;
+  /* font-weight: bold; */
   color: rgb(219, 219, 219);
   display: flex;
   justify-content: space-between;
+  color: rgb(74, 196, 233);
 }
 
 .cart-tax {
-  border-bottom: solid thin lightgrey;
+  /* border-bottom: solid thin lightgrey; */
+}
+
+.cart-line {
+  width: 100%;
+  /* background-color: rgb(84, 84, 84);
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3); */
 }
 
 .cart-total {
@@ -63,6 +70,7 @@
   width: 100%;
   padding-left: 10px;
   color: rgb(88, 88, 88);
+  border-radius: 5px;
 }
 
 .promo-btn {
@@ -73,22 +81,33 @@
   width: 50px;
   border: none;
   background-color: lightgrey;
-  color: rgb(88, 88, 88);
+  color: rgb(36, 36, 36);
   cursor: pointer;
+  background-color: rgb(47, 124, 147);
+  border-radius: 0 5px 5px 0;
 }
 
 .cart-checkout {
   background-color: lightgrey;
 }
 
-.cart-checkout span {
-  color: black;
+.cart-checkout {
+  height: 2rem;
+  width: 175px;
+  background-color: rgb(47, 124, 147);
   margin: auto;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  margin-top: 30px;
+  color: rgb(36, 36, 36);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
 }
 
 .amount-txt {
-  font-weight: 100;
+  font-weight: 400;
   font-size: 1rem;
+  color: rgb(184, 238, 255);
 }
 
 .cart-bottom {

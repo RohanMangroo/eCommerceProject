@@ -1,7 +1,7 @@
 .cart-orders-subcontainer {
   height: 70%;
   width: 90%;
-  background-color: rgb(103, 103, 103);
+  background-color: rgba(46, 46, 46, 1);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, 65px);

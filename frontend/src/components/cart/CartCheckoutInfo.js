@@ -7,6 +7,7 @@ export default function CartCheckoutInfo() {
         <Subtotal />
         <Shipping />
         <Taxes />
+        <span className="login-line cart-line"></span>
         <Total />
         <PromoCode />
         <CheckOutBtn />
@@ -62,16 +63,12 @@ function PromoCode() {
           name="promo-code"
           id="promo-code"
         ></input>
-        <button className="promo-btn">Add</button>
+        <button className="promo-btn">ADD</button>
       </form>
     </div>
   );
 }
 
 function CheckOutBtn() {
-  return (
-    <div className="cart-checkout">
-      <span>Checkout</span>
-    </div>
-  );
+  return <button className="cart-checkout">C H E C K O U T</button>;
 }

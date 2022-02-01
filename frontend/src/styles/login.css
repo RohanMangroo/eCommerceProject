@@ -26,7 +26,7 @@
   gap: 2rem;
   padding-top: 10px;
   opacity: 1;
-  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
 }
 
 .display-none {
@@ -39,7 +39,7 @@
   gap: 2rem;
   padding-top: 10px;
   opacity: 0;
-  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
 }
 
 /* .login-form {
@@ -90,6 +90,7 @@
 
 .login-form button {
   width: 175px;
+  height: 2rem;
   /* margin: 0; */
   background-color: rgb(47, 147, 107);
   /* position: absolute; */
@@ -115,13 +116,13 @@
 
 .open {
   opacity: 1;
-  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
   z-index: 10;
 }
 
 .close {
   opacity: 0;
-  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
   transform: translateX(-100px);
 }
 

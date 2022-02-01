@@ -1,6 +1,7 @@
 import express from 'express';
 import setHeaders from './middleware/setHeaders.js';
 import authRouter from './routes/auth.js';
+import cartRouter from './routes/cart.js';
 
 const app = express();
 const PORT = 5000;
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use(setHeaders);
 
 app.use('/auth', authRouter);
+
+app.use('/user', cartRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

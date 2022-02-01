@@ -21,7 +21,7 @@
 }
 
 .nav-btn {
-  height: 70%;
+  height: 2rem;
   width: 5rem;
   background-color: transparent;
   border: solid thin rgb(197, 28, 28);
@@ -45,16 +45,30 @@
   background-color: rgb(47, 147, 107);
 }
 .cart {
-  height: 3rem;
-  width: 3rem;
+  height: 2rem;
+  width: 5rem;
   border: none;
-  background-color: rgb(178, 0, 0);
+  background-color: transparent;
+  border: solid thin rgb(57, 163, 195);
   cursor: pointer;
-  position: relative;
+  /* position: relative; */
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding-bottom: 5px;
+  margin-right: 10px;
+  justify-content: space-around;
+  /* justify-content: center;
+  align-items: flex-end; */
+  /* padding-bottom: 5px; */
+}
+
+.cart-link {
+  text-decoration: none;
+}
+
+.cart-icon {
+  height: 65%;
+  width: 50%;
+  color: rgb(0, 195, 255);
+  margin: auto;
 }
 
 .movie-go-title {
@@ -70,14 +84,16 @@
 }
 
 .cart-count {
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   right: 0;
-  height: 40%;
-  width: 100%;
-  background-color: rgb(178, 0, 0);
+  height: 100%;
+  width: 50%;
+  /* background-color: rgb(178, 0, 0); */
   color: rgb(255, 255, 255);
   /* border-radius: ; */
+  border-left: solid thin rgb(50, 155, 187);
+  color: rgb(129, 215, 241);
 }
 
 .login-btn-ative {
