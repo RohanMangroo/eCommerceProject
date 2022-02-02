@@ -1,14 +1,13 @@
 import React from 'react';
 
-export default function CartCheckoutInfo() {
+export default function CartCheckoutInfo({ subtotal, taxes, total }) {
   return (
     <div className="cart-total-container flex-col center-items">
       <div className="cart-total-subcontainer flex-col">
-        <Subtotal />
-        <Shipping />
-        <Taxes />
+        <Subtotal subtotal={subtotal} />
+        <Taxes taxes={taxes} />
         <span className="login-line cart-line"></span>
-        <Total />
+        <Total total={total} />
         <PromoCode />
         <CheckOutBtn />
       </div>
@@ -16,38 +15,29 @@ export default function CartCheckoutInfo() {
   );
 }
 
-function Subtotal() {
+function Subtotal({ subtotal }) {
   return (
     <div>
       <span className="cart-subtotal">SUBTOTAL</span>
-      <span className="amount-txt">$56.98</span>
+      <span className="amount-txt">{`$${subtotal}`}</span>
     </div>
   );
 }
 
-function Shipping() {
-  return (
-    <div>
-      <span className="cart-shipping">SHIPPING</span>
-      <span className="amount-txt">$4.99</span>
-    </div>
-  );
-}
-
-function Taxes() {
+function Taxes({ taxes }) {
   return (
     <div className="cart-tax">
       <span>ESTIMATED TAXES</span>
-      <span className="amount-txt">$2.78</span>
+      <span className="amount-txt">{`$${taxes}`}</span>
     </div>
   );
 }
 
-function Total() {
+function Total({ total }) {
   return (
     <div className="cart-total">
       <span>TOTAL</span>
-      <span className="amount-txt">$66.78</span>
+      <span className="amount-txt">{`$${total}`}</span>
     </div>
   );
 }

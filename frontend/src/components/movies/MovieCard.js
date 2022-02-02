@@ -3,11 +3,34 @@ import { Link } from 'react-router-dom';
 import '../../styles/movie-card.css';
 import { connect } from 'react-redux';
 import { updateCart } from '../../store/cartReducer';
+import Axios from 'axios';
 
 function MovieCard({ movieData, updateCart_ }) {
-  function clickHandler() {
-    console.log('add to cart...');
-    updateCart_(movieData);
+  async function clickHandler() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      const localCart = JSON.parse(localStorage.getItem('cart'));
+      localCart.push(movieData);
+      localStorage.setItem('cart', JSON.stringify(localCart));
+      updateCart_([movieData]);
+    } else {
+      const response = await Axios.post(
+        'http://localhost:5000/user/cart/item',
+        { movieData },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      const array = [];
+
+      for (let item in response.data) {
+        array.push({ title: item, quantity: Number(response.data[item]) });
+      }
+
+      updateCart_(array);
+    }
   }
   const sale = movieData.price === '4.99' ? 'SALE' : '';
 

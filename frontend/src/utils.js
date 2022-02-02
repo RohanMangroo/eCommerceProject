@@ -59,12 +59,19 @@ function changePage(target, prev) {
 function createItemRows(items) {
   const array = [];
   for (let i = 0; i < items.length; i++) {
+    const splitArray = items[i].title.split('/');
+
+    const title = splitArray[0];
+    const price = splitArray[1];
+
+    const quantity = items[i].quantity;
+    const total = Number(price) * Number(quantity);
     array.push(
       <div key={uuidv4()} className="cart-row">
-        <span>{items[i].title}</span>
-        <span>{items[i].price}</span>
-        <span></span>
-        <span></span>
+        <span>{title}</span>
+        <span>{`$${price}`}</span>
+        <span>{quantity}</span>
+        <span>{`$${total}`}</span>
       </div>
     );
   }

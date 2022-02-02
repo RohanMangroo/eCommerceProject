@@ -2,6 +2,7 @@ import db from '../db/index.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { findUserInfo } from '../db/queries.js';
+import client from '../redis/redis.js';
 
 async function logIn(req, res) {
   const { username, password } = req.body;
@@ -14,16 +15,18 @@ async function logIn(req, res) {
   const userData = data.rows[0];
   const passwordMatch = await bcrypt.compare(password, userData.password);
 
-  sendResponse(res, passwordMatch, username, userData.id);
+  await sendResponse(res, passwordMatch, username, userData.id);
 }
 
 //===============================================================//
 
-function sendResponse(res, passwordMatch, username, id) {
+async function sendResponse(res, passwordMatch, username, id) {
   if (passwordMatch) {
+    const cart = await client.HGETALL(`${username}:${id}`);
+
     const token = jwt.sign({ username: username, id: id }, 'mySuperSecret');
 
-    res.json({ userId: id, token, isLoggedIn: true, username });
+    res.json({ userId: id, token, isLoggedIn: true, username, cart });
   } else res.send('Credentials Are Incorrect');
 }
 

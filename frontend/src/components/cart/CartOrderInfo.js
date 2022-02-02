@@ -1,7 +1,7 @@
 import { createItemRows } from '../../utils';
 import '../../styles/cart-orders.css';
 
-export default function CartOrderInfo({ items }) {
+export default function CartOrderInfo({ items, setSubtotal }) {
   return (
     <div className="cart-orders center-items">
       <div className="cart-orders-subcontainer">
@@ -11,7 +11,7 @@ export default function CartOrderInfo({ items }) {
           <span>Quantity</span>
           <span>Total</span>
         </header>
-        {createItemRows(items)}
+        {createItemRows(items, setSubtotal)}
       </div>
     </div>
   );

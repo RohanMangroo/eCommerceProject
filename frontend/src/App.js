@@ -4,11 +4,12 @@ import UniversalRoutes from './components/UniversalRoutes';
 import Footer from './components/footer/Footer';
 import { connect } from 'react-redux';
 import { updateAuth } from './store/authReducer';
-import { toggleLogin } from './store/logInReducer';
+// import { toggleLogin } from './store/logInReducer';
+import { updateCart } from './store/cartReducer';
 import Axios from 'axios';
 import './styles/app.css';
 
-function App({ updateAuth_, toggleLogin_ }) {
+function App({ updateAuth_, updateCart_, toggleLogin_ }) {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -18,20 +19,35 @@ function App({ updateAuth_, toggleLogin_ }) {
         token: token,
         userId: localStorage.getItem('id'),
       });
+
+      async function getCartInfo() {
+        const response = await Axios.get('http://localhost:5000/user/cart', {
+          headers: {
+            authorization: token,
+          },
+        });
+
+        const array = [];
+
+        for (let item in response.data) {
+          array.push({ title: item, quantity: Number(response.data[item]) });
+        }
+
+        updateCart_(array);
+      }
+
+      getCartInfo();
     }
 
-    // async function getCartInfo() {
-    //   const response = await Axios.get('http://localhost:5000/user/cart', {
-    //     headers: {
-    //       authorization: token,
-    //     },
-    //   });
+    const localCart = localStorage.getItem('cart');
 
-    //   console.log(response);
-    //   return response;
-    // }
+    if (!localCart) localStorage.setItem('cart', JSON.stringify([]));
 
-    // const cartInfo = getCartInfo();
+    updateCart_(JSON.parse(localCart));
+
+    // console.log(JSON.parse(localCart));
+
+    //else you are GUEST, so make a GUEST CART is local storage
   });
 
   // function clickHandler() {
@@ -52,8 +68,11 @@ const mapDispatchToProps = (dispatch) => {
     updateAuth_: (data) => {
       return dispatch(updateAuth(data));
     },
-    toggleLogin_: (boolean) => {
-      return dispatch(toggleLogin(boolean));
+    // toggleLogin_: (boolean) => {
+    //   return dispatch(toggleLogin(boolean));
+    // },
+    updateCart_: (data) => {
+      return dispatch(updateCart(data));
     },
   };
 };

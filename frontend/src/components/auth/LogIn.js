@@ -7,9 +7,10 @@ import { toggleLogin } from '../../store/logInReducer';
 import Modal from '../modal/Modal';
 import { AiOutlineUser } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import { updateCart } from '../../store/cartReducer';
 import '../../styles/login.css';
 
-function LogIn({ toggleLogin_, updateAuth_, open }) {
+function LogIn({ toggleLogin_, updateAuth_, updateCart_, open }) {
   // const navigate = useNavigate();
   const ref = useRef();
   const [username, setUsername] = useState('');
@@ -33,11 +34,21 @@ function LogIn({ toggleLogin_, updateAuth_, open }) {
     });
 
     if (response.data.isLoggedIn) {
+      console.log(response.data.cart);
       updateAuth_(response.data);
       updateLocalStorage(response.data.token, response.data.userId);
+      localStorage.removeItem('cart');
       toggleLogin_(!open.open);
       setUsername('');
       setPassword('');
+
+      const array = [];
+
+      for (let item in response.data.cart) {
+        array.push({ title: item, quantity: response.data.cart[item] });
+      }
+
+      updateCart_(array);
     } else setError('No User Found');
   }
 
@@ -146,6 +157,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     toggleLogin_: (boolean) => {
       return dispatch(toggleLogin(boolean));
+    },
+    updateCart_: (data) => {
+      return dispatch(updateCart(data));
     },
   };
 };
