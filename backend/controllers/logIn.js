@@ -1,8 +1,8 @@
 import db from '../db/index.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import redisUtils from '../utils/redisUtils.js';
 import { findUserInfo } from '../db/queries.js';
-import client from '../redis/redis.js';
 
 async function logIn(req, res) {
   const { username, password, localCart } = req.body;
@@ -10,7 +10,7 @@ async function logIn(req, res) {
   const data = await db.query(findUserInfo(username));
   const dataLength = data.rowCount;
 
-  if (dataLength === 0) return res.send('No User Found...');
+  if (!dataLength) return res.send('No User Found...');
 
   const userData = data.rows[0];
   const passwordMatch = await bcrypt.compare(password, userData.password);
@@ -21,30 +21,21 @@ async function logIn(req, res) {
 //===============================================================//
 
 async function sendResponse(res, passwordMatch, username, id, localCart) {
+  //If the password matches combine the cart from local storage with the cart from redis
   if (passwordMatch) {
     for (let i = 0; i < localCart.length; i++) {
-      const itemExists = await client.HEXISTS(
-        `${username}:${id}`,
-        `${localCart[i].title}`
-      );
+      const key = `${username}:${id}`;
+      const item = `${localCart[i].title}`;
+      const quantity = localCart[i].quantity;
 
-      if (itemExists) {
-        await client.HINCRBY(
-          `${username}:${id}`,
-          `${localCart[i].title}`,
-          localCart[i].quantity
-        );
-      } else {
-        client.HSET(
-          `${username}:${id}`,
-          `${localCart[i].title}`,
-          localCart[i].quantity
-        );
-      }
+      const itemExists = redisUtils.checkItemExsistance(key, item);
+
+      if (itemExists) redisUtils.incrementBy(key, item, quantity);
+      else redisUtils.setItem(key, item, quantity);
     }
 
-    const cart = await client.HGETALL(`${username}:${id}`);
-    console.log(cart);
+    //Send the wntire cart back to client
+    const cart = redisUtils.getCart(key);
     const token = jwt.sign({ username: username, id: id }, 'mySuperSecret');
 
     res.json({ userId: id, token, isLoggedIn: true, username, cart });

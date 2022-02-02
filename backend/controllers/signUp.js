@@ -18,7 +18,6 @@ export default async function signUp(req, res) {
 
     res.json({ userId: id, token, isLoggedIn: true });
   } catch (err) {
-    // console.log(err);
     res.send('Username Taken');
   }
 }

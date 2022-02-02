@@ -1,16 +1,11 @@
 import jwt from 'jsonwebtoken';
-import client from '../redis/redis.js';
+import redisUtils from '../utils/redisUtils.js';
 
 export default async function cartInfo(req, res) {
   const token = req.headers.authorization;
   const decodedToken = jwt.verify(token, 'mySuperSecret');
+  const key = `${decodedToken.username}:${decodedToken.id}`;
 
-  // client.HSET(`${decodedToken.username}:${decodedToken.id}`, 'newItem3', '1');
-
-  const cart = await client.HGETALL(
-    `${decodedToken.username}:${decodedToken.id}`
-  );
+  const cart = redisUtils.getCart(key);
   res.send(cart);
 }
-// const cart = await client.HGETALL('rohan94');
-// console.log(cart);
