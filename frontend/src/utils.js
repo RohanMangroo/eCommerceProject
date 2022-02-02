@@ -57,6 +57,7 @@ function changePage(target, prev) {
 }
 
 function createItemRows(items) {
+  console.log(items);
   const array = [];
   for (let i = 0; i < items.length; i++) {
     const splitArray = items[i].title.split('/');

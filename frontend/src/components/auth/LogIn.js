@@ -27,10 +27,12 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, open }) {
 
   async function onSubmitHandler(event) {
     event.preventDefault();
+    const localCart = JSON.parse(localStorage.getItem('cart'));
 
     const response = await Axios.post('http://localhost:5000/auth/logIn', {
       username,
       password,
+      localCart,
     });
 
     if (response.data.isLoggedIn) {
@@ -47,7 +49,7 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, open }) {
       for (let item in response.data.cart) {
         array.push({ title: item, quantity: response.data.cart[item] });
       }
-
+      console.log(array);
       updateCart_(array);
     } else setError('No User Found');
   }

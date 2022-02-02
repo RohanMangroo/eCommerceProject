@@ -8,10 +8,30 @@ import Axios from 'axios';
 function MovieCard({ movieData, updateCart_ }) {
   async function clickHandler() {
     const token = localStorage.getItem('token');
+
     if (!token) {
+      let itemAlreadyInCart = false;
+      const movieTitle = `${movieData.title}/${movieData.price}`;
       const localCart = JSON.parse(localStorage.getItem('cart'));
-      localCart.push(movieData);
+
+      localCart.forEach((item) => {
+        if (item.title === movieTitle) {
+          itemAlreadyInCart = true;
+          let quantity = Number(item.quantity);
+          item.quantity = ++quantity;
+        }
+      });
+
+      if (!itemAlreadyInCart) {
+        localCart.push({ title: movieTitle, quantity: 1 });
+      }
+
       localStorage.setItem('cart', JSON.stringify(localCart));
+
+      // const movieObj = {
+      //   title: `${movieData.title}/${movieData.price}`,
+      //   quantity: 1,
+      // };
 
       updateCart_(localCart);
     } else {
