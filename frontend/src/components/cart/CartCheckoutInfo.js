@@ -1,4 +1,6 @@
 import React from 'react';
+import CheckOutBtn from './CheckOutBtn';
+// import Axios from 'axios';
 
 export default function CartCheckoutInfo({ subtotal, taxes, total }) {
   return (
@@ -59,6 +61,27 @@ function PromoCode() {
   );
 }
 
-function CheckOutBtn() {
-  return <button className="cart-checkout">C H E C K O U T</button>;
-}
+// function CheckOutBtn() {
+//   async function handleClick() {
+//     const token = localStorage.getItem('token');
+
+//     const response = await Axios.post(
+//       'http://localhost:5000/user/cart/checkout',
+//       {},
+//       {
+//         headers: {
+//           authorization: token,
+//         },
+//       }
+//     );
+//     if (response.data === 'Orders Submitted') {
+//     }
+//     console.log(response.data);
+//   }
+
+//   return (
+//     <button onClick={handleClick} className="cart-checkout">
+//       C H E C K O U T
+//     </button>
+//   );
+// }

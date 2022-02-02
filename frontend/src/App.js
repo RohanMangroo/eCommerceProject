@@ -37,13 +37,13 @@ function App({ updateAuth_, updateCart_, toggleLogin_ }) {
       }
 
       getCartInfo();
+    } else {
+      const localCart = localStorage.getItem('cart');
+
+      if (!localCart) localStorage.setItem('cart', JSON.stringify([]));
+
+      updateCart_(JSON.parse(localCart));
     }
-
-    const localCart = localStorage.getItem('cart');
-
-    if (!localCart) localStorage.setItem('cart', JSON.stringify([]));
-
-    updateCart_(JSON.parse(localCart));
 
     // console.log(JSON.parse(localCart));
 

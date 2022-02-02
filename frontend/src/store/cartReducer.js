@@ -26,10 +26,8 @@ const initialState = {
 const cartReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case UPDATE_CART:
-      const items = [...payload.data];
       return {
-        ...state,
-        items: items,
+        items: payload.data,
       };
     case EMPTY_CART:
       return {

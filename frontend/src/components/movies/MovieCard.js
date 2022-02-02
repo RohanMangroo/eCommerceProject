@@ -12,7 +12,8 @@ function MovieCard({ movieData, updateCart_ }) {
       const localCart = JSON.parse(localStorage.getItem('cart'));
       localCart.push(movieData);
       localStorage.setItem('cart', JSON.stringify(localCart));
-      updateCart_([movieData]);
+
+      updateCart_(localCart);
     } else {
       const response = await Axios.post(
         'http://localhost:5000/user/cart/item',
