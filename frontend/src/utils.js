@@ -57,7 +57,6 @@ function changePage(target, prev) {
 }
 
 function createItemRows(items) {
-  console.log(items);
   const array = [];
   for (let i = 0; i < items.length; i++) {
     const splitArray = items[i].title.split('/');
@@ -102,7 +101,51 @@ function changeHandlerSignUp(event, setUsername, setEmail, setPassword) {
   else if (input === 'password') setPassword(value);
 }
 
-export {
+function resetInput(stateArray) {
+  for (let i = 0; i < stateArray.length; i++) {
+    const func = stateArray[i];
+    func('');
+  }
+}
+
+function processResponse(data) {
+  const array = [];
+
+  for (let item in data) {
+    array.push({ title: item, quantity: data[item] });
+  }
+
+  return array;
+}
+
+function calculateSubtotal(cart) {
+  let subtotal = 0;
+
+  cart.items.forEach((item) => {
+    const quantity = item.quantity;
+    const price = Number(item.title.split('/')[1]);
+    subtotal += price * quantity;
+  });
+
+  return subtotal;
+}
+
+function addItemToLocalCart(localCart, movieTitle) {
+  let itemAlreadyInCart = false;
+
+  localCart.forEach((item) => {
+    if (item.title === movieTitle) {
+      itemAlreadyInCart = true;
+      let quantity = Number(item.quantity);
+      item.quantity = ++quantity;
+    }
+  });
+
+  if (!itemAlreadyInCart) {
+    localCart.push({ title: movieTitle, quantity: 1 });
+  }
+}
+const exports = {
   createMovieCards,
   changePage,
   trimDate,
@@ -110,7 +153,13 @@ export {
   updateLocalStorage,
   changeHandler,
   changeHandlerSignUp,
+  resetInput,
+  processResponse,
+  calculateSubtotal,
+  addItemToLocalCart,
 };
+
+export default exports;
 //API Key f4b964a7e615c3824313f9121ff9270d
 //Imge URL format https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg
 //GET Top Movies https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1

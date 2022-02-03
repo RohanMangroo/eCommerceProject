@@ -28,14 +28,16 @@ async function sendResponse(res, passwordMatch, username, id, localCart) {
       const item = `${localCart[i].title}`;
       const quantity = localCart[i].quantity;
 
-      const itemExists = redisUtils.checkItemExsistance(key, item);
+      const itemExists = await redisUtils.checkItemExsistance(key, item);
 
-      if (itemExists) redisUtils.incrementBy(key, item, quantity);
-      else redisUtils.setItem(key, item, quantity);
+      if (itemExists) await redisUtils.incrementBy(key, item, quantity);
+      else await redisUtils.setItem(key, item, quantity);
     }
 
+    const key = `${username}:${id}`;
+
     //Send the wntire cart back to client
-    const cart = redisUtils.getCart(key);
+    const cart = await redisUtils.getCart(key);
     const token = jwt.sign({ username: username, id: id }, 'mySuperSecret');
 
     res.json({ userId: id, token, isLoggedIn: true, username, cart });

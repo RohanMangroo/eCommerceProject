@@ -60,28 +60,3 @@ function PromoCode() {
     </div>
   );
 }
-
-// function CheckOutBtn() {
-//   async function handleClick() {
-//     const token = localStorage.getItem('token');
-
-//     const response = await Axios.post(
-//       'http://localhost:5000/user/cart/checkout',
-//       {},
-//       {
-//         headers: {
-//           authorization: token,
-//         },
-//       }
-//     );
-//     if (response.data === 'Orders Submitted') {
-//     }
-//     console.log(response.data);
-//   }
-
-//   return (
-//     <button onClick={handleClick} className="cart-checkout">
-//       C H E C K O U T
-//     </button>
-//   );
-// }

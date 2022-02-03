@@ -6,6 +6,6 @@ export default async function cartInfo(req, res) {
   const decodedToken = jwt.verify(token, 'mySuperSecret');
   const key = `${decodedToken.username}:${decodedToken.id}`;
 
-  const cart = redisUtils.getCart(key);
+  const cart = await redisUtils.getCart(key);
   res.send(cart);
 }

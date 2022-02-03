@@ -1,22 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CartOrderInfo from './CartOrderInfo';
 import CartCheckoutInfo from './CartCheckoutInfo';
 import { connect } from 'react-redux';
+import utils from '../../utils';
 import '../../styles/cart-total.css';
 
 function Cart({ cart }) {
-  // const [subtotal, setSubtotal] = useState(0);
-  let subtotal = 0;
-
-  // console.log(cart.items);
-  cart.items.forEach((item) => {
-    const quantity = item.quantity;
-    const price = Number(item.title.split('/')[1]);
-    subtotal += price * quantity;
-  });
-
+  const subtotal = utils.calculateSubtotal(cart);
   const taxes = subtotal * 0.08;
-
   const total = subtotal + taxes;
 
   return (

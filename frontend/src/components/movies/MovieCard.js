@@ -1,56 +1,34 @@
 import React from 'react';
+import Axios from 'axios';
+import utils from '../../utils';
 import { Link } from 'react-router-dom';
-import '../../styles/movie-card.css';
 import { connect } from 'react-redux';
 import { updateCart } from '../../store/cartReducer';
-import Axios from 'axios';
+import '../../styles/movie-card.css';
 
 function MovieCard({ movieData, updateCart_ }) {
+  //Button handler
   async function clickHandler() {
     const token = localStorage.getItem('token');
 
+    //If there is no token(user is not logged in) we need to drop that item into local storage
     if (!token) {
-      let itemAlreadyInCart = false;
-      const movieTitle = `${movieData.title}/${movieData.price}`;
       const localCart = JSON.parse(localStorage.getItem('cart'));
+      const movieTitle = `${movieData.title}/${movieData.price}`;
 
-      localCart.forEach((item) => {
-        if (item.title === movieTitle) {
-          itemAlreadyInCart = true;
-          let quantity = Number(item.quantity);
-          item.quantity = ++quantity;
-        }
-      });
-
-      if (!itemAlreadyInCart) {
-        localCart.push({ title: movieTitle, quantity: 1 });
-      }
-
+      utils.addItemToLocalCart(localCart, movieTitle);
       localStorage.setItem('cart', JSON.stringify(localCart));
-
-      // const movieObj = {
-      //   title: `${movieData.title}/${movieData.price}`,
-      //   quantity: 1,
-      // };
 
       updateCart_(localCart);
     } else {
-      const response = await Axios.post(
-        'http://localhost:5000/user/cart/item',
-        { movieData },
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
-      const array = [];
+      //Otherwise we call dwon to the server and have the item placed in redis storage
+      const endPoint = 'http://localhost:5000/user/cart/item';
+      const body = { movieData };
+      const config = { headers: { authorization: token } };
+      const response = await Axios.post(endPoint, body, config);
+      const cart = utils.processResponse(response.data);
 
-      for (let item in response.data) {
-        array.push({ title: item, quantity: Number(response.data[item]) });
-      }
-
-      updateCart_(array);
+      updateCart_(cart);
     }
   }
   const sale = movieData.price === '4.99' ? 'SALE' : '';

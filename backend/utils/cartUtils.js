@@ -1,14 +1,31 @@
 import db from '../db/index.js';
 
-async function processCartOrders(cart) {
+async function processCartOrders(cart, decodedToken) {
   for (let item in cart) {
     const splitItem = item.split('/');
     const title = fixString(splitItem[0]);
     const price = splitItem[1];
     const quantity = cart[item];
 
-    await db.query(
-      `INSERT INTO Orders(title, quantity, price, userId) VALUES('${title}', '${quantity}', ${price}, ${decodedToken.id});`
+    const id = decodedToken ? decodedToken.id : null;
+
+    db.query(
+      `INSERT INTO Orders(title, quantity, price, userId) VALUES('${title}', '${quantity}', ${price}, ${id});`
+    );
+  }
+}
+
+async function processArrayCartOrders(cart, decodedToken) {
+  for (let item of cart) {
+    const splitItem = item.title.split('/');
+    const title = fixString(splitItem[0]);
+    const price = splitItem[1];
+    const quantity = item.quantity;
+
+    const id = decodedToken ? decodedToken.id : null;
+
+    db.query(
+      `INSERT INTO Orders(title, quantity, price, userId) VALUES('${title}', '${quantity}', ${price}, ${id});`
     );
   }
 }
@@ -25,5 +42,6 @@ function fixString(string) {
 
 export default {
   processCartOrders,
+  processArrayCartOrders,
   fixString,
 };

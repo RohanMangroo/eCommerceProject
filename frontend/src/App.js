@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
+import Axios from 'axios';
 import Navbar from './components/navbar/Navbar';
 import UniversalRoutes from './components/UniversalRoutes';
 import Footer from './components/footer/Footer';
+import utils from './utils';
 import { connect } from 'react-redux';
 import { updateAuth } from './store/authReducer';
-// import { toggleLogin } from './store/logInReducer';
 import { updateCart } from './store/cartReducer';
-import Axios from 'axios';
 import './styles/app.css';
 
-function App({ updateAuth_, updateCart_, toggleLogin_ }) {
+function App({ updateAuth_, updateCart_ }) {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -21,38 +21,21 @@ function App({ updateAuth_, updateCart_, toggleLogin_ }) {
       });
 
       async function getCartInfo() {
-        const response = await Axios.get('http://localhost:5000/user/cart', {
-          headers: {
-            authorization: token,
-          },
-        });
+        const endPoint = 'http://localhost:5000/user/cart';
+        const config = { headers: { authorization: token } };
+        const response = await Axios.get(endPoint, config);
+        const cart = utils.processResponse(response.data);
 
-        const array = [];
-
-        for (let item in response.data) {
-          array.push({ title: item, quantity: Number(response.data[item]) });
-        }
-
-        updateCart_(array);
+        updateCart_(cart);
       }
 
       getCartInfo();
     } else {
       const localCart = localStorage.getItem('cart');
-
       if (!localCart) localStorage.setItem('cart', JSON.stringify([]));
-
       updateCart_(JSON.parse(localCart));
     }
-
-    // console.log(JSON.parse(localCart));
-
-    //else you are GUEST, so make a GUEST CART is local storage
   });
-
-  // function clickHandler() {
-  //   toggleLogin_(true);
-  // }
 
   return (
     <div className="app-container">
@@ -68,9 +51,6 @@ const mapDispatchToProps = (dispatch) => {
     updateAuth_: (data) => {
       return dispatch(updateAuth(data));
     },
-    // toggleLogin_: (boolean) => {
-    //   return dispatch(toggleLogin(boolean));
-    // },
     updateCart_: (data) => {
       return dispatch(updateCart(data));
     },

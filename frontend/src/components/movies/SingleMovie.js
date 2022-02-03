@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
-import { createMovieCards, trimDate } from '../../utils';
+import utils from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
 import '../../styles/singleMovie.css';
 
@@ -13,18 +13,15 @@ export default function SingleMovie() {
 
   useEffect(() => {
     async function getMovieData() {
-      const data = await Axios.get(
-        `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`
-      );
+      const movieDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+      const castDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+      const relatedMoviesEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
 
-      const castData = await Axios.get(
-        `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`
-      );
+      const movieData = await Axios.get(movieDataEndpoint);
+      const castData = await Axios.get(castDataEndpoint);
+      const relatedMovies = await Axios.get(relatedMoviesEndpoint);
 
-      const relatedMovies = await Axios.get(
-        `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`
-      );
-      setMovieData(data.data);
+      setMovieData(movieData.data);
       setCastData(castData.data);
       setRelated(relatedMovies.data.results);
     }
@@ -32,6 +29,7 @@ export default function SingleMovie() {
     getMovieData();
   }, [params.id]);
 
+  //This object will contain movies that have low quality main images so we'll use the secondary image
   const changePath = { 19404: true };
 
   if (movieData && castData && related) {
@@ -50,13 +48,15 @@ export default function SingleMovie() {
           }}
         ></section>
         <section className="single-movie-info flex-row">
-          <div className="center-items">{createMovieCards([movieData])}</div>
+          <div className="center-items">
+            {utils.createMovieCards([movieData])}
+          </div>
           <div>
             <MovieDetails movie={movieData} cast={castData.cast} />
           </div>
         </section>
         <section className="related flex-row">
-          {createMovieCards(related, true)}
+          {utils.createMovieCards(related, true)}
         </section>
       </div>
     );
@@ -70,7 +70,7 @@ function MovieDetails({ movie, cast }) {
     <div className="movie-details flex-col">
       <div>
         <span>{movie.title}</span>
-        <span>{trimDate(movie.release_date)}</span>
+        <span>{utils.trimDate(movie.release_date)}</span>
       </div>
       <span>{movie.tagline}</span>
       <span>{movie.overview}</span>

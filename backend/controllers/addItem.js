@@ -13,12 +13,11 @@ export default async function addItem(req, res) {
   //Each movie(item) is associated with a quantity. Example: 'The Godfather/19.99 : 2'
   const item = `${movie.title}/${movie.price}`;
 
-  const itemExists = redisUtils.checkItemExsistance(key, item);
+  const itemExists = await redisUtils.checkItemExsistance(key, item);
 
-  if (itemExists) redisUtils.incrementBy(key, item, 1);
-  else redisUtils.setItem(key, item, 1);
+  if (itemExists) await redisUtils.incrementBy(key, item, 1);
+  else await redisUtils.setItem(key, item, 1);
 
-  const cart = redisUtils.getCart(key);
-
+  const cart = await redisUtils.getCart(key);
   res.send(cart);
 }

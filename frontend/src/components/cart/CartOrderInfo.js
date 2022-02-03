@@ -1,4 +1,4 @@
-import { createItemRows } from '../../utils';
+import utils from '../../utils';
 import '../../styles/cart-orders.css';
 
 export default function CartOrderInfo({ items, setSubtotal }) {
@@ -11,7 +11,7 @@ export default function CartOrderInfo({ items, setSubtotal }) {
           <span>Quantity</span>
           <span>Total</span>
         </header>
-        {createItemRows(items, setSubtotal)}
+        {utils.createItemRows(items, setSubtotal)}
       </div>
     </div>
   );

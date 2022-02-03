@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { createMovieCards, changePage } from '../../utils';
+import utils from '../../utils';
 import '../../styles/movies-container.css';
 
 export default function Movies() {
@@ -19,7 +19,7 @@ export default function Movies() {
 
   function clickHandler(event) {
     setPage((prev) => {
-      const newPage = changePage(event.target.value, prev);
+      const newPage = utils.changePage(event.target.value, prev);
       return newPage;
     });
   }
@@ -28,7 +28,7 @@ export default function Movies() {
     <>
       <section className="movies-container flex-col">
         <div className="movies-sub-container">
-          {createMovieCards(movieList)}
+          {utils.createMovieCards(movieList)}
         </div>
       </section>
       <div onClick={clickHandler} className="page-btns flex-row center-items">

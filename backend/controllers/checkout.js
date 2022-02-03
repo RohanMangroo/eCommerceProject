@@ -7,9 +7,9 @@ async function checkout(req, res) {
   const decodedToken = jwt.verify(token, 'mySuperSecret');
   const key = `${decodedToken.username}:${decodedToken.id}`;
 
-  const cart = redisUtils.getCart(key);
+  const cart = await redisUtils.getCart(key);
 
-  cartUtils.processCartOrders(cart);
+  await cartUtils.processCartOrders(cart, decodedToken);
 
   redisUtils.deleteCart(key);
   res.json('Orders Submitted');
