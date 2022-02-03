@@ -26,20 +26,12 @@
   gap: 2rem;
   padding-top: 10px;
   opacity: 1;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transition: opacity 200ms step-end;
 }
 
 .display-none {
-  display: flex;
-  flex-direction: column;
-  /* position: relative; */
-  font-family: sans-serif;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 2rem;
-  padding-top: 10px;
   opacity: 0;
-  transition: opacity 20ms ease-in-out, transform 20ms ease-in-out;
+  transition: opacity 20ms step-end;
 }
 
 .login-form > div {
@@ -156,9 +148,8 @@
 .close {
   opacity: 0;
   transition: opacity 20ms ease-in-out, height 20ms ease-in-out;
-  /* transform: translateX(-100px); */
   height: 0;
-  z-index: -10;
+  /* z-index: -10; */
 }
 
 .close .login-form,
@@ -166,11 +157,13 @@
 .close .login-header,
 .close .login-line,
 .close .login-form input,
-.close .login-form button {
+.close .login-form button,
+.close .login-container {
   height: 0;
   width: 0;
 }
 
-.close .login-header {
+.close .login-header,
+.close .login-form button {
   display: none;
 }

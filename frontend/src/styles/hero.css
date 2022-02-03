@@ -1,9 +1,11 @@
 .hero {
-  height: 600px;
+  height: 500px;
   width: 100%;
   display: flex;
-  font-family: 'CrimsonPro', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
   position: relative;
+  padding-top: 3rem;
 }
 
 .hero-image {
@@ -21,7 +23,7 @@
   font-size: 1.2rem;
   bottom: 0;
   left: 0;
-  font-weight: 100;
+  /* font-weight: 100; */
 }
 
 .carousel-btn {
@@ -33,6 +35,8 @@
   color: rgb(125, 63, 1);
   font-size: 3rem;
   cursor: pointer;
+  transition-duration: 300ms;
+  padding-bottom: 3rem;
 }
 
 .carousel-btn-left {
@@ -45,5 +49,6 @@
 
 .carousel-btn:hover {
   color: rgb(188, 94, 0);
-  background: rgba(0, 0, 0, 0.4);
+  /* background: rgba(0, 0, 0, 0.4); */
+  transition-duration: 300ms;
 }

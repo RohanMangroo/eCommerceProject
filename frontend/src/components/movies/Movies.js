@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import utils from '../../utils';
+import { BiRightArrow } from 'react-icons/bi';
+import { BiLeftArrow } from 'react-icons/bi';
 import '../../styles/movies-container.css';
 
 export default function Movies() {
@@ -26,6 +28,16 @@ export default function Movies() {
 
   return (
     <>
+      <div onClick={clickHandler} className="page-btns flex-row center-items">
+        <button className="btn" value="prev">
+          <BiLeftArrow className="prev-page-icon" />
+          Prev Page
+        </button>
+        <button className="btn" value="next">
+          Next Page
+          <BiRightArrow className="next-page-icon" />
+        </button>
+      </div>
       <section className="movies-container flex-col">
         <div className="movies-sub-container">
           {utils.createMovieCards(movieList)}
@@ -33,10 +45,12 @@ export default function Movies() {
       </section>
       <div onClick={clickHandler} className="page-btns flex-row center-items">
         <button className="btn" value="prev">
+          <BiLeftArrow className="prev-page-icon" />
           Prev Page
         </button>
         <button className="btn" value="next">
           Next Page
+          <BiRightArrow className="next-page-icon" />
         </button>
       </div>
     </>

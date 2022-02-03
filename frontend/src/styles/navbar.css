@@ -1,13 +1,14 @@
 .navbar {
   height: 3rem;
   width: 80vw;
-  background-color: rgb(0, 0, 0, 0.9);
+  background-color: rgb(0, 0, 0, 1);
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
   /* overflow: hidden; */
   position: fixed;
   z-index: 1;
+  /* margin-bottom: 3rem; */
 }
 
 /* .nav-link {
