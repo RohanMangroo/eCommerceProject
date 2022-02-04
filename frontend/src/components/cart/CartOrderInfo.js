@@ -8,36 +8,39 @@ import '../../styles/cart-orders.css';
 function CartOrderInfo({ items, cart, updateCart_ }) {
   async function clickHandler(event, title) {
     const token = localStorage.getItem('token');
-    let newCart;
-    const typeOfClick = event.currentTarget.id;
 
-    if (typeOfClick === 'plus') {
-      newCart = utils.editCart(title, cart.items, 'plus');
+    if (token) {
+      let newCart;
+      const typeOfClick = event.currentTarget.id;
 
-      const endPoint = `http://localhost:5000/user/cart/item/quantity`;
-      const body = { title, action: 'plus' };
-      const config = {
-        headers: { authorization: token },
-      };
-      await Axios.post(endPoint, body, config);
-    } else if (typeOfClick === 'minus') {
-      newCart = utils.editCart(title, cart.items, 'minus');
+      if (typeOfClick === 'plus') {
+        newCart = utils.editCart(title, cart.items, 'plus');
 
-      const endPoint = `http://localhost:5000/user/cart/item/quantity`;
-      const body = { title, action: 'minus' };
-      const config = {
-        headers: { authorization: token },
-      };
-      await Axios.post(endPoint, body, config);
-    } else {
-      newCart = utils.editCart(title, cart.items, 'delete');
+        const endPoint = `http://localhost:5000/user/cart/item/quantity`;
+        const body = { title, action: 'plus' };
+        const config = {
+          headers: { authorization: token },
+        };
+        await Axios.post(endPoint, body, config);
+      } else if (typeOfClick === 'minus') {
+        newCart = utils.editCart(title, cart.items, 'minus');
 
-      const endPoint = `http://localhost:5000/user/cart/item`;
-      const config = { headers: { authorization: token }, data: { title } };
-      await Axios.delete(endPoint, config);
+        const endPoint = `http://localhost:5000/user/cart/item/quantity`;
+        const body = { title, action: 'minus' };
+        const config = {
+          headers: { authorization: token },
+        };
+        await Axios.post(endPoint, body, config);
+      } else {
+        newCart = utils.editCart(title, cart.items, 'delete');
+
+        const endPoint = `http://localhost:5000/user/cart/item`;
+        const config = { headers: { authorization: token }, data: { title } };
+        await Axios.delete(endPoint, config);
+      }
+
+      updateCart_(newCart);
     }
-
-    updateCart_(newCart);
   }
 
   return (
