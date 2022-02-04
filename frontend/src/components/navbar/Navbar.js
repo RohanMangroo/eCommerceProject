@@ -25,7 +25,7 @@ function Navbar({ toggleLogin, cart, auth, updateAuth_, emptyCart_ }) {
         handleLogOut={handleLogOut}
       />
       <CartBtn cart={cart} />
-      <Logo />
+      {/* <Logo /> */}
       <LogIn />
       <SignUpAlt />
     </div>

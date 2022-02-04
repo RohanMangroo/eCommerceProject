@@ -1,6 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+import image from '../../images/splash2.jpg';
 
 export default function Carousel({ list }) {
+  return <HeroImage />;
+}
+
+// frontend/src/images/movieHero.jpg
+// /Users/rohan/e-commerce/frontend/src/images/movieHero.jpg
+function HeroImage() {
+  const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    async function getMoveLists() {
+      const listOne = await Axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`
+      );
+      setMovieList(listOne.data.results);
+    }
+    getMoveLists();
+  }, []);
+
+  return (
+    <div className="hero" style={{ backgroundImage: `url(${image})` }}>
+      <div className="overlay center-items">
+        <span>C I N E M A S</span>
+        {/* <Slider list={movieList} /> */}
+      </div>
+    </div>
+  );
+}
+
+function Slider({ list }) {
   const [currentPosition, setPosition] = useState(0);
 
   function clickHandler(event) {
@@ -17,27 +48,23 @@ export default function Carousel({ list }) {
     const imageOne = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
 
     return (
-      <>
-        <HeroImage imageOne={imageOne} title={title} />
+      <div className="slider">
+        <Image image={imageOne} title={title} />
         <LeftBtn clickHandler={clickHandler} />
         <RightBtn clickHandler={clickHandler} />
-      </>
+      </div>
     );
   }
 
   return <></>;
 }
 
-function HeroImage({ imageOne, title }) {
+function Image({ image, title }) {
   return (
     <div
-      className="hero-image"
-      style={{
-        backgroundImage: `url(${imageOne})`,
-      }}
-    >
-      <span>{title}</span>
-    </div>
+      className="hero-movie-image"
+      style={{ backgroundImage: `url(${image})` }}
+    ></div>
   );
 }
 

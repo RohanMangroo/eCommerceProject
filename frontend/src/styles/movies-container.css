@@ -1,12 +1,12 @@
 .movies-container {
   height: max-content;
-  background-color: rgba(46, 46, 46, 1);
+  background-color: rgb(18, 18, 18);
   overflow: visible;
   justify-content: flex-end;
   padding-top: 50px;
   padding-bottom: 100px;
-  border-top: solid rgb(50, 50, 50);
-  border-bottom: solid rgb(50, 50, 50);
+  /* border-top: solid thin rgb(214, 12, 12); */
+  /* border-bottom: solid rgba(0, 9, 32); */
 }
 
 .movies-sub-container {
@@ -23,17 +23,20 @@
 .page-btns {
   gap: 2rem;
   height: 100px;
-  background-color: rgb(40, 40, 40);
+  background-color: rgb(18, 18, 18);
 }
 
 .page-btns button {
-  border: solid thin rgba(169, 169, 169, 0.5);
+  height: 2rem;
+  width: 2rem;
+  /* border: solid thin rgba(169, 169, 169, 0.5); */
   background: transparent;
   margin: 0;
   color: rgba(169, 169, 169, 0.5);
   border-radius: 5px;
   transition-duration: 100ms;
   position: relative;
+  border: none;
 }
 
 .page-btns button:hover {
@@ -51,10 +54,10 @@
 .prev-page-icon {
   position: absolute;
   height: 100%;
-  width: 20%;
+  width: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(127, 127, 127, 0.5);
+  /* background-color: rgba(158, 14, 14, 0.5); */
   color: rgba(159, 159, 159, 0.5);
   transition-duration: 100ms ease-in-out;
 }
@@ -62,10 +65,10 @@
 .next-page-icon {
   position: absolute;
   height: 100%;
-  width: 20%;
+  width: 100%;
   top: 0;
   right: 0;
-  background-color: rgba(127, 127, 127, 0.5);
+  /* background-color: rgba(127, 127, 127, 0.5); */
   color: rgba(159, 159, 159, 0.5);
   transition: 100ms ease-in-out;
 }

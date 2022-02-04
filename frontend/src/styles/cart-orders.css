@@ -1,7 +1,7 @@
 .cart-orders-subcontainer {
-  height: 70%;
-  width: 90%;
-  background-color: rgba(46, 46, 46, 1);
+  height: 95%;
+  width: 97%;
+  background-color: rgb(30, 30, 30);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, 65px);
@@ -10,23 +10,42 @@
   overflow: auto;
 }
 
+.even {
+  background-color: rgba(56, 56, 56, 0.3);
+}
+
+.odd {
+  background-color: rgba(88, 88, 88, 0.3);
+}
+
+.even:hover {
+  background-color: rgb(4, 36, 47);
+}
+
+.odd:hover {
+  background-color: rgb(4, 36, 47);
+}
 .cart-row {
   /* background-color: rgb(56, 56, 56); */
   grid-column: 1 / 5;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  border-bottom: solid thin rgb(83, 83, 83);
+  position: relative;
 }
 
 .cart-row span {
   /* background-color: rgb(41, 41, 41); */
-  padding-top: 20px;
-  padding-left: 10px;
-  font-family: sans-serif;
+  /* padding-top: 20px;
+  padding-left: 10px; */
+  /* font-family: sans-serif; */
+  font-family: 'Montserrat', sans-serif;
   font-size: large;
-  font-weight: bold;
-  color: rgb(219, 219, 219);
-  border-bottom: solid thin rgb(82, 82, 82);
-  border-right: solid thin rgb(82, 82, 82);
+  font-weight: 400;
+  color: rgb(147, 147, 147);
+  /* border-bottom: solid thin rgb(82, 82, 82);
+  border-right: solid thin rgb(82, 82, 82); */
+  margin: auto;
 }
 
 .cart-row span:nth-child(1) {
@@ -39,9 +58,59 @@
 }
 
 .header {
-  background-color: rgb(50, 50, 50);
+  background-color: rgb(42, 42, 42);
+  border-bottom: solid 7px rgb(18, 18, 18);
 }
 
 .header span {
   border-right: none;
+  font-weight: bold;
+}
+
+.movie-quant {
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0; */
+}
+
+.movie-quant .button {
+  height: 30px;
+  width: 30px;
+  /* border-radius: 50%; */
+  border: none;
+  cursor: pointer;
+  font-size: large;
+  /* font-weight: bold; */
+  color: rgb(47, 124, 147);
+  background-color: transparent;
+}
+
+.movie-quant .button:hover {
+  color: rgb(49, 150, 181);
+}
+
+.delete-item {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 25px;
+  width: 25px;
+}
+
+.delete-item .button {
+  height: 100%;
+  width: 100%;
+  color: rgb(147, 47, 47);
+  cursor: pointer;
+}
+
+.delete-item .button:hover {
+  color: rgb(195, 50, 50);
+}
+.cart-row .cart-movie-title {
+  margin: 0;
+  margin-top: 20px;
+  margin-left: 30px;
+  /* border: solid red; */
 }

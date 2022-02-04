@@ -53,7 +53,7 @@ function NavBtns({
   } else {
     return (
       <>
-        <span className="temp">Welcome! </span>
+        {/* <span className="temp">Welcome! </span> */}
         <button className="nav-btn login-btn" onClick={handleLogOut}>
           Log Out
         </button>

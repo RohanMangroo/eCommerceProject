@@ -20,22 +20,22 @@ export default function Movies() {
   }, [page]);
 
   function clickHandler(event) {
-    setPage((prev) => {
-      const newPage = utils.changePage(event.target.value, prev);
-      return newPage;
-    });
+    if (event.target.id) {
+      setPage((prev) => {
+        const newPage = utils.changePage(event.target.id, prev);
+        return newPage;
+      });
+    }
   }
 
   return (
     <>
       <div onClick={clickHandler} className="page-btns flex-row center-items">
         <button className="btn" value="prev">
-          <BiLeftArrow className="prev-page-icon" />
-          Prev Page
+          <BiLeftArrow id="prev" className="prev-page-icon" />
         </button>
         <button className="btn" value="next">
-          Next Page
-          <BiRightArrow className="next-page-icon" />
+          <BiRightArrow id="next" className="next-page-icon" />
         </button>
       </div>
       <section className="movies-container flex-col">
@@ -45,12 +45,10 @@ export default function Movies() {
       </section>
       <div onClick={clickHandler} className="page-btns flex-row center-items">
         <button className="btn" value="prev">
-          <BiLeftArrow className="prev-page-icon" />
-          Prev Page
+          <BiLeftArrow id="prev" className="prev-page-icon" />
         </button>
         <button className="btn" value="next">
-          Next Page
-          <BiRightArrow className="next-page-icon" />
+          <BiRightArrow id="next" className="next-page-icon" />
         </button>
       </div>
     </>

@@ -22,10 +22,19 @@ async function deleteCart(key) {
   client.DEL(key);
 }
 
+async function deleteItem(key, item) {
+  client.HDEL(key, item);
+}
+
+async function getItem(key, item) {
+  return client.HGET(key, item);
+}
 export default {
   checkItemExsistance,
   incrementBy,
   setItem,
   getCart,
   deleteCart,
+  deleteItem,
+  getItem,
 };

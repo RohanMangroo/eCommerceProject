@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
 body {
-  background-color: rgb(29, 29, 29);
+  background-color: rgb(45, 45, 45);
 }
 .center-items {
   display: flex;
