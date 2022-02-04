@@ -19,7 +19,7 @@ function CheckOutBtn({ emptyCart_ }) {
       const body = { localCart };
       const response = await Axios.post(endPoint, body);
       if (response.data === 'Orders Submitted') {
-        localStorage.clear();
+        localStorage.setItem('cart', JSON.stringify([]));
         emptyCart_();
       }
     }

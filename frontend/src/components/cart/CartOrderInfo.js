@@ -10,11 +10,10 @@ import '../../styles/cart-orders.css';
 function CartOrderInfo({ items, cart, updateCart_ }) {
   async function clickHandler(event, title) {
     const token = localStorage.getItem('token');
+    let newCart;
+    const typeOfClick = event.currentTarget.id;
 
     if (token) {
-      let newCart;
-      const typeOfClick = event.currentTarget.id;
-
       if (typeOfClick === 'plus') {
         newCart = utils.editCart(title, cart.items, 'plus');
 
@@ -40,9 +39,19 @@ function CartOrderInfo({ items, cart, updateCart_ }) {
         const config = { headers: { authorization: token }, data: { title } };
         await Axios.delete(endPoint, config);
       }
+    } else {
+      const localCart = JSON.parse(localStorage.getItem('cart'));
 
-      updateCart_(newCart);
+      if (typeOfClick === 'plus')
+        newCart = utils.editCart(title, localCart, 'plus');
+      else if (typeOfClick === 'minus')
+        newCart = utils.editCart(title, localCart, 'minus');
+      else newCart = utils.editCart(title, localCart, 'delete');
+
+      localStorage.setItem('cart', JSON.stringify(newCart));
     }
+
+    updateCart_(newCart);
   }
 
   return (
