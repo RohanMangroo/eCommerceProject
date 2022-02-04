@@ -60,6 +60,47 @@
 
 .cart-total {
   margin-top: 2rem;
+  border: solid thin rgb(105, 82, 8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+
+.cart-total span {
+  font-size: large;
+  color: rgb(185, 144, 11);
+}
+
+.savings {
+  background-color: rgb(5, 56, 9);
+  position: absolute;
+  top: 120%;
+  left: 0;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: solid thin rgb(105, 82, 8);
+}
+
+.savings span {
+  color: rgb(188, 188, 188);
+}
+.open-savings {
+  opacity: 1;
+  transition: opacity 600ms ease-in-out, height 600ms ease-in-out;
+  z-index: 10;
+  height: 100%;
+}
+
+.close-savings {
+  opacity: 0;
+  transition: opacity 20ms ease-in-out, height 20ms ease-in-out;
+  height: 0;
+  /* z-index: -10; */
 }
 
 .cart-promo-code {
@@ -93,6 +134,11 @@
   cursor: pointer;
   background-color: rgb(129, 126, 120);
   border-radius: 0 5px 5px 0;
+}
+
+.cart-promo-code input:disabled,
+.promo-btn:disabled {
+  background-color: rgb(54, 54, 54);
 }
 
 .cart-checkout {
