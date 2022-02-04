@@ -6,19 +6,22 @@
 .cart-top {
   width: 100%;
   height: 50%;
-  margin-top: 3rem;
+  margin-top: 4rem;
+  padding-right: 10px;
 }
 
 .cart-orders {
   height: 100%;
   width: 70%;
-  background-color: rgb(18, 18, 18);
+  background-color: rgb(0, 0, 0);
 }
 
 .cart-total-container {
   height: 100%;
   width: 31%;
-  background-color: rgb(28, 28, 28);
+  background-color: rgb(0, 0, 0);
+  border: solid thin rgb(40, 40, 40);
+  /* margin-top: 5px; */
 }
 
 .cart-total-subcontainer {
@@ -86,7 +89,7 @@
   background-color: lightgrey;
   color: rgb(36, 36, 36);
   cursor: pointer;
-  background-color: rgb(47, 124, 147);
+  background-color: rgb(129, 126, 120);
   border-radius: 0 5px 5px 0;
 }
 
@@ -97,8 +100,8 @@
 .cart-checkout {
   height: 2rem;
   width: 175px;
-  background-color: rgb(47, 124, 147);
-  /* margin: auto; */
+  background-color: rgb(228, 182, 32);
+  margin: auto;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
   margin-top: 30px;
   color: rgb(36, 36, 36);
@@ -113,8 +116,8 @@
   color: rgb(147, 147, 147);
 }
 
-.cart-bottom {
+/* .cart-bottom {
   width: 100%;
-  height: 30%;
-  background-color: rgb(57, 57, 57);
-}
+  height: 10px;
+  background-color: rgb(0, 0, 0);
+} */

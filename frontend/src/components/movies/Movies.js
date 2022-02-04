@@ -30,7 +30,10 @@ export default function Movies() {
 
   return (
     <>
-      <div onClick={clickHandler} className="page-btns flex-row center-items">
+      <div
+        onClick={clickHandler}
+        className="page-btns page-btn-top flex-row center-items"
+      >
         <button className="btn" value="prev">
           <BiLeftArrow id="prev" className="prev-page-icon" />
         </button>
@@ -43,7 +46,10 @@ export default function Movies() {
           {utils.createMovieCards(movieList)}
         </div>
       </section>
-      <div onClick={clickHandler} className="page-btns flex-row center-items">
+      <div
+        onClick={clickHandler}
+        className="page-btns page-btn-bottom flex-row center-items"
+      >
         <button className="btn" value="prev">
           <BiLeftArrow id="prev" className="prev-page-icon" />
         </button>

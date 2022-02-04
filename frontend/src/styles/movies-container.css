@@ -1,10 +1,10 @@
 .movies-container {
   height: max-content;
-  background-color: rgb(57, 57, 57);
+  background-color: rgb(0, 0, 0);
   overflow: visible;
   justify-content: flex-end;
-  padding-top: 50px;
-  padding-bottom: 100px;
+  padding-top: 20px;
+  padding-bottom: 50px;
   /* border-top: solid thin rgb(214, 12, 12); */
   /* border-bottom: solid rgba(0, 9, 32); */
 }
@@ -23,8 +23,7 @@
 .page-btns {
   gap: 2rem;
   height: 100px;
-  background-color: rgb(43, 43, 43);
-  border-top: solid rgb(55, 55, 55);
+  background-color: rgb(0, 0, 0);
 }
 
 .page-btns button {
@@ -75,11 +74,19 @@
 }
 
 .page-btns button:hover .prev-page-icon {
-  color: rgb(255, 76, 27);
+  color: rgb(99, 0, 0);
   transition: 200ms ease-in-out;
 }
 
 .page-btns button:hover .next-page-icon {
-  color: rgb(255, 76, 27);
+  color: rgb(99, 0, 0);
   transition: 200ms ease-in-out;
+}
+
+.page-btn-top {
+  border-top: double rgb(99, 0, 0);
+}
+
+.page-btn-bottom {
+  border-bottom: double rgb(99, 0, 0);
 }

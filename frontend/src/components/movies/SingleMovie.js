@@ -41,12 +41,9 @@ export default function SingleMovie() {
 
     return (
       <div className="single-movie-container">
-        <section
-          className="single-movie-image"
-          style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/original/${path})`,
-          }}
-        ></section>
+        <section className="hero">
+          <Slider image={`https://image.tmdb.org/t/p/original/${path}`} />
+        </section>
         <section className="single-movie-info flex-row">
           <div className="center-items">
             {utils.createMovieCards([movieData])}
@@ -55,6 +52,7 @@ export default function SingleMovie() {
             <MovieDetails movie={movieData} cast={castData.cast} />
           </div>
         </section>
+        <div className="related-txt center-items">RELATED</div>
         <section className="related flex-row">
           {utils.createMovieCards(related, true)}
         </section>
@@ -94,3 +92,28 @@ function MovieDetails({ movie, cast }) {
     </div>
   );
 }
+
+function Slider({ image }) {
+  return (
+    <div className="slider">
+      <Image image={image} />
+    </div>
+  );
+}
+
+function Image({ image, title }) {
+  return (
+    <>
+      <div
+        className="hero-movie-image"
+        style={{ backgroundImage: `url(${image})` }}
+      ></div>
+      <div className="overlay-img-one center-items">
+        WATCH YOUR FAVORITES ON DEMAND
+      </div>
+      <div className="overlay-img-two center-items"></div>
+    </>
+  );
+}
+
+//url(https://image.tmdb.org/t/p/original/${path})`,

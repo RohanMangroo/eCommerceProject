@@ -1,12 +1,12 @@
 .single-movie-container {
   width: 100%;
-  height: 1525px;
-  background-color: rgb(72, 72, 72);
+  height: 1475px;
+  background-color: rgb(0, 0, 0);
 }
 
 .single-movie-image {
   width: 100%;
-  height: 600px;
+  height: 400px;
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
@@ -15,9 +15,9 @@
 }
 
 .single-movie-info {
-  height: 500px;
+  height: 450px;
   width: 100%;
-  background-color: rgb(59, 59, 59);
+  background-color: rgb(0, 0, 0);
 }
 
 .single-movie-info > div:nth-child(1) {
@@ -40,31 +40,39 @@
 
 .movie-details > div span:nth-child(1) {
   font-size: 2.5rem;
-  font-weight: bold;
+  font-weight: 400;
   color: white;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .movie-details > div span:nth-child(2) {
   margin-left: 10px;
   color: rgb(154, 154, 154);
+  font-size: 0.8rem;
+  font-family: 'Source Serif 4', sans-serif;
 }
 
 .movie-details > span:nth-child(2) {
   color: rgb(158, 158, 158);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: italic;
+  font-size: 0.8rem;
+  font-family: 'Source Serif 4', sans-serif;
 }
 
 .movie-details > span:nth-child(3) {
   margin-top: 30px;
   color: rgb(158, 158, 158);
   font-family: 'Source Serif 4', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.3rem;
 }
 
 .movie-details > span:nth-child(4) b {
   color: rgb(198, 198, 198);
   font-family: sans-serif;
   margin-top: 2.5px;
+  font-size: 0.8rem;
 }
 
 .movie-details > span:nth-child(4) {
@@ -72,22 +80,26 @@
   color: rgb(158, 158, 158);
   font-family: 'Source Serif 4', sans-serif;
   gap: 5px;
+  font-size: 0.8rem;
 }
 
 .movie-details > span:nth-child(5) {
   color: rgb(198, 198, 198);
   /* font-family: 'Source Serif 4', sans-serif; */
   gap: 5px;
+  font-size: 0.8rem;
 }
 
 .movie-details > span:nth-child(5) span {
   color: rgb(158, 158, 158);
   font-family: 'Source Serif 4', sans-serif;
   gap: 5px;
+  font-size: 0.8rem;
 }
 
 .cast {
   gap: 13px;
+  font-size: 0.8rem;
 }
 
 .cast b {
@@ -101,7 +113,21 @@
   font-family: 'Source Serif 4', sans-serif;
 }
 
+.related-txt {
+  height: 50px;
+  width: 100%;
+  color: white;
+  border-top: double rgb(99, 0, 0);
+  color: rgb(207, 34, 3);
+  font-family: sans-serif;
+  font-size: 1rem;
+  padding: 10px;
+  letter-spacing: 0.9rem;
+  margin-top: 30px;
+}
+
 .related {
   height: 425px;
-  overflow: scroll;
+  overflow: hidden;
+  /* gap: 5px; */
 }
