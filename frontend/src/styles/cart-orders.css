@@ -8,8 +8,11 @@
   grid-template-rows: repeat(5, 65px);
   /* gap: 10px; */
   grid-auto-rows: 65px;
-  overflow: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* overflow: auto; */
   /* border-left: solid 5px black; */
+  /* border: solid thin green; */
 }
 
 .even {
@@ -17,15 +20,15 @@
 }
 
 .odd {
-  background-color: transparent;
+  background-color: rgb(10, 10, 10);
 }
 
 .even:hover {
-  background-color: rgb(19, 0, 0);
+  /* background-color: rgb(22, 0, 0); */
 }
 
 .odd:hover {
-  background-color: rgb(19, 0, 0);
+  /* background-color: rgb(20, 20, 20); */
 }
 .cart-row {
   /* background-color: rgb(56, 56, 56); */
@@ -34,6 +37,7 @@
   grid-template-columns: repeat(8, 1fr);
   /* border-bottom: double rgb(123, 0, 0); */
   position: relative;
+  height: 50px;
 }
 
 .cart-row span {
@@ -55,6 +59,7 @@
 .header {
   background-color: rgb(0, 0, 0);
   /* border-bottom: double rgb(99, 0, 0); */
+  border: solid thin rgb(40, 40, 40);
 }
 
 .header span {
@@ -105,8 +110,30 @@
 .delete-item .button:hover {
   color: rgb(195, 50, 50);
 }
+
 .cart-row .cart-movie-title {
   margin: 0;
   margin-top: 20px;
   margin-left: 15px;
+}
+
+.simple-bar {
+  border: solid thin rgb(40, 40, 40);
+  height: 443px;
+  z-index: 0;
+}
+
+.simplebar-scrollbar {
+  position: absolute;
+  content: '';
+  background: rgb(27, 27, 27);
+  border-radius: 7px;
+  left: 2px;
+  right: 2px;
+  /* opacity: 0; */
+  transition: opacity 0.2s linear;
+}
+
+.simplebar-scrollbar:before {
+  background-color: rgb(27, 27, 27);
 }

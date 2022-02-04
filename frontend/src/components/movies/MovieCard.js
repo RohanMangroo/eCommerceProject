@@ -32,10 +32,11 @@ function MovieCard({ movieData, updateCart_ }) {
     }
   }
   const sale = movieData.price === '4.99' ? 'SALE' : '';
+  const extraClass = movieData.removeRating ? 'no-btn' : '';
 
   return (
     <div>
-      <div className="movie-card flex-col">
+      <div className={`movie-card flex-col ${extraClass}`}>
         <Link className="card-link" to={`/movie/${movieData.id}`}>
           <div
             className="movie-image"
@@ -44,13 +45,17 @@ function MovieCard({ movieData, updateCart_ }) {
             }}
           ></div>
         </Link>
-        <button onClick={clickHandler} className="btn">
-          Add To Cart
-        </button>
         {movieData.removeRating ? (
           ''
         ) : (
-          <span className="movie-rating center-items">{movieData.rating}</span>
+          <>
+            <button onClick={clickHandler} className="btn">
+              Add To Cart
+            </button>
+            <span className="movie-rating center-items">
+              {movieData.rating}
+            </span>
+          </>
         )}
 
         <div className="movie-info flex-col">

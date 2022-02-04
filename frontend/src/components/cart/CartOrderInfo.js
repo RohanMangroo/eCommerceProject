@@ -1,5 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 import utils from '../../utils';
 import { updateCart } from '../../store/cartReducer';
 import { connect } from 'react-redux';
@@ -52,7 +54,9 @@ function CartOrderInfo({ items, cart, updateCart_ }) {
           <span>Quantity</span>
           <span>Total</span>
         </header>
-        {utils.createItemRows(items, clickHandler)}
+        <SimpleBar className="simple-bar">
+          {utils.createItemRows(items, clickHandler)}
+        </SimpleBar>
       </div>
     </div>
   );

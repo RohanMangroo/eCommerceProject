@@ -1,6 +1,6 @@
 .movies-container {
   height: max-content;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(10, 10, 10);
   overflow: visible;
   justify-content: flex-end;
   padding-top: 20px;
@@ -23,7 +23,7 @@
 .page-btns {
   gap: 2rem;
   height: 100px;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(10, 10, 10);
 }
 
 .page-btns button {
@@ -83,10 +83,10 @@
   transition: 200ms ease-in-out;
 }
 
-.page-btn-top {
+/* .page-btn-top {
   border-top: double rgb(99, 0, 0);
-}
+} */
 
-.page-btn-bottom {
+/* .page-btn-bottom {
   border-bottom: double rgb(99, 0, 0);
-}
+} */

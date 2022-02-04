@@ -1,8 +1,9 @@
 .footer {
-  height: 20rem;
+  height: 15rem;
   width: 100%;
   background-color: rgb(30, 30, 30);
   justify-content: space-between;
+  border-top: solid thin rgb(69, 69, 69);
 }
 
 .footer section {
@@ -13,7 +14,7 @@
 
 .footer section:nth-child(1),
 .footer section:nth-child(2) {
-  border-right: solid thin rgb(71, 71, 71);
+  border-right: solid thin rgb(50, 50, 50);
   color: rgb(120, 120, 120);
   padding: 2rem;
   gap: 8px;
@@ -32,7 +33,7 @@
   padding: 2rem;
   height: 100%;
   width: 100%;
-  background-color: rgb(10, 6, 6);
+  background-color: rgb(30, 30, 30);
   color: rgb(142, 142, 142);
   gap: 8px;
 }

@@ -11,8 +11,12 @@
   height: 15rem;
   width: 100%;
   background-size: cover;
+  background-position: center;
 }
 
+.no-btn {
+  height: max-content;
+}
 .movie-rating {
   height: 2rem;
   width: 2rem;

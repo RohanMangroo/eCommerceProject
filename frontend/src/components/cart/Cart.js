@@ -21,7 +21,6 @@ function Cart({ cart }) {
             total={total.toFixed(2)}
           />
         </section>
-        <section className="cart-bottom"></section>
       </div>
     </div>
   );
