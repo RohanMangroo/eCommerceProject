@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import image from '../../images/splash2.jpg';
+// import image from '../../images/venom.jpg';
 
 export default function Carousel({ list }) {
   return <HeroImage />;
@@ -20,13 +20,10 @@ function HeroImage() {
     }
     getMoveLists();
   }, []);
-
   return (
-    <div className="hero" style={{ backgroundImage: `url(${image})` }}>
-      <div className="overlay center-items">
-        <span>C I N E M A S</span>
-        {/* <Slider list={movieList} /> */}
-      </div>
+    <div className="hero">
+      {/* <span>C I N E M A S</span> */}
+      <Slider list={movieList} />
     </div>
   );
 }
@@ -61,10 +58,16 @@ function Slider({ list }) {
 
 function Image({ image, title }) {
   return (
-    <div
-      className="hero-movie-image"
-      style={{ backgroundImage: `url(${image})` }}
-    ></div>
+    <>
+      <div
+        className="hero-movie-image"
+        style={{ backgroundImage: `url(${image})` }}
+      ></div>
+      <div className="overlay-img-one center-items">
+        WATCH YOUR FAVORITES ON DEMAND
+      </div>
+      <div className="overlay-img-two center-items"></div>
+    </>
   );
 }
 

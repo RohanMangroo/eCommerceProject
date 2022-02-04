@@ -1,7 +1,7 @@
 .navbar {
   height: 3rem;
   width: 80vw;
-  background-color: black;
+  background-color: rgb(10, 10, 10);
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
@@ -73,15 +73,17 @@
 }
 
 .movie-go-title {
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 100;
   font-family: sans-serif;
   position: absolute;
   top: 0;
   left: 0;
-  color: rgb(47, 147, 107);
-  margin: 5px 0 auto 1rem;
+  color: rgb(207, 38, 32);
+  margin: 9px 0 0 10px;
   text-decoration: none;
+  border: solid thin rgb(122, 7, 3);
+  padding: 5px;
 }
 
 .cart-count {
