@@ -23,6 +23,7 @@ function MovieCard({ movieData, updateCart_ }) {
     } else {
       //Otherwise we call dwon to the server and have the item placed in redis storage
       const endPoint = 'http://localhost:5000/user/cart/item';
+
       const body = { movieData };
       const config = { headers: { authorization: token } };
       const response = await Axios.post(endPoint, body, config);

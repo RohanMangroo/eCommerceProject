@@ -31,3 +31,36 @@
 .order-simple-bar {
   height: 458px;
 }
+
+.header span:nth-child(4) {
+  grid-column: 7 / 8;
+}
+
+.header span:nth-child(5) {
+  grid-column: 8 / 9;
+}
+
+.cart-row span:nth-child(4) {
+  grid-column: 7 / 8;
+}
+
+.cart-row .history-date {
+  font-size: 0.8rem;
+}
+
+.history-movie-title {
+  position: relative;
+}
+
+.buy-again {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: rgb(12, 125, 18);
+  color: rgb(199, 199, 199);
+  cursor: pointer;
+  border-radius: 50%;
+}

@@ -124,33 +124,32 @@ function createOrderHistoryRow(items) {
     const quantity = currentItem.quantity;
     const total = Number(price) * Number(quantity);
 
+    const date = Date.parse(currentItem.date);
+    const myDate = new Date(date).toString();
+
+    const slicedDate = myDate.slice(3, 15).trim();
+
+    let finalDate = '';
+    for (let i = 0; i < slicedDate.length; i++) {
+      const currentChar = slicedDate[i];
+      if (currentChar === ' ') finalDate += '/';
+      else finalDate += currentChar;
+    }
+
     array.push(
       <div key={uuidv4()} className={`cart-row ${row}`}>
-        <span className="cart-movie-title">{title}</span>
+        <span className="cart-movie-title history-movie-title">
+          {title}
+          <button value={JSON.stringify(currentItem)} className="buy-again">
+            B
+          </button>
+        </span>
         <span>{`$${price}`}</span>
         <span className="movie-quant flex-row">
-          {/* <span
-            onClick={(event) => clickHandler(event, `${title}/${price}`)}
-            id="minus"
-          >
-            <AiOutlineMinusCircle id="minus" className="button" />
-          </span> */}
           <span> {quantity}</span>
-          {/* <span
-            onClick={(event) => clickHandler(event, `${title}/${price}`)}
-            id="plus"
-          >
-            <AiOutlinePlusCircle id="plus" className="button" />
-          </span> */}
         </span>
         <span>{`$${total.toFixed(2)}`}</span>
-        {/* <span
-          onClick={(event) => clickHandler(event, `${title}/${price}`)}
-          id="delete"
-          className="delete-item"
-        >
-          <MdDeleteForever className="button" />
-        </span> */}
+        <span className="history-date">{finalDate}</span>
       </div>
     );
   }

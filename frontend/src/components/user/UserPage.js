@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import utils from '../../utils';
 import SimpleBar from 'simplebar-react';
+import OrderHistory from './OrderHistory';
 import 'simplebar/dist/simplebar.min.css';
 import '../../styles/user-page.css';
 
 export default function UserPage() {
   const [orderHistory, setOrdeHistory] = useState();
   const [userInfo, setUserInfo] = useState();
-  const [toRender, setToRender] = useState('user-info');
+  const [toRender, setToRender] = useState('order-history');
 
   useEffect(() => {
     async function getUserInfo() {
@@ -31,13 +32,16 @@ export default function UserPage() {
     if (button === 'user-info') setToRender('user-info');
   }
 
-  const renderedComponent =
-    toRender === 'user-info' ? (
-      <UserInfo />
-    ) : (
-      <OrderHistory items={orderHistory} />
-    );
+  let renderedComponent;
 
+  if (orderHistory) {
+    renderedComponent =
+      toRender === 'user-info' ? (
+        <UserInfo />
+      ) : (
+        <OrderHistory items={orderHistory} />
+      );
+  }
   return (
     <div className="user-page flex-col">
       <div className="cart-top flex-row">
@@ -48,24 +52,6 @@ export default function UserPage() {
           <button value="order-history">Order History</button>
           <button value="user-info">User Info</button>
         </section>
-      </div>
-    </div>
-  );
-}
-
-function OrderHistory({ items }) {
-  return (
-    <div className="order-history">
-      <div className="cart-orders-subcontainer">
-        <header className="cart-row header">
-          <span>Item</span>
-          <span>Price</span>
-          <span>Quantity</span>
-          <span>Total</span>
-        </header>
-        <SimpleBar className="simple-bar order-simple-bar">
-          {utils.createOrderHistoryRow(items)}
-        </SimpleBar>
       </div>
     </div>
   );
