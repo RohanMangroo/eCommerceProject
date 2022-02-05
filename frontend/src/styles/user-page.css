@@ -52,6 +52,10 @@
   position: relative;
 }
 
+/* .cart-row .fav-title {
+  grid-column: 1 / 9;
+} */
+
 .buy-again {
   height: 20px;
   width: 20px;
@@ -63,4 +67,17 @@
   color: rgb(199, 199, 199);
   cursor: pointer;
   border-radius: 50%;
+}
+
+.fav-header {
+  background-color: rgb(183, 68, 33);
+}
+
+.fav-header span {
+  color: white;
+  font-weight: 400;
+}
+
+.history header {
+  background-color: rgb(40, 127, 9);
 }

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import utils from '../../utils';
-import SimpleBar from 'simplebar-react';
 import OrderHistory from './OrderHistory';
-import 'simplebar/dist/simplebar.min.css';
+import Favorites from './Favorites';
 import '../../styles/user-page.css';
 
 export default function UserPage() {
@@ -36,13 +34,9 @@ export default function UserPage() {
           {renderedComponent}
         </section>
         <section className="user-page-right center-items">
-          {/* {renderedComponent} */}
+          <Favorites />
         </section>
       </div>
     </div>
   );
-}
-
-function UserInfo() {
-  return <div className="user-info">This is USER INFO</div>;
 }

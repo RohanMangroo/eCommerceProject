@@ -35,12 +35,23 @@ async function sendResponse(res, passwordMatch, username, id, localCart) {
     }
 
     const key = `${username}:${id}`;
+    const favKey = `${username}:${id}:fav`;
 
-    //Send the wntire cart back to client
+    //Send the entire cart back to client
     const cart = await redisUtils.getCart(key);
+
+    //The function .getCart needs to be renamed...
+    const favorites = await redisUtils.getCart(favKey);
     const token = jwt.sign({ username: username, id: id }, 'mySuperSecret');
 
-    res.json({ userId: id, token, isLoggedIn: true, username, cart });
+    res.json({
+      userId: id,
+      token,
+      isLoggedIn: true,
+      username,
+      cart,
+      favorites,
+    });
   } else res.send('Credentials Are Incorrect');
 }
 

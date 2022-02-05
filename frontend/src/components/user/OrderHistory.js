@@ -22,9 +22,9 @@ function OrderHistory({ items, updateCart_ }) {
 
   return (
     <div className="order-history">
-      <div className="cart-orders-subcontainer">
-        <header className="cart-row header">
-          <span>Item</span>
+      <div className="cart-orders-subcontainer history">
+        <header className="cart-row header ">
+          <span>Order History</span>
           <span>Price</span>
           <span>Quantity</span>
           <span>Total</span>

@@ -157,6 +157,28 @@ function createOrderHistoryRow(items) {
   return array;
 }
 
+function createFavoritesRow(movies) {
+  const array = [];
+  let count = 0;
+  let row = '';
+
+  for (let item in movies) {
+    if (count % 2 === 0) row = 'even';
+    else row = 'odd';
+
+    array.push(
+      <div key={uuidv4()} className={`cart-row ${row}`}>
+        <span className="cart-movie-title history-movie-title fav-title">
+          {item}
+        </span>
+      </div>
+    );
+    count++;
+  }
+
+  return array;
+}
+
 function editCart(title, cart, action) {
   if (action === 'delete') {
     return cart.filter((item) => {
@@ -260,6 +282,7 @@ const exports = {
   addItemToLocalCart,
   editCart,
   createOrderHistoryRow,
+  createFavoritesRow,
 };
 
 export default exports;

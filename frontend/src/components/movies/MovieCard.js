@@ -102,13 +102,13 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
             </span>
           </div>
         </div>
-        {movieData.removeRating ? '' : <>{favorite}</>}
+        {movieData.removeRating ? '' : token && <>{favorite}</>}
       </div>
     </div>
   );
 }
 
-const mapStateToProps = ({ favs }) => {
+const mapStateToProps = ({ favs, auth }) => {
   return {
     myFavs: favs,
   };

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import Axios from 'axios';
 import Navbar from './components/navbar/Navbar';
 import UniversalRoutes from './components/UniversalRoutes';
+import LogIn from './components/auth/LogIn/LogIn';
+import SignUpAlt from './components/auth/SignUp/SignUpAlt';
 import Footer from './components/footer/Footer';
 import utils from './utils';
 import { connect } from 'react-redux';
@@ -51,6 +53,8 @@ function App({ updateAuth_, updateCart_, updateFav_ }) {
   return (
     <div className="app-container">
       <Navbar />
+      <LogIn />
+      <SignUpAlt />
       <UniversalRoutes />
       <Footer />
     </div>

@@ -1,17 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router';
 import NavBtns from './NavBtns';
 import CartBtn from './CartBtn';
 import Logo from './Logo';
-import LogIn from '../auth/LogIn/LogIn';
-import SignUpAlt from '../auth//SignUp/SignUpAlt';
+// import LogIn from '../auth/LogIn/LogIn';
+// import SignUpAlt from '../auth//SignUp/SignUpAlt';
 import { updateAuth } from '../../store/authReducer';
+import { updateFav } from '../../store/favReducer';
 import { emptyCart } from '../../store/cartReducer';
 import '../../styles/navbar.css';
 
-function Navbar({ toggleLogin, cart, auth, updateAuth_, emptyCart_ }) {
+function Navbar({
+  toggleLogin,
+  cart,
+  auth,
+  updateAuth_,
+  emptyCart_,
+  updateFav_,
+}) {
+  const navigate = useNavigate();
+
   function handleLogOut() {
     updateAuth_({ isLoggedIn: false, token: null, userId: null });
+    updateFav_({});
+    navigate('/');
     localStorage.clear();
     localStorage.setItem('cart', JSON.stringify([]));
     emptyCart_();
@@ -26,8 +39,8 @@ function Navbar({ toggleLogin, cart, auth, updateAuth_, emptyCart_ }) {
       />
       <CartBtn cart={cart} />
       <Logo />
-      <LogIn />
-      <SignUpAlt />
+      {/* <LogIn />
+      <SignUpAlt /> */}
     </div>
   );
 }
@@ -46,6 +59,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     emptyCart_: () => {
       return dispatch(emptyCart());
+    },
+    updateFav_: (data) => {
+      return dispatch(updateFav({}));
     },
   };
 };

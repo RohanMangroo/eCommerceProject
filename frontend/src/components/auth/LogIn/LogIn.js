@@ -9,12 +9,13 @@ import { connect } from 'react-redux';
 import { updateAuth } from '../../../store/authReducer';
 import { toggleLogin } from '../../../store/logInReducer';
 import { updateCart } from '../../../store/cartReducer';
+import { updateFav } from '../../../store/favReducer';
 
 import '../../../styles/login.css';
 
 /**================================================================*/
 
-function LogIn({ toggleLogin_, updateAuth_, updateCart_, open }) {
+function LogIn({ toggleLogin_, updateAuth_, updateCart_, updateFav_, open }) {
   const ref = useRef();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -68,7 +69,10 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, open }) {
       localStorage.removeItem('cart');
 
       const cart = utils.processResponse(response.data.cart);
+
+      const favorites = response.data.favorites;
       updateCart_(cart);
+      updateFav_(favorites);
     } else setError('No User Found');
   }
 
@@ -131,6 +135,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateCart_: (data) => {
       return dispatch(updateCart(data));
+    },
+    updateFav_: (data) => {
+      return dispatch(updateFav(data));
     },
   };
 };

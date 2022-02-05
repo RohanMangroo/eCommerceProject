@@ -1,10 +1,10 @@
 .login-container {
   height: 400px;
   width: 300px;
-  background-color: rgba(46, 46, 46, 1);
-  position: absolute;
-  top: 100%;
-  right: 0;
+  background-color: rgb(2, 2, 2);
+  position: fixed;
+  top: 3rem;
+  right: 11rem;
   /* z-index: 9; */
   display: flex;
   flex-direction: column;
@@ -13,7 +13,8 @@
   padding-top: 30px;
   font-family: 'Montserrat', sans-serif;
   box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 0 0 5px 5px;
+  /* border-radius: 0 0 5px 5px; */
+  border: solid thin rgb(0, 77, 0);
 }
 
 .display {
@@ -25,14 +26,14 @@
   align-items: center;
   gap: 2rem;
   padding-top: 10px;
-  opacity: 1;
-  transition: opacity 200ms step-end;
+  /* opacity: 1;
+  transition: opacity 150ms step-end; */
 }
 
-.display-none {
+/* .display-none {
   opacity: 0;
   transition: opacity 20ms step-end;
-}
+} */
 
 .login-form > div {
   height: 40px;
@@ -112,13 +113,18 @@
 .login-line {
   height: 3px;
   width: 90%;
-  background-color: rgb(65, 65, 65);
+  background-color: rgb(30, 99, 5);
   box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.6);
   border-radius: 50px;
 }
 
 .temp {
   height: 450px;
+  border: solid thin rgb(128, 0, 0);
+}
+
+.temp .login-line {
+  background-color: rgb(99, 5, 5);
 }
 
 .temp button {
@@ -141,18 +147,19 @@
 
 .open {
   opacity: 1;
-  transition: opacity 200ms ease-in-out, height 200ms ease-in-out;
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
   z-index: 10;
 }
 
 .close {
   opacity: 0;
-  transition: opacity 20ms ease-in-out, height 20ms ease-in-out;
-  height: 0;
-  /* z-index: -10; */
+  transform: translateX(-100px);
+  transition: opacity 20ms ease-in-out, transform 20ms ease-in-out;
+  /* height: 0; */
+  z-index: -100;
 }
 
-.close .login-form,
+/* .close .login-form,
 .close .login-form > div,
 .close .login-header,
 .close .login-line,
@@ -161,7 +168,7 @@
 .close .login-container {
   height: 0;
   width: 0;
-}
+} */
 
 .close .login-header,
 .close .login-form button {
