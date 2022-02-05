@@ -9,7 +9,6 @@ import '../../styles/user-page.css';
 export default function UserPage() {
   const [orderHistory, setOrdeHistory] = useState();
   const [userInfo, setUserInfo] = useState();
-  const [toRender, setToRender] = useState('order-history');
 
   useEffect(() => {
     async function getUserInfo() {
@@ -26,31 +25,18 @@ export default function UserPage() {
     getUserInfo();
   }, []);
 
-  function handleClick(event) {
-    const button = event.target.value;
-    if (button === 'order-history') setToRender('order-history');
-    if (button === 'user-info') setToRender('user-info');
-  }
-
   let renderedComponent;
 
-  if (orderHistory) {
-    renderedComponent =
-      toRender === 'user-info' ? (
-        <UserInfo />
-      ) : (
-        <OrderHistory items={orderHistory} />
-      );
-  }
+  if (orderHistory) renderedComponent = <OrderHistory items={orderHistory} />;
+  else renderedComponent = <></>;
   return (
     <div className="user-page flex-col">
       <div className="cart-top flex-row">
         <section className="user-page-left flex-col">
           {renderedComponent}
         </section>
-        <section onClick={handleClick} className="user-page-right center-items">
-          <button value="order-history">Order History</button>
-          <button value="user-info">User Info</button>
+        <section className="user-page-right center-items">
+          {/* {renderedComponent} */}
         </section>
       </div>
     </div>

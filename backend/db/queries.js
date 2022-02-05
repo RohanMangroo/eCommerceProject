@@ -16,3 +16,8 @@ export function getUserData(id) {
   const query = `SELECT Users.* FROM Users WHERE id = ${id}`;
   return query;
 }
+
+export function addFavorite(userId, movieId) {
+  const query = `INSERT INTO Favorites(userId, movieId) VALUES(${userId}, ${movieId})`;
+  return query;
+}

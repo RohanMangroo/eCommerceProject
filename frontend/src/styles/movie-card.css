@@ -72,3 +72,26 @@
 .card-link {
   text-decoration: none;
 }
+
+.fav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+}
+
+.heart {
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+}
+
+.add-to-fav-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 20px;
+}

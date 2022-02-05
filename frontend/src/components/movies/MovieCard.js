@@ -5,12 +5,21 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateCart } from '../../store/cartReducer';
 import '../../styles/movie-card.css';
+import { MdFavorite } from 'react-icons/md';
 
 function MovieCard({ movieData, updateCart_ }) {
+  const token = localStorage.getItem('token');
+
+  async function favClickHandler() {
+    const endPoint = 'http://localhost:5000/user/fav';
+
+    const body = { title: movieData.title, movieId: movieData.id };
+    const config = { headers: { authorization: token } };
+    const response = await Axios.post(endPoint, body, config);
+    console.log(response.data);
+  }
   //Button handler
   async function clickHandler() {
-    const token = localStorage.getItem('token');
-
     //If there is no token(user is not logged in) we need to drop that item into local storage
     if (!token) {
       const localCart = JSON.parse(localStorage.getItem('cart'));
@@ -69,6 +78,18 @@ function MovieCard({ movieData, updateCart_ }) {
             </span>
           </div>
         </div>
+        {movieData.removeRating ? (
+          ''
+        ) : (
+          <>
+            <div className="fav center-items">
+              <MdFavorite className="heart" />
+            </div>
+            <button onClick={favClickHandler} className="add-to-fav-btn">
+              FAV
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
