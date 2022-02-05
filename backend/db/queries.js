@@ -23,5 +23,6 @@ export function addFavorite(userId, movieId) {
 }
 
 export function deleteFavorite(userId, movieId) {
-  const query = `DELETE FROM Favorites WHERE userId = ${userId} AND movieId = ${movieId};`;
+  const query = `DELETE FROM Favorites WHERE userId = ${userId} AND movieId = ${movieId}`;
+  return query;
 }
