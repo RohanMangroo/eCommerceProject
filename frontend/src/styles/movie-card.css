@@ -83,15 +83,26 @@
   border: none;
 }
 
-.heart {
-  background-color: transparent;
-  color: rgb(255, 255, 255);
+.star {
+  height: 20px;
+  width: 20px;
+  color: yellow;
+  cursor: pointer;
 }
 
 .add-to-fav-btn {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
-  width: 50px;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+}
+.heart {
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
   height: 20px;
+  width: 20px;
 }

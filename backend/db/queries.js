@@ -21,3 +21,7 @@ export function addFavorite(userId, movieId) {
   const query = `INSERT INTO Favorites(userId, movieId) VALUES(${userId}, ${movieId})`;
   return query;
 }
+
+export function deleteFavorite(userId, movieId) {
+  const query = `DELETE FROM Favorites WHERE userId = ${userId} AND movieId = ${movieId};`;
+}

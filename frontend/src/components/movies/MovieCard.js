@@ -7,6 +7,7 @@ import { updateCart } from '../../store/cartReducer';
 import { updateFav } from '../../store/favReducer';
 import '../../styles/movie-card.css';
 import { MdFavorite } from 'react-icons/md';
+import { AiFillStar } from 'react-icons/ai';
 
 function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
   const token = localStorage.getItem('token');
@@ -20,6 +21,16 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
     console.log(response.data);
     updateFav_(response.data);
   }
+
+  async function removeFavClickHandler() {
+    const endPoint = `http://localhost:5000/user/fav`;
+    const data = { title: movieData.title, movieId: movieData.id };
+    const config = { headers: { authorization: token }, data };
+    const response = await Axios.delete(endPoint, config);
+    console.log(response.data);
+    updateFav_(response.data);
+  }
+
   //Button handler
   async function clickHandler() {
     //If there is no token(user is not logged in) we need to drop that item into local storage
@@ -48,11 +59,13 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
 
   const favorite =
     movieData.title in myFavs ? (
-      <div className="fav center-items">
-        <MdFavorite className="heart" />
-      </div>
+      <button onClick={removeFavClickHandler} className="fav center-items">
+        <AiFillStar className="star" />
+      </button>
     ) : (
-      ''
+      <button onClick={favClickHandler} className="add-to-fav-btn">
+        <MdFavorite className="heart" />
+      </button>
     );
 
   return (
@@ -89,16 +102,7 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
             </span>
           </div>
         </div>
-        {movieData.removeRating ? (
-          ''
-        ) : (
-          <>
-            {favorite}
-            <button onClick={favClickHandler} className="add-to-fav-btn">
-              FAV
-            </button>
-          </>
-        )}
+        {movieData.removeRating ? '' : <>{favorite}</>}
       </div>
     </div>
   );
