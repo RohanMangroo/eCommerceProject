@@ -4,10 +4,11 @@ import utils from '../../utils';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateCart } from '../../store/cartReducer';
+import { updateFav } from '../../store/favReducer';
 import '../../styles/movie-card.css';
 import { MdFavorite } from 'react-icons/md';
 
-function MovieCard({ movieData, updateCart_ }) {
+function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
   const token = localStorage.getItem('token');
 
   async function favClickHandler() {
@@ -17,6 +18,7 @@ function MovieCard({ movieData, updateCart_ }) {
     const config = { headers: { authorization: token } };
     const response = await Axios.post(endPoint, body, config);
     console.log(response.data);
+    updateFav_(response.data);
   }
   //Button handler
   async function clickHandler() {
@@ -43,6 +45,15 @@ function MovieCard({ movieData, updateCart_ }) {
   }
   const sale = movieData.price === '4.99' ? 'SALE' : '';
   const extraClass = movieData.removeRating ? 'no-btn' : '';
+
+  const favorite =
+    movieData.title in myFavs ? (
+      <div className="fav center-items">
+        <MdFavorite className="heart" />
+      </div>
+    ) : (
+      ''
+    );
 
   return (
     <div>
@@ -82,9 +93,7 @@ function MovieCard({ movieData, updateCart_ }) {
           ''
         ) : (
           <>
-            <div className="fav center-items">
-              <MdFavorite className="heart" />
-            </div>
+            {favorite}
             <button onClick={favClickHandler} className="add-to-fav-btn">
               FAV
             </button>
@@ -95,12 +104,21 @@ function MovieCard({ movieData, updateCart_ }) {
   );
 }
 
+const mapStateToProps = ({ favs }) => {
+  return {
+    myFavs: favs,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     updateCart_: (data) => {
       return dispatch(updateCart(data));
     },
+    updateFav_: (data) => {
+      return dispatch(updateFav(data));
+    },
   };
 };
 
-export default connect(null, mapDispatchToProps)(MovieCard);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

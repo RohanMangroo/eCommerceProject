@@ -7,9 +7,10 @@ import utils from './utils';
 import { connect } from 'react-redux';
 import { updateAuth } from './store/authReducer';
 import { updateCart } from './store/cartReducer';
+import { updateFav } from './store/favReducer';
 import './styles/app.css';
 
-function App({ updateAuth_, updateCart_ }) {
+function App({ updateAuth_, updateCart_, updateFav_ }) {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -30,7 +31,16 @@ function App({ updateAuth_, updateCart_ }) {
         updateCart_(cart);
       }
 
+      async function getUserFavorites() {
+        const endPoint = 'http://localhost:5000/user/fav';
+        const config = { headers: { authorization: token } };
+        const response = await Axios.get(endPoint, config);
+
+        updateFav_(response.data);
+      }
+
       getCartInfo();
+      getUserFavorites();
     } else {
       const localCart = localStorage.getItem('cart');
       if (!localCart) localStorage.setItem('cart', JSON.stringify([]));
@@ -54,6 +64,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateCart_: (data) => {
       return dispatch(updateCart(data));
+    },
+    updateFav_: (data) => {
+      return dispatch(updateFav(data));
     },
   };
 };

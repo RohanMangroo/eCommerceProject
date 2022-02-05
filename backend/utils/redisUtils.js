@@ -18,6 +18,11 @@ async function getCart(key) {
   return cart;
 }
 
+async function getFavorites(key) {
+  const favorites = client.HGETALL(key);
+  return favorites;
+}
+
 async function deleteCart(key) {
   client.DEL(key);
 }
@@ -37,4 +42,5 @@ export default {
   deleteCart,
   deleteItem,
   getItem,
+  getFavorites,
 };
