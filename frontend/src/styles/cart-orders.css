@@ -1,18 +1,9 @@
 .cart-orders-subcontainer {
-  /* margin-top: 30px; */
   height: 100%;
   width: 100%;
   background-color: rgb(0, 0, 0);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 65px);
-  /* gap: 10px; */
-  grid-auto-rows: 65px;
   padding-left: 10px;
   padding-right: 10px;
-  /* overflow: auto; */
-  /* border-left: solid 5px black; */
-  /* border: solid thin green; */
 }
 
 .even {
@@ -23,19 +14,10 @@
   background-color: rgb(10, 10, 10);
 }
 
-.even:hover {
-  /* background-color: rgb(22, 0, 0); */
-}
-
-.odd:hover {
-  /* background-color: rgb(20, 20, 20); */
-}
 .cart-row {
-  /* background-color: rgb(56, 56, 56); */
   grid-column: 1 / 5;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  /* border-bottom: double rgb(123, 0, 0); */
   position: relative;
   height: 50px;
 }
@@ -57,6 +39,7 @@
 }
 
 .header {
+  height: 10%;
   background-color: rgb(0, 0, 0);
   /* border-bottom: double rgb(99, 0, 0); */
   border: solid thin rgb(40, 40, 40);
@@ -119,7 +102,7 @@
 
 .simple-bar {
   border: solid thin rgb(40, 40, 40);
-  height: 443px;
+  height: 458px;
   z-index: 0;
 }
 

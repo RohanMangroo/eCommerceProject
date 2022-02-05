@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import utils from '../../utils';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 import '../../styles/user-page.css';
 
 export default function UserPage() {
@@ -29,22 +32,42 @@ export default function UserPage() {
   }
 
   const renderedComponent =
-    toRender === 'user-info' ? <UserInfo /> : <OrderHistory />;
+    toRender === 'user-info' ? (
+      <UserInfo />
+    ) : (
+      <OrderHistory items={orderHistory} />
+    );
 
   return (
-    <div className="user-page flex-row">
-      <section className="user-page-left">{renderedComponent}</section>
-      <section onClick={handleClick} className="user-page-right center-items">
-        <button value="order-history">Order History</button>
-        <button value="user-info">User Info</button>
-      </section>
+    <div className="user-page flex-col">
+      <div className="cart-top flex-row">
+        <section className="user-page-left flex-col">
+          {renderedComponent}
+        </section>
+        <section onClick={handleClick} className="user-page-right center-items">
+          <button value="order-history">Order History</button>
+          <button value="user-info">User Info</button>
+        </section>
+      </div>
     </div>
   );
 }
 
-function OrderHistory() {
+function OrderHistory({ items }) {
   return (
-    <div className="order-history center-items">This is ORDER HISTORY...</div>
+    <div className="order-history">
+      <div className="cart-orders-subcontainer">
+        <header className="cart-row header">
+          <span>Item</span>
+          <span>Price</span>
+          <span>Quantity</span>
+          <span>Total</span>
+        </header>
+        <SimpleBar className="simple-bar order-simple-bar">
+          {utils.createOrderHistoryRow(items)}
+        </SimpleBar>
+      </div>
+    </div>
   );
 }
 

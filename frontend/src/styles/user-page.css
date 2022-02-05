@@ -1,14 +1,13 @@
 .user-page {
   width: 100%;
   height: 590px;
-  background-color: cornflowerblue;
-  color: white;
+  /* background-color: cornflowerblue; */
 }
 
 .user-page-left {
   height: 100%;
   width: 70%;
-  background-color: darkblue;
+  justify-content: flex-start;
 }
 
 .user-page-right {
@@ -20,12 +19,15 @@
 .order-history {
   height: 100%;
   width: 100%;
-  background-color: rgb(138, 141, 116);
-  color: white;
+  /* border: solid red; */
 }
 
 .user-info {
   height: 100%;
   width: 100%;
   background-color: rgb(236, 174, 145);
+}
+
+.order-simple-bar {
+  height: 458px;
 }

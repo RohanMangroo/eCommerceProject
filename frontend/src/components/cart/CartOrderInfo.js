@@ -53,7 +53,7 @@ function CartOrderInfo({ items, cart, updateCart_ }) {
 
     updateCart_(newCart);
   }
-
+  console.log(items);
   return (
     <div className="cart-orders center-items">
       <div className="cart-orders-subcontainer">
