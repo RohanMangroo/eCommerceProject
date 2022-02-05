@@ -58,7 +58,11 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, open }) {
     if (response.data.isLoggedIn) {
       updateAuth_(response.data);
       toggleLogin_(!open.open);
-      utils.updateLocalStorage(response.data.token, response.data.userId);
+      utils.updateLocalStorage(
+        response.data.token,
+        response.data.userId,
+        response.data.username
+      );
       utils.resetInput([setUsername, setPassword]);
 
       localStorage.removeItem('cart');
@@ -82,7 +86,6 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, open }) {
   const modalClass = error ? 'open' : 'close';
 
   /**================================================================*/
-
   return (
     <div ref={ref} className={`${loginClass}`}>
       <header className="login-header">MEMBER LOGIN</header>

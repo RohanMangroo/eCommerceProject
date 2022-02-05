@@ -106,3 +106,36 @@
 .sign-up-btn-active {
   background-color: rgb(120, 16, 16);
 }
+
+.user-info-nav {
+  height: 2rem;
+  width: 120px;
+  font-family: sans-serif;
+  color: rgb(235, 235, 235);
+  justify-content: space-between;
+  align-items: center;
+  /* margin-right: 20px; */
+  border: solid thin coral;
+  cursor: pointer;
+}
+
+.user-initial {
+  width: 30%;
+  height: 100%;
+  background-color: rgb(51, 138, 231);
+  /* border-radius: 50%; */
+  /* padding-bottom: 2px; */
+  background-color: coral;
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+.welcome {
+  width: 70%;
+  /* border: solid thin red; */
+  font-size: 0.8rem;
+}
+
+.user-info-nav-btn {
+  text-decoration: none;
+}

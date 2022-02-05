@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleLogin } from '../../store/logInReducer';
 import { toggleSignUp } from '../../store/signUpReducer';
@@ -30,7 +30,7 @@ function NavBtns({
   const signUpBtn = signUp.open ? 'sign-up-btn-active' : '';
   const loginUpBtn = open.open ? 'login-btn-ative' : '';
 
-  if (!auth) {
+  if (!auth.isLoggedIn) {
     return (
       <>
         <button
@@ -51,9 +51,17 @@ function NavBtns({
       </>
     );
   } else {
+    const userFirstInitial = auth.username[0].toUpperCase();
+
     return (
       <>
-        {/* <span className="temp">Welcome! </span> */}
+        <Link to={`/user/${auth.userId}`} className="user-info-nav-btn">
+          <div className="user-info-nav flex-row">
+            <div className="welcome center-items">Welcome</div>
+            <div className="user-initial center-items">{userFirstInitial}</div>
+          </div>
+        </Link>
+
         <button className="nav-btn login-btn" onClick={handleLogOut}>
           Log Out
         </button>

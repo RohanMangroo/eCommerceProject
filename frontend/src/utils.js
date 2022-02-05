@@ -131,9 +131,10 @@ function editCart(title, cart, action) {
   });
 }
 
-function updateLocalStorage(token, id) {
+function updateLocalStorage(token, id, username) {
   localStorage.setItem('token', token);
   localStorage.setItem('id', id);
+  localStorage.setItem('username', username);
 }
 
 function changeHandler(event, setPassword, setUsername) {

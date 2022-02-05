@@ -20,7 +20,7 @@ function Navbar({ toggleLogin, cart, auth, updateAuth_, emptyCart_ }) {
   return (
     <div className="navbar flex-row">
       <NavBtns
-        auth={auth.isLoggedIn}
+        auth={auth}
         toggleLogin={toggleLogin}
         handleLogOut={handleLogOut}
       />

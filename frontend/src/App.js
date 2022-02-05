@@ -18,6 +18,7 @@ function App({ updateAuth_, updateCart_ }) {
         isLoggedIn: true,
         token: token,
         userId: localStorage.getItem('id'),
+        username: localStorage.getItem('username'),
       });
 
       async function getCartInfo() {
