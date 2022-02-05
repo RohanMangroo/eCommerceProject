@@ -18,7 +18,7 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
     const body = { title: movieData.title, movieId: movieData.id };
     const config = { headers: { authorization: token } };
     const response = await Axios.post(endPoint, body, config);
-    console.log(response.data);
+
     updateFav_(response.data);
   }
 
@@ -27,7 +27,7 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
     const data = { title: movieData.title, movieId: movieData.id };
     const config = { headers: { authorization: token }, data };
     const response = await Axios.delete(endPoint, config);
-    console.log(response.data);
+
     updateFav_(response.data);
   }
 

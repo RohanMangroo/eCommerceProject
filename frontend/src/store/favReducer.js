@@ -17,7 +17,6 @@ const favReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case UPDATE_FAV:
       return {
-        ...state,
         ...payload.data,
       };
     default:
