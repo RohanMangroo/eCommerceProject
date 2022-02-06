@@ -40,7 +40,7 @@
 
 .header {
   height: 10%;
-  background-color: rgb(96, 122, 130);
+  background-color: rgba(228, 182, 32, 0.8);
   /* border-bottom: double rgb(99, 0, 0); */
   border: solid thin rgb(40, 40, 40);
   border-bottom: none;
@@ -48,7 +48,7 @@
 
 .header span {
   border-right: none;
-  color: rgb(233, 233, 233);
+  color: rgb(0, 0, 0);
   font-weight: 400;
 }
 .header span:nth-child(1) {

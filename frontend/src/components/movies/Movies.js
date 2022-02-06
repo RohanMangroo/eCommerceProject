@@ -3,21 +3,30 @@ import Axios from 'axios';
 import utils from '../../utils';
 import { BiRightArrow } from 'react-icons/bi';
 import { BiLeftArrow } from 'react-icons/bi';
+import { connect } from 'react-redux';
 import '../../styles/movies-container.css';
 
-export default function Movies() {
+function Movies({ productType }) {
   const [page, setPage] = useState(1);
   const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
     async function getMoveLists() {
-      const listOne = await Axios.get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=${page}`
-      );
+      let listOne;
+      if (productType === 'movie') {
+        listOne = await Axios.get(
+          `https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=${page}`
+        );
+      } else if (productType === 'tv') {
+        listOne = await Axios.get(
+          `https://api.themoviedb.org/3/tv/popular?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=${page}`
+        );
+      }
+
       setMovieList(listOne.data.results);
     }
     getMoveLists();
-  }, [page]);
+  }, [page, productType]);
 
   function clickHandler(event) {
     if (event.target.id) {
@@ -27,7 +36,7 @@ export default function Movies() {
       });
     }
   }
-
+  console.log(productType);
   return (
     <>
       <div
@@ -60,3 +69,11 @@ export default function Movies() {
     </>
   );
 }
+
+const mapStateToProps = ({ productType }) => {
+  return {
+    productType,
+  };
+};
+
+export default connect(mapStateToProps, null)(Movies);

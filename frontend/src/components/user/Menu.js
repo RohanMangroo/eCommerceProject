@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { RiFilmFill } from 'react-icons/ri';
 import { BiMoviePlay } from 'react-icons/bi';
 import { GiPopcorn } from 'react-icons/gi';
@@ -7,8 +7,9 @@ import { ImHome } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleUserMenu } from '../../store/userMenuReducer';
+import { updateProductType } from '../../store/productsReducer';
 
-function Menu({ userMenu, toggleUserMenu_ }) {
+function Menu({ userMenu, toggleUserMenu_, updateProductType_ }) {
   //  When the user clicks outside the menu it will close(Need to better understand this
   useEffect(() => {
     const closeMenu = (e) => {
@@ -25,51 +26,58 @@ function Menu({ userMenu, toggleUserMenu_ }) {
 
   /**================================================================*/
 
+  function handleClick(event) {
+    const type = event.target.value;
+    updateProductType_(type);
+  }
+
   const userId = localStorage.getItem('id');
 
   const menuClass = userMenu.open ? 'open' : 'close';
 
   return (
-    <div className={`user-menu flex-col ${menuClass}`}>
+    <div onClick={handleClick} className={`user-menu flex-col ${menuClass}`}>
       <header className="center-items">G E T</header>
       <span className="user-menu-line"></span>
 
       <Link to={`/`} className="user-info-nav-btn">
-        <button>
+        <div className="inner-div">
           <div className="icons-container">
             <ImHome className=" icon home-icon" />
           </div>
-          <span>H O M E</span>
-        </button>
+          <button>H O M E</button>
+        </div>
       </Link>
 
       <Link to={`/user/${userId}`} className="user-info-nav-btn">
-        <button>
+        <div className="inner-div">
           <div className="icons-container">
             <BiUserCircle className=" icon user-icon" />
           </div>
-          <span>M Y P A G E</span>
-        </button>
+          <button>M Y P A G E</button>
+        </div>
       </Link>
 
-      <button>
+      <div className="inner-div">
         <div className="icons-container">
           <RiFilmFill className="icon movies-icon" />
         </div>
-        <span>M O V I E S</span>
-      </button>
-      <button>
+        <button value="movie">M O V I E S</button>
+      </div>
+
+      <div className="inner-div">
         <div className="icons-container">
           <BiMoviePlay className="icon tv-icon" />
         </div>
-        <span>T E L E V I S I O N </span>
-      </button>
-      <button>
+        <button value="tv">T E L E V I S I O N </button>
+      </div>
+
+      <div className="inner-div">
         <div className="icons-container">
           <GiPopcorn className="icon pop-icon" />
         </div>
-        <span> P O P U L A R</span>
-      </button>
+        <button> P O P U L A R</button>
+      </div>
     </div>
   );
 }
@@ -84,6 +92,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     toggleUserMenu_: (boolean) => {
       return dispatch(toggleUserMenu(boolean));
+    },
+    updateProductType_: (type) => {
+      return dispatch(updateProductType(type));
     },
   };
 };

@@ -8,16 +8,27 @@ function createMovieCards(movieList, removeRating = false) {
   const array = [];
   for (let i = 0; i < movieList.length; i++) {
     const movie = movieList[i];
-    const { id, poster_path, vote_average, title, release_date } = movie;
+    const {
+      id,
+      poster_path,
+      vote_average,
+      title,
+      name,
+      release_date,
+      first_air_date,
+    } = movie;
 
+    const currentTitle = title ? title : name;
     const image = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-    const newDate = trimDate(release_date);
+    const newDate = release_date
+      ? trimDate(release_date)
+      : trimDate(first_air_date);
     const price = getPrice(id);
 
     const movieData = {
       background: image,
       rating: vote_average,
-      title: title,
+      title: currentTitle,
       date: newDate,
       price: price,
       id: id,
@@ -290,3 +301,4 @@ export default exports;
 //Imge URL format https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg
 //GET Top Movies https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1
 //GET More Top Movies https://api.themoviedb.org/3/movie/popular?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1
+// GET TV SHOWS https://api.themoviedb.org/3/tv/popular?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1

@@ -6,6 +6,7 @@ import toggleLoginReducer from './logInReducer';
 import toggleSignUpReducer from './signUpReducer';
 import favReducer from './favReducer';
 import toggleUserMenuReducer from './userMenuReducer';
+import updateProductTypeReducer from './productsReducer';
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   signUp: toggleSignUpReducer,
   favs: favReducer,
   userMenu: toggleUserMenuReducer,
+  productType: updateProductTypeReducer,
 });
 
 const store = createStore(rootReducer);
