@@ -43,7 +43,7 @@ function SignUpAlt({ signUp, toggleSignUp_, updateAuth_ }) {
 
   const signUpClass = signUp.open === true ? 'open' : 'close';
   const formClass =
-    signUp.open === true ? 'login-form display' : 'login-form display-none';
+    signUp.open === true ? 'login-form display' : 'login-form display';
 
   /**================================================================*/
 

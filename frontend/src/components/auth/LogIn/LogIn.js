@@ -29,19 +29,19 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, updateFav_, open }) {
   }, [open.open]);
 
   //Whn the user clicks outside the menu it will close(Need to better understand this
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      if (open.open && ref.current && !ref.current.contains(e.target)) {
-        toggleLogin_(false);
-      }
-    };
-    document.addEventListener('click', checkIfClickedOutside);
+  // useEffect(() => {
+  //   const checkIfClickedOutside = (e) => {
+  //     if (open.open && ref.current && !ref.current.contains(e.target)) {
+  //       toggleLogin_(false);
+  //     }
+  //   };
+  //   document.addEventListener('click', checkIfClickedOutside);
 
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener('click', checkIfClickedOutside);
-    };
-  }, [open.open, toggleLogin_]);
+  //   return () => {
+  //     // Cleanup the event listener
+  //     document.removeEventListener('click', checkIfClickedOutside);
+  //   };
+  // }, [open.open, toggleLogin_]);
 
   /**================================================================*/
 

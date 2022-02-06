@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleLogin } from '../../store/logInReducer';
 import { toggleSignUp } from '../../store/signUpReducer';
+import { toggleUserMenu } from '../../store/userMenuReducer';
 
 function NavBtns({
   handleLogOut,
@@ -11,6 +12,8 @@ function NavBtns({
   open,
   signUp,
   toggleSignUp_,
+  userMenu,
+  toggleUserMenu_,
 }) {
   // console.log(open);
 
@@ -19,8 +22,14 @@ function NavBtns({
     if (value === 'logIn') {
       toggleLogin_(!open.open);
       signUp.open && toggleSignUp_(!signUp.open);
-    } else {
+      userMenu.open && toggleUserMenu_(!userMenu.open);
+    } else if (value === 'signUp') {
       toggleSignUp_(!signUp.open);
+      open.open && toggleLogin_(!open.open);
+      userMenu.open && toggleUserMenu_(!userMenu.open);
+    } else {
+      toggleUserMenu_(!userMenu.open);
+      signUp.open && toggleSignUp_(!signUp.open);
       open.open && toggleLogin_(!open.open);
     }
 
@@ -55,12 +64,16 @@ function NavBtns({
 
     return (
       <>
-        <Link to={`/user/${auth.userId}`} className="user-info-nav-btn">
+        <button
+          value="menu"
+          onClick={clickHandler}
+          className="user-info-nav-btn"
+        >
           <div className="user-info-nav flex-row">
             <div className="welcome center-items">Welcome</div>
             <div className="user-initial center-items">{userFirstInitial}</div>
           </div>
-        </Link>
+        </button>
 
         <button className="nav-btn login-btn" onClick={handleLogOut}>
           Log Out
@@ -70,10 +83,11 @@ function NavBtns({
   }
 }
 
-const mapStateToProps = ({ open, signUp }) => {
+const mapStateToProps = ({ open, signUp, userMenu }) => {
   return {
     open,
     signUp,
+    userMenu,
   };
 };
 
@@ -84,6 +98,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     toggleSignUp_: (boolean) => {
       return dispatch(toggleSignUp(boolean));
+    },
+    toggleUserMenu_: (boolean) => {
+      return dispatch(toggleUserMenu(boolean));
     },
   };
 };
