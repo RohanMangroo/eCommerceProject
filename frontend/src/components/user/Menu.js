@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { RiFilmFill } from 'react-icons/ri';
 import { BiMoviePlay } from 'react-icons/bi';
 import { GiPopcorn } from 'react-icons/gi';
@@ -6,12 +6,28 @@ import { BiUserCircle } from 'react-icons/bi';
 import { ImHome } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { toggleUserMenu } from '../../store/userMenuReducer';
 
-function Menu({ userMenu }) {
+function Menu({ userMenu, toggleUserMenu_ }) {
+  //  When the user clicks outside the menu it will close(Need to better understand this
+  useEffect(() => {
+    const closeMenu = (e) => {
+      toggleUserMenu_(false);
+    };
+    // document.addEventListener('click', checkIfClickedOutside);
+    document.addEventListener('click', closeMenu);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('click', closeMenu);
+    };
+  }, [userMenu, toggleUserMenu_]);
+
+  /**================================================================*/
+
   const userId = localStorage.getItem('id');
 
   const menuClass = userMenu.open ? 'open' : 'close';
-  console.log(userMenu);
 
   return (
     <div className={`user-menu flex-col ${menuClass}`}>
@@ -64,4 +80,12 @@ const mapStateToProps = ({ userMenu }) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Menu);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleUserMenu_: (boolean) => {
+      return dispatch(toggleUserMenu(boolean));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

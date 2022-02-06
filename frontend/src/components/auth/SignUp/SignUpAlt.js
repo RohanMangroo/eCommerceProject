@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios';
 import UsernameInput from './UsernameInput';
 import EmailInput from './EmailInput';
@@ -15,12 +15,28 @@ function SignUpAlt({ signUp, toggleSignUp_, updateAuth_ }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const ref = useRef();
 
   /**================================================================*/
 
   useEffect(() => {
     if (!signUp.open) utils.resetInput([setUsername, setPassword, setPassword]);
   }, [signUp.open]);
+
+  // When the user clicks outside the menu it will close(Need to better understand this
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (signUp.open && ref.current && !ref.current.contains(e.target)) {
+        toggleSignUp_(false);
+      }
+    };
+    document.addEventListener('click', checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('click', checkIfClickedOutside);
+    };
+  }, [signUp, toggleSignUp_]);
 
   async function onSubmitHandler(event) {
     event.preventDefault();
@@ -48,7 +64,7 @@ function SignUpAlt({ signUp, toggleSignUp_, updateAuth_ }) {
   /**================================================================*/
 
   return (
-    <div className={`${signUpClass} login-container temp`}>
+    <div ref={ref} className={`${signUpClass} login-container temp`}>
       <header className="login-header">MEMBER SIGNUP</header>
       <span className="login-line"></span>
       <form onSubmit={onSubmitHandler} className={formClass}>
