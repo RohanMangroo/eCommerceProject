@@ -4,8 +4,9 @@ import Axios from 'axios';
 import utils from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
 import '../../styles/singleMovie.css';
+import { connect } from 'react-redux';
 
-export default function SingleMovie() {
+function SingleMovie({ productType }) {
   const [movieData, setMovieData] = useState();
   const [castData, setCastData] = useState();
   const [related, setRelated] = useState();
@@ -13,9 +14,19 @@ export default function SingleMovie() {
 
   useEffect(() => {
     async function getMovieData() {
-      const movieDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
-      const castDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
-      const relatedMoviesEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+      let movieDataEndpoint;
+      let castDataEndpoint;
+      let relatedMoviesEndpoint;
+
+      if (productType === 'movie') {
+        movieDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+        castDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+        relatedMoviesEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+      } else {
+        movieDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+        castDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+        relatedMoviesEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+      }
 
       const movieData = await Axios.get(movieDataEndpoint);
       const castData = await Axios.get(castDataEndpoint);
@@ -27,7 +38,7 @@ export default function SingleMovie() {
     }
 
     getMovieData();
-  }, [params.id]);
+  }, [params.id, productType, params]);
 
   //This object will contain movies that have low quality main images so we'll use the secondary image
   const changePath = { 19404: true };
@@ -61,14 +72,27 @@ export default function SingleMovie() {
   } else return <div>Loading...</div>;
 }
 
+const mapStateToProps = ({ productType }) => {
+  return {
+    productType,
+  };
+};
+
+export default connect(mapStateToProps, null)(SingleMovie);
+
 function MovieDetails({ movie, cast }) {
   const castArray = cast.slice(0, 5);
+
+  const currentTitle = movie.title ? movie.title : movie.name;
+  const currentDate = movie.release_date
+    ? movie.release_date
+    : movie.first_air_date;
 
   return (
     <div className="movie-details flex-col">
       <div>
-        <span>{movie.title}</span>
-        <span>{utils.trimDate(movie.release_date)}</span>
+        <span>{currentTitle}</span>
+        <span>{utils.trimDate(currentDate)}</span>
       </div>
       <span>{movie.tagline}</span>
       <span>{movie.overview}</span>

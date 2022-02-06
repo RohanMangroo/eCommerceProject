@@ -12,19 +12,22 @@ function Movies({ productType }) {
 
   useEffect(() => {
     async function getMoveLists() {
-      let listOne;
+      // let listOne;
       if (productType === 'movie') {
-        listOne = await Axios.get(
+        const listOne = await Axios.get(
           `https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=${page}`
         );
-      } else if (productType === 'tv') {
-        listOne = await Axios.get(
+        setMovieList(listOne.data.results);
+      } else {
+        const listOne = await Axios.get(
           `https://api.themoviedb.org/3/tv/popular?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=${page}`
         );
+        setMovieList(listOne.data.results);
       }
 
-      setMovieList(listOne.data.results);
+      // setMovieList(listOne.data.results);
     }
+
     getMoveLists();
   }, [page, productType]);
 

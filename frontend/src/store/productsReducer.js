@@ -16,6 +16,7 @@ const initialState = 'movie';
 const updateProductTypeReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case UPDATE_PRODUCT_TYPE:
+      console.log(state);
       return payload.data;
 
     default:
