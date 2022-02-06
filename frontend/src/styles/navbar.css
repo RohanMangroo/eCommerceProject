@@ -86,6 +86,56 @@
   padding: 5px;
 }
 
+.user-menu {
+  height: 400px;
+  width: 300px;
+  background-color: rgb(2, 2, 2);
+  position: fixed;
+  top: 3rem;
+  right: 11rem;
+  border: solid thin rgb(241, 150, 45);
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  padding-left: 30px;
+  padding-right: 30px;
+  gap: 10px;
+}
+
+.user-menu header {
+  height: 50px;
+  font-size: large;
+  color: rgb(241, 150, 45);
+}
+
+.user-menu button {
+  display: flex;
+  justify-content: flex-start;
+  height: 50px;
+  background: transparent;
+  border: solid thin rgb(185, 106, 17);
+  color: white;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 20px;
+  /* padding-left: 10px; */
+  cursor: pointer;
+}
+
+.icons-container {
+  height: 100%;
+  width: 50px;
+  color: white;
+  background-color: rgb(185, 106, 17);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  height: 60%;
+  width: 30px;
+  color: rgb(238, 238, 238);
+}
 .cart-count {
   /* position: absolute; */
   top: 0;

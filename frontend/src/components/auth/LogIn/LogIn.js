@@ -85,7 +85,7 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, updateFav_, open }) {
   const loginClass =
     open.open === true ? 'login-container open' : 'login-container close';
   const formClass =
-    open.open === true ? 'login-form display' : 'login-form display-none';
+    open.open === true ? 'login-form display' : 'login-form display';
 
   const modalClass = error ? 'open' : 'close';
 

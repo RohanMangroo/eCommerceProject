@@ -39,8 +39,6 @@ function Navbar({
       />
       <CartBtn cart={cart} />
       <Logo />
-      {/* <LogIn />
-      <SignUpAlt /> */}
     </div>
   );
 }

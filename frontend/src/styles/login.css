@@ -31,7 +31,7 @@
 }
 
 /* .display-none {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 20ms step-end;
 } */
 
@@ -152,11 +152,11 @@
 }
 
 .close {
-  opacity: 0;
+  opacity: 1;
   transform: translateX(-100px);
   transition: opacity 20ms ease-in-out, transform 20ms ease-in-out;
   /* height: 0; */
-  z-index: -100;
+  z-index: 1;
 }
 
 /* .close .login-form,
