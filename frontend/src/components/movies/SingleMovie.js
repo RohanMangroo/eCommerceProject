@@ -14,15 +14,23 @@ function SingleMovie({ productType }) {
 
   useEffect(() => {
     async function getMovieData() {
+      let movie = false;
+      let tv = false;
+
+      if (params.mediaType === 'movie') movie = true;
+      else if (params.mediaType === 'tv') tv = true;
+      else if (productType === 'movie') movie = true;
+      else tv = true;
+
       let movieDataEndpoint;
       let castDataEndpoint;
       let relatedMoviesEndpoint;
 
-      if (productType === 'movie') {
+      if (movie) {
         movieDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
         castDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
         relatedMoviesEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
-      } else {
+      } else if (tv) {
         movieDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
         castDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
         relatedMoviesEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
@@ -65,7 +73,7 @@ function SingleMovie({ productType }) {
         </section>
         <div className="related-txt center-items">RELATED</div>
         <section className="related flex-row">
-          {utils.createMovieCards(related, true)}
+          {utils.createMovieCards(related, true, params.mediaType)}
         </section>
       </div>
     );
@@ -87,6 +95,9 @@ function MovieDetails({ movie, cast }) {
   const currentDate = movie.release_date
     ? movie.release_date
     : movie.first_air_date;
+  const language = movie.spoken_languages.length
+    ? movie.spoken_languages[0].english_name
+    : '';
 
   return (
     <div className="movie-details flex-col">
@@ -104,7 +115,7 @@ function MovieDetails({ movie, cast }) {
       </span>
       <span>
         <b>Language: </b>
-        <span>{movie.spoken_languages[0].english_name}</span>
+        <span>{language}</span>
       </span>
 
       <section className="cast flex-row">

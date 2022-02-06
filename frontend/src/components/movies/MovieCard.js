@@ -8,6 +8,7 @@ import { updateFav } from '../../store/favReducer';
 import '../../styles/movie-card.css';
 import { MdFavorite } from 'react-icons/md';
 import { AiFillStar } from 'react-icons/ai';
+import { updateProductType } from '../../store/productsReducer';
 
 function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
   const token = localStorage.getItem('token');
@@ -71,7 +72,10 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
   return (
     <div>
       <div className={`movie-card flex-col ${extraClass}`}>
-        <Link className="card-link" to={`/movie/${movieData.id}`}>
+        <Link
+          className="card-link"
+          to={`/movie/${movieData.media_type}/${movieData.id}`}
+        >
           <div
             className="movie-image"
             style={{
@@ -121,6 +125,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateFav_: (data) => {
       return dispatch(updateFav(data));
+    },
+    updateProductType_: (type) => {
+      return dispatch(updateProductType(type));
     },
   };
 };

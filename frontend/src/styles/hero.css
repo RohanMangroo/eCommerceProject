@@ -16,26 +16,32 @@
   right: -50px;
 }
 
-.hero span {
-  height: max-content;
-  width: max-content;
-  color: rgba(239, 239, 239, 0.7);
-  font-size: 7rem;
-  font-weight: 400;
-  font-family: 'Montserrat', sans-serif;
-  position: relative;
-  top: 0;
-  right: 0;
-}
-
 .hero-movie-image {
   height: 100%;
   width: 100%;
   background-size: cover;
   background-position: top;
+  position: relative;
   /* border-radius: 10px; */
 }
 
+.hero-name {
+  height: 30px;
+  width: calc(max-content + 20px);
+  padding: 10px;
+  color: rgba(239, 239, 239, 0.7);
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  bottom: 50px;
+  left: 10px;
+  border-radius: 20px;
+}
+
+.hero-name:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
 .overlay-img-one {
   position: absolute;
   height: max-content;
@@ -53,20 +59,6 @@
   border-top: double rgb(99, 0, 0);
   /* border-radius: 20px; */
 }
-
-/* .overlay-img-two {
-  position: absolute;
-  height: 100px;
-  width: 100px;
-  top: 200px;
-  left: 450px;
-  background-color: rgb(45, 45, 45);
-  z-index: 11;
-  border-radius: 50%;
-  font-family: sans-serif;
-  color: rgb(192, 192, 192);
-  font-size: 1rem;
-} */
 
 .slider {
   height: 75%;

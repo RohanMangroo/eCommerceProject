@@ -4,9 +4,15 @@ import { AiOutlineMinusCircle } from 'react-icons/ai';
 import { MdDeleteForever } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 
-function createMovieCards(movieList, removeRating = false) {
+function createMovieCards(movieList, removeRating = false, mediaType) {
   const array = [];
   for (let i = 0; i < movieList.length; i++) {
+    const passThrough = sanitizeData(movieList[i]);
+
+    if (!passThrough) {
+      continue;
+    }
+
     const movie = movieList[i];
     const {
       id,
@@ -16,10 +22,13 @@ function createMovieCards(movieList, removeRating = false) {
       name,
       release_date,
       first_air_date,
+      media_type,
     } = movie;
 
     const currentTitle = title ? title : name;
     const image = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+    const currentMediaType = media_type ? media_type : mediaType;
+
     const newDate = release_date
       ? trimDate(release_date)
       : trimDate(first_air_date);
@@ -33,6 +42,7 @@ function createMovieCards(movieList, removeRating = false) {
       price: price,
       id: id,
       removeRating: removeRating,
+      media_type: currentMediaType,
     };
 
     array.push(<MovieCard key={`${i}`} movieData={movieData} />);
@@ -41,6 +51,30 @@ function createMovieCards(movieList, removeRating = false) {
   return array;
 }
 
+function sanitizeData(data) {
+  const array = ['id', 'poster_path', 'backdrop_path'];
+
+  const name = data.name;
+  const title = data.title;
+  const first_air_date = data.first_air_date;
+  const release_date = data.release_date;
+
+  if (!name && !title) return false;
+  if (!release_date && !first_air_date) return false;
+
+  for (let i = 0; i < array.length; i++) {
+    const value = array[i];
+    if (
+      data[value] === null ||
+      data[value] === '' ||
+      data[value] === undefined
+    ) {
+      return false;
+    }
+  }
+
+  return true;
+}
 function getPrice(id) {
   const prices = ['19.99', '4.99', '15.99', '7.99'];
   const num =

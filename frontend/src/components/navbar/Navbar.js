@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router';
 import NavBtns from './NavBtns';
 import CartBtn from './CartBtn';
 import Logo from './Logo';
-// import LogIn from '../auth/LogIn/LogIn';
-// import SignUpAlt from '../auth//SignUp/SignUpAlt';
+import SearchBar from './SearchBar';
 import { updateAuth } from '../../store/authReducer';
 import { updateFav } from '../../store/favReducer';
 import { emptyCart } from '../../store/cartReducer';
@@ -39,6 +38,7 @@ function Navbar({
       />
       <CartBtn cart={cart} />
       <Logo />
+      <SearchBar />
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function UniversalRoutes() {
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/movie/:id" element={<SingleMovie />}></Route>
+          <Route path="/movie/:mediaType/:id" element={<SingleMovie />}></Route>
           <Route path="/user/:id" element={<UserPage />}></Route>
         </Routes>
       </ScrollToTop>

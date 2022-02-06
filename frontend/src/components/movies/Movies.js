@@ -18,13 +18,42 @@ function Movies({ productType }) {
           `https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=${page}`
         );
         setMovieList(listOne.data.results);
-      } else {
+      } else if (productType === 'tv') {
         const listOne = await Axios.get(
           `https://api.themoviedb.org/3/tv/popular?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=${page}`
         );
         setMovieList(listOne.data.results);
-      }
+      } else {
+        const rawQuery = productType.trim();
+        let query = '';
 
+        for (let i = 0; i < rawQuery.length; i++) {
+          const currentChar = rawQuery[i];
+          if (currentChar === ' ') query += '%20';
+          else query += currentChar;
+        }
+
+        // const listOne = await Axios.get(
+        //   `https://api.themoviedb.org/3/search/movie?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=${query}&page=1&include_adult=false`
+        // );
+
+        const listOne = await Axios.get(
+          `https://api.themoviedb.org/3/search/multi?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=${query}&page=${page}&include_adult=false`
+        );
+
+        // return;
+        //68721
+        setMovieList(listOne.data.results);
+        // console.log(query);
+        // console.log(
+        //   `https://api.themoviedb.org/3/search/multi?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=${query}&page=${page}&include_adult=false`
+        // );
+        // const listOne = await Axios.get(
+        //   `https://api.themoviedb.org/3/search/multi?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=${query}&page=${page}&include_adult=false`
+        // );
+        // setMovieList(listOne.data.results);
+      }
+      //https://api.themoviedb.org/3/search/multi?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=The%20Wire&page=1&include_adult=false
       // setMovieList(listOne.data.results);
     }
 
@@ -39,7 +68,6 @@ function Movies({ productType }) {
       });
     }
   }
-  console.log(productType);
   return (
     <>
       <div

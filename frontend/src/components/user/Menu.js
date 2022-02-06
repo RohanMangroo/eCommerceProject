@@ -28,7 +28,6 @@ function Menu({ userMenu, toggleUserMenu_, updateProductType_ }) {
 
   function handleClick(event) {
     const type = event.target.value;
-    console.log(type);
     if (type === 'movie') updateProductType_('movie');
     else if (type === 'tv') updateProductType_('tv');
   }

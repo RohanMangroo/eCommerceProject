@@ -8,7 +8,6 @@ export default function Carousel({ list }) {
 function HeroImage({ list }) {
   return (
     <div className="hero">
-      {/* <span>C I N E M A S</span> */}
       <Slider list={list} />
     </div>
   );
@@ -21,18 +20,19 @@ function Slider({ list }) {
     const value = event.target.value;
     setPosition((prev) => {
       const newValue = value === 'left' ? prev - 1 : prev + 1;
-      if (newValue < 0) return 0;
+      if (newValue < 0) return list.length - 1;
+      if (newValue >= list.length) return 0;
       else return newValue;
     });
   }
 
   if (list.length) {
-    const { backdrop_path, title } = list[currentPosition];
+    const { backdrop_path, title, name } = list[currentPosition];
     const imageOne = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
-
+    const finalTitle = title ? title : name;
     return (
       <div className="slider">
-        <Image image={imageOne} title={title} />
+        <Image image={imageOne} title={finalTitle} />
         <LeftBtn clickHandler={clickHandler} />
         <RightBtn clickHandler={clickHandler} />
       </div>
@@ -52,7 +52,8 @@ function Image({ image, title }) {
       <div className="overlay-img-one center-items">
         WATCH YOUR FAVORITES ON DEMAND
       </div>
-      <div className="overlay-img-two center-items"></div>
+      <div className="overlay-img-two center-items"></div>{' '}
+      <span className="hero-name center-items">{title}</span>
     </>
   );
 }
