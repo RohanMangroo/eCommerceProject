@@ -6,6 +6,7 @@ import LogIn from './components/auth/LogIn/LogIn';
 import SignUpAlt from './components/auth/SignUp/SignUpAlt';
 import Footer from './components/footer/Footer';
 import Menu from './components/user/Menu';
+import HamburgerMenu from './components/HamburgerMenu';
 import utils from './utils';
 import { connect } from 'react-redux';
 import { updateAuth } from './store/authReducer';
@@ -57,6 +58,7 @@ function App({ updateAuth_, updateCart_, updateFav_ }) {
       <LogIn />
       <SignUpAlt />
       <Menu />
+      <HamburgerMenu />
       <UniversalRoutes />
       <Footer />
     </div>

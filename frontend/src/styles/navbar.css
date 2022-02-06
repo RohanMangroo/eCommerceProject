@@ -1,13 +1,13 @@
 .navbar {
   height: 3rem;
-  width: 80vw;
+  width: 100%;
   background-color: rgb(0, 0, 0);
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
   /* overflow: hidden; */
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   /* margin-bottom: 3rem; */
 }
 
@@ -84,87 +84,6 @@
   text-decoration: none;
   border: solid thin rgb(122, 7, 3);
   padding: 5px;
-}
-
-.user-menu {
-  height: 400px;
-  width: 300px;
-  background-color: rgb(2, 2, 2);
-  position: fixed;
-  top: 3rem;
-  right: 11rem;
-  border: solid thin rgb(185, 106, 17);
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  /* font-size: 0.8rem; */
-  padding: 0 30px 0 30px;
-  gap: 20px;
-}
-
-.user-menu-line {
-  height: 1px;
-  width: 100%;
-  background-color: rgb(185, 106, 17);
-}
-
-.user-menu header {
-  height: 50px;
-  font-size: large;
-  color: rgb(241, 150, 45);
-  display: flex;
-  align-items: flex-end;
-}
-
-.user-menu > div,
-.inner-div {
-  display: flex;
-  justify-content: flex-start;
-  height: 35px;
-  width: 100%;
-  background-color: rgb(29, 29, 29);
-  /* border: solid thin rgb(185, 106, 17); */
-  color: rgb(224, 224, 224);
-  /* justify-content: center; */
-  align-items: center;
-  /* gap: 20px; */
-  /* padding-left: 10px; */
-  cursor: pointer;
-  border: none;
-  font-size: 0.7rem;
-}
-
-.icons-container {
-  height: 100%;
-  width: 35px;
-  color: white;
-  background-color: rgb(185, 106, 17);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition-duration: 200ms;
-}
-
-.inner-div:hover .icons-container {
-  background-color: rgb(231, 132, 20);
-}
-
-.user-menu button {
-  height: 100%;
-  width: 100%;
-  background: transparent;
-  border: none;
-  color: rgb(238, 238, 238);
-  cursor: pointer;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  padding-left: 20px;
-}
-
-.icon {
-  height: 60%;
-  width: 30px;
-  color: rgb(238, 238, 238);
 }
 
 .cart-count {

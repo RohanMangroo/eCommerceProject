@@ -20,6 +20,12 @@
   margin: auto;
 }
 
+@media only screen and (max-width: 1024px) {
+  .movies-sub-container {
+    gap: 2rem;
+  }
+}
+
 .page-btns {
   gap: 2rem;
   height: 100px;

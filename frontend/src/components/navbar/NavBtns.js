@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleLogin } from '../../store/logInReducer';
 import { toggleSignUp } from '../../store/signUpReducer';
 import { toggleUserMenu } from '../../store/userMenuReducer';
+import CartBtn from './CartBtn';
 
 function NavBtns({
   handleLogOut,
@@ -14,6 +15,7 @@ function NavBtns({
   toggleSignUp_,
   userMenu,
   toggleUserMenu_,
+  cart,
 }) {
   // console.log(open);
 
@@ -57,6 +59,7 @@ function NavBtns({
         >
           Log In
         </button>
+        <CartBtn cart={cart} />
       </>
     );
   } else {
@@ -78,6 +81,7 @@ function NavBtns({
         <button className="nav-btn login-btn" onClick={handleLogOut}>
           Log Out
         </button>
+        <CartBtn cart={cart} />
       </>
     );
   }

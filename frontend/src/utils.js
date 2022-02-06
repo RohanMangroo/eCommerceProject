@@ -313,6 +313,7 @@ function addItemToLocalCart(localCart, movieTitle) {
     localCart.push({ title: movieTitle, quantity: 1 });
   }
 }
+
 const exports = {
   createMovieCards,
   changePage,

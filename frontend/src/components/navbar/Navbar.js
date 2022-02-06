@@ -2,13 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router';
 import NavBtns from './NavBtns';
-import CartBtn from './CartBtn';
+// import CartBtn from './CartBtn';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
+import HamburgerIcon from './HamburgerIcon';
 import { updateAuth } from '../../store/authReducer';
 import { updateFav } from '../../store/favReducer';
 import { emptyCart } from '../../store/cartReducer';
 import '../../styles/navbar.css';
+
+import { useViewport } from '../customHooks';
 
 function Navbar({
   toggleLogin,
@@ -18,6 +21,7 @@ function Navbar({
   emptyCart_,
   updateFav_,
 }) {
+  const { width } = useViewport();
   const navigate = useNavigate();
 
   function handleLogOut() {
@@ -29,14 +33,20 @@ function Navbar({
     emptyCart_();
   }
 
-  return (
-    <div className="navbar flex-row">
+  const menu =
+    width <= 900 ? (
+      <HamburgerIcon />
+    ) : (
       <NavBtns
         auth={auth}
         toggleLogin={toggleLogin}
         handleLogOut={handleLogOut}
+        cart={cart}
       />
-      <CartBtn cart={cart} />
+    );
+  return (
+    <div className="navbar flex-row">
+      {menu}
       <Logo />
       <SearchBar />
     </div>

@@ -73,6 +73,19 @@
   /* margin-right: 100px; */
 }
 
+@media only screen and (max-width: 768px) {
+  .hero {
+    height: 300px;
+  }
+  .slider {
+    margin-top: 3.5rem;
+  }
+  .overlay-img-one {
+    font-size: 0.9rem;
+    letter-spacing: 0.6rem;
+  }
+}
+
 .carousel-btn-left {
   height: 100%;
   width: 30px;

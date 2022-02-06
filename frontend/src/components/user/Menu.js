@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleUserMenu } from '../../store/userMenuReducer';
 import { updateProductType } from '../../store/productsReducer';
+import '../../styles/userMenu.css';
 
 function Menu({ userMenu, toggleUserMenu_, updateProductType_ }) {
   //  When the user clicks outside the menu it will close(Need to better understand this

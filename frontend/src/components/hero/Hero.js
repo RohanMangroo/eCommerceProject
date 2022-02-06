@@ -26,7 +26,7 @@ function Hero({ productType }) {
   }, [productType]);
 
   return (
-    <section className="hero">
+    <section>
       <Carousel list={movieList} />
     </section>
   );
