@@ -3,11 +3,13 @@ import Movies from './movies/Movies';
 import Hero from './hero/Hero';
 import '../styles/hero.css';
 import '../styles/homepage.css';
+import { useViewport } from '../components/customHooks';
 
 export default function Homepage() {
+  const { width } = useViewport();
   return (
     <div className="homepage">
-      <Hero />
+      {width > 414 && <Hero />}
       <Movies />
     </div>
   );

@@ -7,11 +7,43 @@
   margin-bottom: 2rem;
 }
 
+@media only screen and (max-width: 1024px) {
+  .movie-card {
+    margin-bottom: 100px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .movie-card {
+    width: 12.8rem;
+  }
+}
+
 .movie-image {
   height: 15rem;
   width: 100%;
   background-size: cover;
   background-position: center;
+}
+
+@media only screen and (max-width: 736px) {
+  .movie-card {
+    width: 10rem;
+  }
+
+  .movie-image {
+    background-size: contain;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .movie-card {
+    width: 12.8rem;
+  }
+
+  .movie-image {
+    background-size: cover;
+  }
 }
 
 .no-btn {

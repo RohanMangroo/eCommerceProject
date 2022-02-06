@@ -12,9 +12,11 @@ import { connect } from 'react-redux';
 import { updateAuth } from './store/authReducer';
 import { updateCart } from './store/cartReducer';
 import { updateFav } from './store/favReducer';
+import { useViewport } from './components/customHooks';
 import './styles/app.css';
 
 function App({ updateAuth_, updateCart_, updateFav_ }) {
+  const { width } = useViewport();
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -60,7 +62,7 @@ function App({ updateAuth_, updateCart_, updateFav_ }) {
       <Menu />
       <HamburgerMenu />
       <UniversalRoutes />
-      <Footer />
+      {width > 1024 && <Footer />}
     </div>
   );
 }
