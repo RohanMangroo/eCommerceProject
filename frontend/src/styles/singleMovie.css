@@ -194,7 +194,7 @@
 
 .related {
   height: 350px;
-  overflow: hidden;
+  overflow: auto;
   /* border-bottom: double rgb(99, 0, 0); */
   background-color: rgb(10, 10, 10);
   /* gap: 5px; */

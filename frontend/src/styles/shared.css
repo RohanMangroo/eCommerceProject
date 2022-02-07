@@ -46,21 +46,22 @@ body {
   box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 /* width */
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 7px;
-} */
+  height: 7px;
+}
 
 /* Track */
-/* ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #383838;
-} */
+}
 
 /* Handle */
-/* ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: rgb(0, 0, 0);
-} */
+}
 
 /* Handle on hover */
-/* ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: rgb(0, 0, 0);
-} */
+}
