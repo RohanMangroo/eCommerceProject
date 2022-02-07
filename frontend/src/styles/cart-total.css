@@ -32,6 +32,7 @@
   background-color: rgb(0, 0, 0);
   border: solid thin rgb(40, 40, 40);
   /* margin-top: 5px; */
+  /* border: solid red; */
 }
 
 .cart-total-subcontainer {
@@ -42,6 +43,19 @@
   padding-top: 40px;
 }
 
+@media only screen and (max-width: 768px) {
+  .cart-total-container {
+    width: 100%;
+    height: 920px;
+  }
+
+  .cart-total-subcontainer {
+    height: 50%;
+    width: 50%;
+    border: solid thin rgb(40, 40, 40);
+    padding: 20px;
+  }
+}
 .cart-total-subcontainer div {
   height: 35px;
   width: 100%;

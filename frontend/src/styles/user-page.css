@@ -63,7 +63,8 @@
 
 .cart-btn-two {
   width: 90px;
-  background-color: rgb(144, 119, 51);
+  background-color: rgb(228, 161, 38);
+  color: rgb(36, 2, 2);
 }
 .order-history {
   height: 100%;
@@ -89,7 +90,7 @@
 
 @media only screen and (max-width: 768px) {
   .order-simple-bar {
-    height: 770px;
+    height: 795px;
   }
 }
 /* height: 540px; */

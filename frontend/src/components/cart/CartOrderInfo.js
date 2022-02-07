@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 import utils from '../../utils';
@@ -60,8 +61,12 @@ function CartOrderInfo({ items, cart, updateCart_ }) {
     <>
       Item
       <div className="history-btn-container flex-row">
-        <button className="fav-menu-btn cart-btn-one">ORDERS</button>
-        <button className="history-menu-btn cart-btn-two">CHECKOUT</button>
+        <Link to="/cart">
+          <button className="fav-menu-btn cart-btn-one">ORDERS</button>
+        </Link>
+        <Link to="/cart/checkout">
+          <button className="history-menu-btn cart-btn-two">CHECKOUT</button>
+        </Link>
       </div>
     </>
   );

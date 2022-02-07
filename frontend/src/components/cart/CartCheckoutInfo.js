@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 import CheckOutBtn from './CheckOutBtn';
+import { connect } from 'react-redux';
+import utils from '../../utils';
 // import Axios from 'axios';
 
-export default function CartCheckoutInfo({ subtotal, taxes, total }) {
+function CartCheckoutInfo({ cart }) {
   const [promoTotal, setPromoTotal] = useState(1);
 
   const disabled = promoTotal === 1 ? false : true;
@@ -10,21 +12,24 @@ export default function CartCheckoutInfo({ subtotal, taxes, total }) {
   // const savings = total - promoTotal;
 
   // const finalTotal = promoTotal ? promoTotal : total;
+  const subtotal = utils.calculateSubtotal(cart);
+  const taxes = subtotal * 0.08;
+  const total = subtotal + taxes;
 
   return (
     <div className="cart-total-container flex-col center-items">
       <div className="cart-total-subcontainer flex-col">
-        <Subtotal subtotal={subtotal} />
-        <Taxes taxes={taxes} />
+        <Subtotal subtotal={subtotal.toFixed(2)} />
+        <Taxes taxes={taxes.toFixed(2)} />
         <span className="login-line cart-line"></span>
         <Total
           discount={promoTotal}
           savingsDrop={savingsDrop}
-          currentTotal={total}
+          currentTotal={total.toFixed(2)}
         />
         <PromoCode
           setPromoTotal={setPromoTotal}
-          currentTotal={total}
+          currentTotal={total.toFixed(2)}
           disabled={disabled}
         />
         <CheckOutBtn />
@@ -55,7 +60,6 @@ function Total({ discount, savingsDrop, currentTotal }) {
   const currentDiscount = discount !== 1 ? currentTotal * discount : 0;
 
   const finalTotal = currentTotal - currentDiscount;
-
   return (
     <div className="cart-total">
       <span>TOTAL</span>
@@ -106,3 +110,11 @@ function PromoCode({ setPromoTotal, currentTotal, disabled }) {
     </div>
   );
 }
+
+const mapStateToProps = ({ cart }) => {
+  return {
+    cart,
+  };
+};
+
+export default connect(mapStateToProps, null)(CartCheckoutInfo);
