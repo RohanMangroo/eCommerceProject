@@ -5,8 +5,10 @@ import utils from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
 import '../../styles/singleMovie.css';
 import { connect } from 'react-redux';
+import { useViewport } from '../../components/customHooks';
 
 function SingleMovie({ productType }) {
+  const { width } = useViewport();
   const [movieData, setMovieData] = useState();
   const [castData, setCastData] = useState();
   const [related, setRelated] = useState();
@@ -61,7 +63,11 @@ function SingleMovie({ productType }) {
     return (
       <div className="single-movie-container">
         <section className="hero">
-          <Slider image={`https://image.tmdb.org/t/p/original/${path}`} />
+          {width <= 736 ? (
+            ''
+          ) : (
+            <Slider image={`https://image.tmdb.org/t/p/original/${path}`} />
+          )}
         </section>
         <section className="single-movie-info flex-row">
           <div className="center-items">
@@ -118,7 +124,7 @@ function MovieDetails({ movie, cast }) {
         <span>{language}</span>
       </span>
 
-      <section className="cast flex-row">
+      <section className="cast ">
         <b>Cast: </b>
         {castArray.map((actor) => {
           return <span key={uuidv4()}>{actor.name}</span>;

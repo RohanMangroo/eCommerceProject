@@ -23,7 +23,7 @@
   height: 15rem;
   width: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: top;
 }
 
 @media only screen and (max-width: 736px) {
