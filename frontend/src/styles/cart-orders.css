@@ -112,6 +112,15 @@
     align-items: center;
   }
 }
+@media only screen and (max-width: 414px) {
+  .order-simple-bar {
+    border: solid red;
+    width: 300px;
+  }
+  .simple-fav .cart-row {
+    height: 60px;
+  }
+}
 
 .header span:nth-child(1) {
   /* border: solid red; */
@@ -149,9 +158,15 @@
   z-index: 0;
 }
 
+@media only screen and (max-width: 1024px) {
+  .simple-bar {
+    height: 535px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .simple-bar {
-    height: 795px;
+    height: 790px;
   }
 }
 
