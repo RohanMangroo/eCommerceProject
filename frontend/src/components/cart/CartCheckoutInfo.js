@@ -2,9 +2,12 @@ import React, { useState, useRef } from 'react';
 import CheckOutBtn from './CheckOutBtn';
 import { connect } from 'react-redux';
 import utils from '../../utils';
+import { useViewport } from '../../components/customHooks';
+import { Link } from 'react-router-dom';
 // import Axios from 'axios';
 
 function CartCheckoutInfo({ cart }) {
+  const { width } = useViewport();
   const [promoTotal, setPromoTotal] = useState(1);
 
   const disabled = promoTotal === 1 ? false : true;
@@ -16,8 +19,22 @@ function CartCheckoutInfo({ cart }) {
   const taxes = subtotal * 0.08;
   const total = subtotal + taxes;
 
+  const menuComponent = (
+    <>
+      <div className="history-btn-container flex-row checkout-btns">
+        <Link to="/cart">
+          <button className="fav-menu-btn cart-btn-one">ORDERS</button>
+        </Link>
+        <Link to="/cart/checkout">
+          <button className="history-menu-btn cart-btn-two">CHECKOUT</button>
+        </Link>
+      </div>
+    </>
+  );
+
   return (
     <div className="cart-total-container flex-col center-items">
+      {width <= 768 ? menuComponent : ''}
       <div className="cart-total-subcontainer flex-col">
         <Subtotal subtotal={subtotal.toFixed(2)} />
         <Taxes taxes={taxes.toFixed(2)} />

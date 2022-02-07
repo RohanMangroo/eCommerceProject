@@ -72,16 +72,24 @@ function CartOrderInfo({ items, cart, updateCart_ }) {
   );
 
   const toRender = width <= 768 ? menuComponent : 'Item';
+  const headers =
+    width <= 768 ? (
+      ''
+    ) : (
+      <>
+        {' '}
+        <span>Price</span>
+        <span>Quantity</span>
+        <span>Total</span>{' '}
+      </>
+    );
 
   return (
     <div className="cart-orders center-items">
       <div className="cart-orders-subcontainer">
         <header className="cart-row header">
           <span className="flex-row center-items">{toRender}</span>
-
-          <span>Price</span>
-          <span>Quantity</span>
-          <span>Total</span>
+          {headers}
         </header>
         <SimpleBar className="simple-bar">
           {utils.createItemRows(items, clickHandler)}
