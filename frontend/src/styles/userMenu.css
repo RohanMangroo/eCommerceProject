@@ -81,14 +81,14 @@
 
 .hamburger-menu-container {
   height: 100%;
-  width: 30px;
+  width: 5%;
   background: transparent;
   margin-right: 10px;
 }
 
 .ham-icon {
   color: rgb(204, 0, 0);
-  height: 90%;
+  height: 100%;
   width: 100%;
   cursor: pointer;
 }

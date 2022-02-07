@@ -4,8 +4,8 @@
 
 .app-container {
   /* height: 3000px; */
-  width: 100%;
-  margin: auto;
+  max-width: 100%;
+  /* margin: auto; */
   background-color: black;
   /* position: relative; */
 }
@@ -13,6 +13,6 @@
 @media only screen and (max-width: 1024px) {
   .app-container {
     /* height: 3000px; */
-    width: 100vw;
+    max-width: 100%;
   }
 }

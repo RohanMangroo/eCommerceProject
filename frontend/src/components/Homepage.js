@@ -9,7 +9,7 @@ export default function Homepage() {
   const { width } = useViewport();
   return (
     <div className="homepage">
-      {width > 414 && <Hero />}
+      {width > 736 && <Hero />}
       <Movies />
     </div>
   );

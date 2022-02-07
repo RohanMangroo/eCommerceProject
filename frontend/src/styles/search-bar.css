@@ -1,5 +1,5 @@
 .search-bar {
-  width: 400px;
+  width: 40%;
   font-size: 1rem;
   font-weight: 100;
   font-family: sans-serif;
@@ -29,6 +29,7 @@
   color: grey;
   padding-left: 45px;
 }
+
 .search-icon-container {
   position: absolute;
   top: 0;
@@ -42,5 +43,12 @@
 @media only screen and (max-width: 1024px) {
   .search-bar {
     width: 53%;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .search-bar {
+    left: 40px;
+    width: 70%;
   }
 }
