@@ -6,6 +6,7 @@ import SingleMovie from './movies/SingleMovie';
 import UserPage from './user/UserPage';
 import ScrollToTop from './ScrollToTop';
 import CartCheckoutInfo from './cart/CartCheckoutInfo';
+import Favorites from './user/Favorites';
 import { useViewport } from '../components/customHooks';
 
 export default function UniversalRoutes() {
@@ -24,6 +25,10 @@ export default function UniversalRoutes() {
           />
           <Route path="/movie/:mediaType/:id" element={<SingleMovie />}></Route>
           <Route path="/user/:id" element={<UserPage />}></Route>
+          <Route
+            path="/user/:id/favorites"
+            element={width <= 768 ? <Favorites /> : <Navigate to="/user/:id" />}
+          />
         </Routes>
       </ScrollToTop>
     </>

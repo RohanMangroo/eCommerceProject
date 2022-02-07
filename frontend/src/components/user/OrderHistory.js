@@ -4,8 +4,8 @@ import 'simplebar/dist/simplebar.min.css';
 import utils from '../../utils';
 import { connect } from 'react-redux';
 import { updateCart } from '../../store/cartReducer';
-import { VscTriangleDown } from 'react-icons/vsc';
 import { useViewport } from '../../components/customHooks';
+import { Link } from 'react-router-dom';
 
 function OrderHistory({ items, updateCart_ }) {
   const { width } = useViewport();
@@ -27,13 +27,29 @@ function OrderHistory({ items, updateCart_ }) {
     <>
       Order History
       <div className="history-btn-container flex-row">
-        <button className="fav-menu-btn">FAV</button>
-        <button className="history-menu-btn">HISTORY</button>
+        <Link to="/user/:id/favorites">
+          <button className="fav-menu-btn">FAV</button>
+        </Link>
+        <Link to="/user/:id">
+          <button className="history-menu-btn">HISTORY</button>
+        </Link>
       </div>
     </>
   );
 
   const toRender = width <= 768 ? menuComponent : 'Order History';
+  const headers =
+    width <= 768 ? (
+      ''
+    ) : (
+      <>
+        {' '}
+        <span>Price</span>
+        <span>Quantity</span>
+        <span>Total</span>
+        <span>Date</span>
+      </>
+    );
 
   return (
     <div className="order-history">
@@ -42,14 +58,11 @@ function OrderHistory({ items, updateCart_ }) {
           <span className="flex-row history-title center-items">
             {toRender}
           </span>
-          <span>Price</span>
-          <span>Quantity</span>
-          <span>Total</span>
-          <span>Date</span>
+          {headers}
         </header>
         <SimpleBar
           onClick={clickHandler}
-          className="simple-bar order-simple-bar"
+          className="simple-bar order-simple-bar history-row"
         >
           {utils.createOrderHistoryRow(items)}
         </SimpleBar>
