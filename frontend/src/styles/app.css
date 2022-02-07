@@ -1,5 +1,8 @@
-.body {
-  width: 100vw;
+.body,
+html {
+  max-width: 100%;
+  /* width: 100vw; */
+  background-color: black;
 }
 
 .app-container {
@@ -12,7 +15,6 @@
 
 @media only screen and (max-width: 1024px) {
   .app-container {
-    /* height: 3000px; */
     max-width: 100%;
   }
 }

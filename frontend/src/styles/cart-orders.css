@@ -3,11 +3,11 @@
   width: 100%;
   background-color: rgb(0, 0, 0);
   padding-left: 10px;
-  padding-right: 10px;
+  /* padding-right: 10px; */
 }
 
 .even {
-  background-color: transparent;
+  background-color: rgb(17, 17, 17);
 }
 
 .odd {
@@ -19,7 +19,7 @@
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   position: relative;
-  height: 50px;
+  height: 55px;
 }
 
 .cart-row span {
@@ -51,10 +51,12 @@
   color: rgb(0, 0, 0);
   font-weight: 400;
 }
+
 .header span:nth-child(1) {
   /* border: solid red; */
   margin-left: 15px;
 }
+
 .movie-quant {
   width: 80%;
   justify-content: space-between;
@@ -107,6 +109,12 @@
   height: 458px;
   z-index: 0;
 }
+
+/* @media only screen and (max-width: 1024px) {
+  .simple-bar {
+    height: 540px;
+  }
+} */
 
 .simplebar-scrollbar {
   position: absolute;

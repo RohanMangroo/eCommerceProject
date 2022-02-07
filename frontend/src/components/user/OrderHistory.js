@@ -4,8 +4,11 @@ import 'simplebar/dist/simplebar.min.css';
 import utils from '../../utils';
 import { connect } from 'react-redux';
 import { updateCart } from '../../store/cartReducer';
+import { VscTriangleDown } from 'react-icons/vsc';
+import { useViewport } from '../../components/customHooks';
 
 function OrderHistory({ items, updateCart_ }) {
+  const { width } = useViewport();
   async function clickHandler(event) {
     const token = localStorage.getItem('token');
     const movieData = JSON.parse(event.target.value);
@@ -20,11 +23,25 @@ function OrderHistory({ items, updateCart_ }) {
     updateCart_(cart);
   }
 
+  const menuComponent = (
+    <>
+      Order History
+      <div className="history-btn-container flex-row">
+        <button className="fav-menu-btn">FAV</button>
+        <button className="history-menu-btn">HISTORY</button>
+      </div>
+    </>
+  );
+
+  const toRender = width <= 768 ? menuComponent : 'Order History';
+
   return (
     <div className="order-history">
       <div className="cart-orders-subcontainer history">
         <header className="cart-row header ">
-          <span>Order History</span>
+          <span className="flex-row history-title center-items">
+            {toRender}
+          </span>
           <span>Price</span>
           <span>Quantity</span>
           <span>Total</span>

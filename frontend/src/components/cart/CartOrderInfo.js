@@ -6,8 +6,10 @@ import utils from '../../utils';
 import { updateCart } from '../../store/cartReducer';
 import { connect } from 'react-redux';
 import '../../styles/cart-orders.css';
+import { useViewport } from '../../components/customHooks';
 
 function CartOrderInfo({ items, cart, updateCart_ }) {
+  const { width } = useViewport();
   async function clickHandler(event, title) {
     const token = localStorage.getItem('token');
     let newCart;
@@ -53,12 +55,25 @@ function CartOrderInfo({ items, cart, updateCart_ }) {
 
     updateCart_(newCart);
   }
-  console.log(items);
+
+  const menuComponent = (
+    <>
+      Item
+      <div className="history-btn-container flex-row">
+        <button className="fav-menu-btn cart-btn-one">ORDERS</button>
+        <button className="history-menu-btn cart-btn-two">CHECKOUT</button>
+      </div>
+    </>
+  );
+
+  const toRender = width <= 768 ? menuComponent : 'Item';
+
   return (
     <div className="cart-orders center-items">
       <div className="cart-orders-subcontainer">
         <header className="cart-row header">
-          <span>Item</span>
+          <span className="flex-row center-items">{toRender}</span>
+
           <span>Price</span>
           <span>Quantity</span>
           <span>Total</span>

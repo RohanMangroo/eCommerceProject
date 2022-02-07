@@ -3,10 +3,12 @@ import Axios from 'axios';
 import OrderHistory from './OrderHistory';
 import Favorites from './Favorites';
 import '../../styles/user-page.css';
+import { useViewport } from '../../components/customHooks';
 
 export default function UserPage() {
   const [orderHistory, setOrdeHistory] = useState();
   const [userInfo, setUserInfo] = useState();
+  const { width } = useViewport();
 
   useEffect(() => {
     async function getUserInfo() {
@@ -34,7 +36,7 @@ export default function UserPage() {
           {renderedComponent}
         </section>
         <section className="user-page-right center-items">
-          <Favorites />
+          {width > 768 && <Favorites />}
         </section>
       </div>
     </div>

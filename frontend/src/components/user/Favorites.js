@@ -11,10 +11,7 @@ function Favorites({ myFavs }) {
           <header className="cart-row header fav-header">
             <span>Favorites</span>
           </header>
-          <SimpleBar
-            // onClick={clickHandler}
-            className="simple-bar order-simple-bar"
-          >
+          <SimpleBar className="simple-bar order-simple-bar">
             {utils.createFavoritesRow(myFavs)}
           </SimpleBar>
         </div>

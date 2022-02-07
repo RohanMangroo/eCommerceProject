@@ -1,6 +1,7 @@
 .user-page {
   width: 100%;
   height: 590px;
+  justify-content: space-between;
   /* background-color: cornflowerblue; */
 }
 
@@ -8,14 +9,62 @@
   height: 100%;
   width: 70%;
   justify-content: flex-start;
+  /* border: solid red; */
 }
 
 .user-page-right {
   height: 100%;
-  width: 31%;
-  background-color: rgb(124, 124, 194);
+  width: 30%;
 }
 
+@media only screen and (max-width: 768px) {
+  .user-page-left {
+    width: 100%;
+  }
+}
+
+.history-btn-container {
+  margin-left: 10px;
+  gap: 10px;
+}
+
+.fav-menu-btn,
+.history-menu-btn {
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.fav-menu-btn:active,
+.history-menu-btn:active {
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.5);
+  color: rgb(187, 187, 187);
+}
+.fav-menu-btn {
+  height: 30px;
+  width: 50px;
+  background-color: rgb(214, 24, 24);
+  color: rgb(206, 206, 206);
+  border-radius: 20px;
+}
+
+.history-menu-btn {
+  height: 30px;
+  width: 80px;
+  border-radius: 20px;
+  background-color: rgb(36, 146, 36);
+  color: rgb(211, 211, 211);
+}
+
+.cart-btn-one {
+  width: 70px;
+  background-color: rgb(107, 144, 51);
+}
+
+.cart-btn-two {
+  width: 90px;
+  background-color: rgb(144, 119, 51);
+}
 .order-history {
   height: 100%;
   width: 100%;
@@ -32,6 +81,18 @@
   height: 458px;
 }
 
+@media only screen and (max-width: 1024px) {
+  .order-simple-bar {
+    height: 540px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .order-simple-bar {
+    height: 770px;
+  }
+}
+/* height: 540px; */
 .header span:nth-child(4) {
   grid-column: 7 / 8;
 }
@@ -80,4 +141,8 @@
 
 .history header {
   background-color: rgb(40, 127, 9);
+}
+
+.history-title {
+  padding: 0;
 }
