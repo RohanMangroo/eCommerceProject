@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import image from '../../images/venom.jpg';
+import { Link } from 'react-router-dom';
 
 export default function Carousel({ list }) {
   return <HeroImage list={list} />;
@@ -27,28 +27,36 @@ function Slider({ list }) {
   }
 
   if (list.length) {
-    const { backdrop_path, title, name } = list[currentPosition];
+    const { backdrop_path, title, name, id, media_type } =
+      list[currentPosition];
     const imageOne = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
     const finalTitle = title ? title : name;
     return (
       <div className="slider">
-        <Image image={imageOne} title={finalTitle} />
+        <Image
+          image={imageOne}
+          title={finalTitle}
+          id={id}
+          mediaType={media_type}
+        />
         <LeftBtn clickHandler={clickHandler} />
         <RightBtn clickHandler={clickHandler} />
       </div>
     );
   }
 
-  return <></>;
+  return <div>Loading...</div>;
 }
 
-function Image({ image, title }) {
+function Image({ image, title, id, mediaType }) {
   return (
     <>
-      <div
-        className="hero-movie-image"
-        style={{ backgroundImage: `url(${image})` }}
-      ></div>
+      <Link to={`/movie/${mediaType}/${id}`}>
+        <div
+          className="hero-movie-image"
+          style={{ backgroundImage: `url(${image})` }}
+        ></div>
+      </Link>
       <div className="overlay-img-one center-items">
         WATCH YOUR FAVORITES ON DEMAND
       </div>

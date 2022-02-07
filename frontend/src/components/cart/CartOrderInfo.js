@@ -11,6 +11,7 @@ import { useViewport } from '../../components/customHooks';
 
 function CartOrderInfo({ items, cart, updateCart_ }) {
   const { width } = useViewport();
+
   async function clickHandler(event, title) {
     const token = localStorage.getItem('token');
     let newCart;

@@ -12,6 +12,7 @@ import { updateFav } from '../store/favReducer';
 import { emptyCart } from '../store/cartReducer';
 import { toggleHam } from '../store/hamMenuReducer';
 import { useNavigate } from 'react-router';
+import { useViewport } from '../components/customHooks';
 
 import '../styles/userMenu.css';
 function HamburgerMenu({
@@ -25,6 +26,26 @@ function HamburgerMenu({
   emptyCart_,
   auth,
 }) {
+  const { width } = useViewport();
+
+  useEffect(() => {
+    if (ham.open && width >= 900) toggleHam_(false);
+  });
+
+  //  When the user clicks outside the menu it will close(Need to better understand this
+  useEffect(() => {
+    const closeMenu = (e) => {
+      if (ham.open) toggleHam_(false);
+    };
+    // document.addEventListener('click', checkIfClickedOutside);
+    document.addEventListener('click', closeMenu);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('click', closeMenu);
+    };
+  }, [ham, toggleHam_]);
+
   //  When the user clicks outside the menu it will close(Need to better understand this
   //   useEffect(() => {
   //     const closeMenu = (e) => {

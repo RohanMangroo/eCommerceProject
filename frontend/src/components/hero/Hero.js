@@ -7,22 +7,22 @@ function Hero({ productType }) {
   const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
-    async function getMoveLists() {
+    async function getMovieLists() {
       let listOne;
 
-      if (productType === 'movie') {
+      if (productType === 'tv') {
         listOne = await Axios.get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`
+          `https://api.themoviedb.org/3/tv/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=3`
         );
       } else {
         listOne = await Axios.get(
-          `https://api.themoviedb.org/3/tv/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=15`
+          `https://api.themoviedb.org/3/movie/popular?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`
         );
       }
 
       setMovieList(listOne.data.results);
     }
-    getMoveLists();
+    getMovieLists();
   }, [productType]);
 
   return (

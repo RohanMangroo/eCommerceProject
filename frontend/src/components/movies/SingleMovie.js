@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import '../../styles/singleMovie.css';
 import { connect } from 'react-redux';
 import { useViewport } from '../../components/customHooks';
+import { Backdrop } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function SingleMovie({ productType }) {
   const { width } = useViewport();
@@ -19,23 +21,23 @@ function SingleMovie({ productType }) {
       let movie = false;
       let tv = false;
 
-      if (params.mediaType === 'movie') movie = true;
-      else if (params.mediaType === 'tv') tv = true;
-      else if (productType === 'movie') movie = true;
-      else tv = true;
+      // if (params.mediaType === 'movie') movie = true;
+      // else if (params.mediaType === 'tv') tv = true;
+      // else if (productType === 'movie') movie = true;
+      // else tv = true;
 
       let movieDataEndpoint;
       let castDataEndpoint;
       let relatedMoviesEndpoint;
 
-      if (movie) {
-        movieDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
-        castDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
-        relatedMoviesEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
-      } else if (tv) {
+      if (params.mediaType === 'tv') {
         movieDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
         castDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
         relatedMoviesEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+      } else {
+        movieDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+        castDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+        relatedMoviesEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
       }
 
       const movieData = await Axios.get(movieDataEndpoint);
@@ -83,7 +85,17 @@ function SingleMovie({ productType }) {
         </section>
       </div>
     );
-  } else return <div>Loading...</div>;
+  } else
+    return (
+      <div className="backdrop">
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={true}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+    );
 }
 
 const mapStateToProps = ({ productType }) => {

@@ -73,13 +73,6 @@ function Menu({ userMenu, toggleUserMenu_, updateProductType_ }) {
         </div>
         <button value="tv">T E L E V I S I O N </button>
       </div>
-
-      <div className="inner-div">
-        <div className="icons-container">
-          <GiPopcorn className="icon pop-icon" />
-        </div>
-        <button> P O P U L A R</button>
-      </div>
     </div>
   );
 }

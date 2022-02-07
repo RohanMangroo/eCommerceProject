@@ -10,7 +10,7 @@ export default async function updateFav(req, res) {
 
   const key = `${decodedToken.username}:${decodedToken.id}:fav`;
 
-  await redisUtils.setItem(key, title, true);
+  await redisUtils.setItem(key, title, movieId);
   const favorites = await redisUtils.getFavorites(key);
   res.json(favorites);
   db.query(addFavorite(decodedToken.id, movieId));

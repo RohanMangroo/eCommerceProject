@@ -5,10 +5,12 @@ import { BiRightArrow } from 'react-icons/bi';
 import { BiLeftArrow } from 'react-icons/bi';
 import { connect } from 'react-redux';
 import '../../styles/movies-container.css';
+import { useNavigate } from 'react-router-dom';
 
 function Movies({ productType }) {
   const [page, setPage] = useState(1);
   const [movieList, setMovieList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getMoveLists() {
@@ -33,32 +35,17 @@ function Movies({ productType }) {
           else query += currentChar;
         }
 
-        // const listOne = await Axios.get(
-        //   `https://api.themoviedb.org/3/search/movie?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=${query}&page=1&include_adult=false`
-        // );
-
         const listOne = await Axios.get(
           `https://api.themoviedb.org/3/search/multi?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=${query}&page=${page}&include_adult=false`
         );
 
-        // return;
-        //68721
+        if (listOne.data.results.length === 0) setPage(1);
         setMovieList(listOne.data.results);
-        // console.log(query);
-        // console.log(
-        //   `https://api.themoviedb.org/3/search/multi?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=${query}&page=${page}&include_adult=false`
-        // );
-        // const listOne = await Axios.get(
-        //   `https://api.themoviedb.org/3/search/multi?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=${query}&page=${page}&include_adult=false`
-        // );
-        // setMovieList(listOne.data.results);
       }
-      //https://api.themoviedb.org/3/search/multi?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=The%20Wire&page=1&include_adult=false
-      // setMovieList(listOne.data.results);
     }
 
     getMoveLists();
-  }, [page, productType]);
+  }, [page, productType, navigate]);
 
   function clickHandler(event) {
     if (event.target.id) {
@@ -68,6 +55,7 @@ function Movies({ productType }) {
       });
     }
   }
+
   return (
     <>
       <div
@@ -83,7 +71,7 @@ function Movies({ productType }) {
       </div>
       <section className="movies-container flex-col">
         <div className="movies-sub-container">
-          {utils.createMovieCards(movieList)}
+          {utils.createMovieCards(movieList, false, productType)}
         </div>
       </section>
       <div

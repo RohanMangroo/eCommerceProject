@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useViewport } from '../../components/customHooks';
 
 function Favorites({ myFavs }) {
+  console.log(myFavs);
   const { width } = useViewport();
   const menuComponent = (
     <>

@@ -3,6 +3,7 @@ import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { AiOutlineMinusCircle } from 'react-icons/ai';
 import { MdDeleteForever } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 function createMovieCards(movieList, removeRating = false, mediaType) {
   const array = [];
@@ -47,7 +48,6 @@ function createMovieCards(movieList, removeRating = false, mediaType) {
 
     array.push(<MovieCard key={`${i}`} movieData={movieData} />);
   }
-
   return array;
 }
 
@@ -212,11 +212,17 @@ function createFavoritesRow(movies) {
     else row = 'odd';
 
     array.push(
-      <div key={uuidv4()} className={`cart-row ${row}`}>
-        <span className="cart-movie-title history-movie-title fav-title">
-          {item}
-        </span>
-      </div>
+      <Link
+        className="nav-link"
+        key={uuidv4()}
+        to={`/movie/${undefined}/${movies[item]}}`}
+      >
+        <div className={`cart-row ${row}`}>
+          <span className="cart-movie-title history-movie-title fav-title">
+            {item}
+          </span>
+        </div>
+      </Link>
     );
     count++;
   }

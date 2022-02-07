@@ -3,13 +3,36 @@ import '../../styles/search-bar.css';
 import { BsSearch } from 'react-icons/bs';
 import { connect } from 'react-redux';
 import { updateProductType } from '../../store/productsReducer';
+import { useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 
 function SearchBar({ updateProductType_ }) {
   const ref = useRef();
+  const navigate = useNavigate();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    const value = ref.current.value;
+
+    const rawQuery = value.trim();
+    let query = '';
+
+    for (let i = 0; i < rawQuery.length; i++) {
+      const currentChar = rawQuery[i];
+      if (currentChar === ' ') query += '%20';
+      else query += currentChar;
+    }
+    const listOne = await Axios.get(
+      `https://api.themoviedb.org/3/search/multi?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&query=${query}&page=$1&include_adult=false`
+    );
+    if (listOne.data.results.length === 0) {
+      ref.current.value = 'NO RESULTS FOUND';
+      return;
+    }
     updateProductType_(ref.current.value);
+    ref.current.value = '';
+
+    navigate('/');
   }
   return (
     <div className="search-bar">
