@@ -17,12 +17,16 @@ export function getUserData(id) {
   return query;
 }
 
-export function addFavorite(userId, movieId) {
-  const query = `INSERT INTO Favorites(userId, movieId) VALUES(${userId}, ${movieId})`;
+export function addFavorite(userId, title, media_type, movieId) {
+  const query = `INSERT INTO Favorites(userId, title, media_type, movieId) VALUES(${userId}, '${title}', '${media_type}', ${movieId})`;
   return query;
 }
 
 export function deleteFavorite(userId, movieId) {
   const query = `DELETE FROM Favorites WHERE userId = ${userId} AND movieId = ${movieId}`;
   return query;
+}
+
+export function getFavorites(id) {
+  const query = `SELECT Favorites.* FROM Favorites WHERE userId = ${id}`;
 }

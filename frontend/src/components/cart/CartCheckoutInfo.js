@@ -49,7 +49,7 @@ function CartCheckoutInfo({ cart }) {
           currentTotal={total.toFixed(2)}
           disabled={disabled}
         />
-        <CheckOutBtn />
+        <CheckOutBtn total={total.toFixed(2)} />
       </div>
     </div>
   );

@@ -23,6 +23,7 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, updateFav_, open }) {
   const [error, setError] = useState(null);
 
   /**================================================================*/
+
   //Reseting the inputs on remount
   useEffect(() => {
     if (!open.open) utils.resetInput([setUsername, setPassword]);
@@ -80,6 +81,10 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, updateFav_, open }) {
     setError(null);
   }
 
+  if (!error) {
+    document.body.style.overflow = 'auto';
+    document.body.style.paddingRight = '0';
+  }
   /**================================================================*/
 
   const loginClass =

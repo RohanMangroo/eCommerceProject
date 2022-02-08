@@ -16,7 +16,7 @@ cartRouter.post('/cart/item/quantity', changeQuantity);
 
 cartRouter.delete('/cart/item', deleteItem);
 
-cartRouter.post('/cart/item/quantity', editItem);
+// cartRouter.post('/cart/item/quantity', editItem);
 
 cartRouter.post('/cart/checkout', checkout);
 

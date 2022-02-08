@@ -66,6 +66,9 @@ function SingleMovie({ productType }) {
     if (params.id in changePath) path = poster_path;
     else path = backdrop_path;
 
+    const mediaType = params.mediaType ? params.mediaType : productType;
+    movieData.media_type = mediaType;
+
     return (
       <div className="single-movie-container">
         <section className="hero">

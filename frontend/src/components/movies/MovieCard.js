@@ -21,6 +21,7 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
       movieId: movieData.id,
       media_type: movieData.media_type,
     };
+
     const config = { headers: { authorization: token } };
     const response = await Axios.post(endPoint, body, config);
 

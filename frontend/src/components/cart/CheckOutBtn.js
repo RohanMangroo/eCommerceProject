@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { emptyCart } from '../../store/cartReducer';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import Modal from '../modal/Modal';
 
-function CheckOutBtn({ emptyCart_ }) {
-  async function handleClick() {
+function CheckOutBtn({ emptyCart_, total }) {
+  const [checkout, setCheckout] = useState(null);
+
+  async function handleClick(setCheckout) {
     const token = localStorage.getItem('token');
 
     if (token) {
@@ -23,12 +26,33 @@ function CheckOutBtn({ emptyCart_ }) {
         emptyCart_();
       }
     }
+
+    setCheckout(null);
+  }
+
+  function showModal() {
+    setCheckout('checkout');
+  }
+
+  function toggleModal() {
+    setCheckout(null);
   }
 
   return (
-    <button onClick={handleClick} className="cart-checkout">
-      C H E C K O U T
-    </button>
+    <>
+      <button onClick={showModal} className="cart-checkout">
+        C H E C K O U T
+      </button>
+      {checkout && (
+        <Modal
+          modalClass="open"
+          error={checkout}
+          toggle={() => handleClick(setCheckout)}
+          total={total}
+          cancel={toggleModal}
+        />
+      )}
+    </>
   );
 }
 
