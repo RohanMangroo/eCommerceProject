@@ -18,26 +18,30 @@ function SingleMovie({ productType }) {
 
   useEffect(() => {
     async function getMovieData() {
-      let movie = false;
-      let tv = false;
-
-      // if (params.mediaType === 'movie') movie = true;
-      // else if (params.mediaType === 'tv') tv = true;
-      // else if (productType === 'movie') movie = true;
-      // else tv = true;
-
       let movieDataEndpoint;
       let castDataEndpoint;
       let relatedMoviesEndpoint;
 
-      if (params.mediaType === 'tv') {
-        movieDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
-        castDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
-        relatedMoviesEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+      if (!params.mediaType || params.mediaType === 'undefined') {
+        if (productType === 'tv') {
+          movieDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+          castDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+          relatedMoviesEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+        } else {
+          movieDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+          castDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+          relatedMoviesEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+        }
       } else {
-        movieDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
-        castDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
-        relatedMoviesEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+        if (params.mediaType === 'tv') {
+          movieDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+          castDataEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+          relatedMoviesEndpoint = `https://api.themoviedb.org/3/tv/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+        } else {
+          movieDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+          castDataEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US`;
+          relatedMoviesEndpoint = `https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=1`;
+        }
       }
 
       const movieData = await Axios.get(movieDataEndpoint);

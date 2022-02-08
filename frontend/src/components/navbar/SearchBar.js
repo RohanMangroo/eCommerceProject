@@ -3,10 +3,11 @@ import '../../styles/search-bar.css';
 import { BsSearch } from 'react-icons/bs';
 import { connect } from 'react-redux';
 import { updateProductType } from '../../store/productsReducer';
+import { updateQuery } from '../../store/queryReducer';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
-function SearchBar({ updateProductType_ }) {
+function SearchBar({ updateProductType_, updateQuery_ }) {
   const ref = useRef();
   const navigate = useNavigate();
 
@@ -29,7 +30,8 @@ function SearchBar({ updateProductType_ }) {
       ref.current.value = 'NO RESULTS FOUND';
       return;
     }
-    updateProductType_(ref.current.value);
+    updateQuery_(ref.current.value);
+    updateProductType_(null);
     ref.current.value = '';
 
     navigate('/');
@@ -57,6 +59,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateProductType_: (type) => {
       return dispatch(updateProductType(type));
+    },
+    updateQuery_: (data) => {
+      return dispatch(updateQuery(data));
     },
   };
 };

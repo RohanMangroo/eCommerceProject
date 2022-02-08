@@ -48,7 +48,7 @@ function Navbar({
     <div className="navbar flex-row">
       {menu}
       <Logo />
-      <SearchBar />
+      {auth.isLoggedIn && <SearchBar />}
     </div>
   );
 }

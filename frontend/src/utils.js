@@ -210,12 +210,14 @@ function createFavoritesRow(movies) {
   for (let item in movies) {
     if (count % 2 === 0) row = 'even';
     else row = 'odd';
-
+    const splitArray = movies[item].split('/');
+    const id = splitArray[0];
+    const mediaType = splitArray[1];
     array.push(
       <Link
         className="nav-link"
         key={uuidv4()}
-        to={`/movie/${undefined}/${movies[item]}}`}
+        to={`/movie/${mediaType}/${id}}`}
       >
         <div className={`cart-row ${row}`}>
           <span className="cart-movie-title history-movie-title fav-title">

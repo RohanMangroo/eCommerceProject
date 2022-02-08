@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import utils from '../../utils';
-import { BiRightArrow } from 'react-icons/bi';
-import { BiLeftArrow } from 'react-icons/bi';
 import { connect } from 'react-redux';
 import '../../styles/movies-container.css';
 import { useNavigate } from 'react-router-dom';
 
-function Movies({ productType }) {
+function Movies({ productType, currentQuery }) {
   const [page, setPage] = useState(1);
   const [movieList, setMovieList] = useState([]);
   const navigate = useNavigate();
@@ -19,14 +17,16 @@ function Movies({ productType }) {
         const listOne = await Axios.get(
           `https://api.themoviedb.org/3/movie/top_rated?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=${page}`
         );
+
         setMovieList(listOne.data.results);
       } else if (productType === 'tv') {
         const listOne = await Axios.get(
           `https://api.themoviedb.org/3/tv/popular?api_key=f4b964a7e615c3824313f9121ff9270d&language=en-US&page=${page}`
         );
+
         setMovieList(listOne.data.results);
       } else {
-        const rawQuery = productType.trim();
+        const rawQuery = currentQuery.trim();
         let query = '';
 
         for (let i = 0; i < rawQuery.length; i++) {
@@ -45,12 +45,12 @@ function Movies({ productType }) {
     }
 
     getMoveLists();
-  }, [page, productType, navigate]);
+  }, [page, productType, navigate, currentQuery]);
 
   function clickHandler(event) {
-    if (event.target.id) {
+    if (event.target.value) {
       setPage((prev) => {
-        const newPage = utils.changePage(event.target.id, prev);
+        const newPage = utils.changePage(event.target.value, prev);
         return newPage;
       });
     }
@@ -62,11 +62,11 @@ function Movies({ productType }) {
         onClick={clickHandler}
         className="page-btns page-btn-top flex-row center-items"
       >
-        <button className="btn" value="prev">
-          <BiLeftArrow id="prev" className="prev-page-icon" />
+        <button className="prev-page-btn" value="prev">
+          Prev Page
         </button>
-        <button className="btn" value="next">
-          <BiRightArrow id="next" className="next-page-icon" />
+        <button className="next-page-btn" value="next">
+          Next Page
         </button>
       </div>
       <section className="movies-container flex-col">
@@ -79,19 +79,20 @@ function Movies({ productType }) {
         className="page-btns page-btn-bottom flex-row center-items"
       >
         <button className="btn" value="prev">
-          <BiLeftArrow id="prev" className="prev-page-icon" />
+          Prev Page
         </button>
         <button className="btn" value="next">
-          <BiRightArrow id="next" className="next-page-icon" />
+          Next Page
         </button>
       </div>
     </>
   );
 }
 
-const mapStateToProps = ({ productType }) => {
+const mapStateToProps = ({ productType, query }) => {
   return {
     productType,
+    currentQuery: query,
   };
 };
 

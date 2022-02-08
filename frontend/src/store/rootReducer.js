@@ -8,6 +8,7 @@ import favReducer from './favReducer';
 import toggleUserMenuReducer from './userMenuReducer';
 import updateProductTypeReducer from './productsReducer';
 import toggleHamReducer from './hamMenuReducer';
+import queryReducer from './queryReducer';
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   userMenu: toggleUserMenuReducer,
   productType: updateProductTypeReducer,
   ham: toggleHamReducer,
+  query: queryReducer,
 });
 
 const store = createStore(rootReducer);

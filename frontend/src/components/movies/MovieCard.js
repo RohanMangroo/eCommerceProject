@@ -16,7 +16,11 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
   async function favClickHandler() {
     const endPoint = 'http://localhost:5000/user/fav';
 
-    const body = { title: movieData.title, movieId: movieData.id };
+    const body = {
+      title: movieData.title,
+      movieId: movieData.id,
+      media_type: movieData.media_type,
+    };
     const config = { headers: { authorization: token } };
     const response = await Axios.post(endPoint, body, config);
 

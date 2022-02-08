@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { RiFilmFill } from 'react-icons/ri';
 import { BiMoviePlay } from 'react-icons/bi';
-import { GiPopcorn } from 'react-icons/gi';
 import { BiUserCircle } from 'react-icons/bi';
 import { ImHome } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleUserMenu } from '../../store/userMenuReducer';
 import { updateProductType } from '../../store/productsReducer';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/userMenu.css';
 
 function Menu({ userMenu, toggleUserMenu_, updateProductType_ }) {
+  const navigate = useNavigate();
   //  When the user clicks outside the menu it will close(Need to better understand this
   useEffect(() => {
     const closeMenu = (e) => {
@@ -29,8 +30,15 @@ function Menu({ userMenu, toggleUserMenu_, updateProductType_ }) {
 
   function handleClick(event) {
     const type = event.target.value;
-    if (type === 'movie') updateProductType_('movie');
-    else if (type === 'tv') updateProductType_('tv');
+    if (type === 'movie') {
+      updateProductType_('movie');
+      navigate('/');
+    } else if (type === 'tv') {
+      updateProductType_('tv');
+      navigate('/');
+    }
+
+    // navigate('/');
   }
 
   const userId = localStorage.getItem('id');
