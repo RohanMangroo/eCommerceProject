@@ -29,4 +29,5 @@ export function deleteFavorite(userId, movieId) {
 
 export function getFavorites(id) {
   const query = `SELECT Favorites.* FROM Favorites WHERE userId = ${id}`;
+  return query;
 }

@@ -2,7 +2,7 @@ import db from '../db/index.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import redisUtils from '../utils/redisUtils.js';
-import { findUserInfo } from '../db/queries.js';
+import { findUserInfo, getFavorites } from '../db/queries.js';
 
 async function logIn(req, res) {
   const { username, password, localCart } = req.body;
@@ -35,6 +35,15 @@ async function sendResponse(res, passwordMatch, username, id, localCart) {
     }
 
     const key = `${username}:${id}`;
+    const dbFavorites = await db.query(getFavorites(id));
+
+    for (let fav of dbFavorites.rows) {
+      const key = `${username}:${id}:fav`;
+      const title = fav.title;
+      const value = `${fav.movieid}/${fav.media_type}`;
+      await redisUtils.setItem(key, title, value);
+    }
+
     const favKey = `${username}:${id}:fav`;
 
     //Send the entire cart back to client
