@@ -42,12 +42,6 @@
   }
 }
 
-/* @media only screen and (max-width: 736px) {
-  .movies-sub-container {
-    justify-content: space-between;
-  }
-} */
-
 .page-btns {
   gap: 2rem;
   height: 100px;

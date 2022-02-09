@@ -46,6 +46,16 @@
   }
 }
 
+@media only screen and (max-width: 375px) {
+  .movie-card {
+    width: 11.3rem;
+  }
+
+  .movie-image {
+    background-size: cover;
+  }
+}
+
 .no-btn {
   height: max-content;
 }
