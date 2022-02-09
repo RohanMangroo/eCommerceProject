@@ -23,10 +23,10 @@ app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.use(setHeaders);
 
-app.use('/', (req, res) => {
-  console.log('route hit...');
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-});
+// app.use('/', (req, res) => {
+//   console.log('route hit...');
+//   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+// });
 
 app.use('/auth', authRouter);
 
