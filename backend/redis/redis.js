@@ -30,17 +30,18 @@
 
 import redis from 'redis';
 
-(async () => {
-  const client = redis.createClient({
-    url: process.env.REDIS_URL,
-    socket: {
-      tls: true,
-      rejectUnauthorized: false,
-    },
-  });
+const client = redis.createClient({
+  url: process.env.REDIS_URL,
+  socket: {
+    tls: true,
+    rejectUnauthorized: false,
+  },
+});
 
+(async () => {
   client.on('error', (err) => console.log('Redis Client Error', err));
 
   await client.connect();
-  export default client;
 })();
+
+export default client;
