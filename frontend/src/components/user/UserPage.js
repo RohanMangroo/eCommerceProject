@@ -15,7 +15,7 @@ export default function UserPage() {
       const token = localStorage.getItem('token');
       const config = { headers: { authorization: token } };
 
-      const endPoint = 'http://localhost:5000/user/info';
+      const endPoint = '/user/info';
       const response = await Axios.get(endPoint, config);
 
       setOrdeHistory(response.data.orderHistory);

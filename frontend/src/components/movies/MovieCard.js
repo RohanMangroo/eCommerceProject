@@ -14,7 +14,7 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs, auth }) {
   const token = localStorage.getItem('token');
 
   async function favClickHandler() {
-    const endPoint = 'http://localhost:5000/user/fav';
+    const endPoint = '/user/fav';
 
     const body = {
       title: movieData.title,
@@ -29,7 +29,7 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs, auth }) {
   }
 
   async function removeFavClickHandler() {
-    const endPoint = `http://localhost:5000/user/fav`;
+    const endPoint = `/user/fav`;
     const data = { title: movieData.title, movieId: movieData.id };
     const config = { headers: { authorization: token }, data };
     const response = await Axios.delete(endPoint, config);
@@ -50,7 +50,7 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs, auth }) {
       updateCart_(localCart);
     } else {
       //Otherwise we call dwon to the server and have the item placed in redis storage
-      const endPoint = 'http://localhost:5000/user/cart/item';
+      const endPoint = '/user/cart/item';
 
       const body = { movieData };
       const config = { headers: { authorization: token } };

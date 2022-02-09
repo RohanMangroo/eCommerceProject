@@ -21,7 +21,7 @@ function CartOrderInfo({ items, cart, updateCart_ }) {
       if (typeOfClick === 'plus') {
         newCart = utils.editCart(title, cart.items, 'plus');
 
-        const endPoint = `http://localhost:5000/user/cart/item/quantity`;
+        const endPoint = `/user/cart/item/quantity`;
         const body = { title, action: 'plus' };
         const config = {
           headers: { authorization: token },
@@ -30,7 +30,7 @@ function CartOrderInfo({ items, cart, updateCart_ }) {
       } else if (typeOfClick === 'minus') {
         newCart = utils.editCart(title, cart.items, 'minus');
 
-        const endPoint = `http://localhost:5000/user/cart/item/quantity`;
+        const endPoint = `/user/cart/item/quantity`;
         const body = { title, action: 'minus' };
         const config = {
           headers: { authorization: token },
@@ -39,7 +39,7 @@ function CartOrderInfo({ items, cart, updateCart_ }) {
       } else {
         newCart = utils.editCart(title, cart.items, 'delete');
 
-        const endPoint = `http://localhost:5000/user/cart/item`;
+        const endPoint = `/user/cart/item`;
         const config = { headers: { authorization: token }, data: { title } };
         await Axios.delete(endPoint, config);
       }

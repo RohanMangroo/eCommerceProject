@@ -9,6 +9,5 @@ export default async function getUserInfo(req, res) {
   const userId = decodedToken.id;
   const orderHistory = await db.query(getOrderHistory(userId));
   const userInfo = await db.query(getUserData(userId));
-  console.log(userInfo.rows);
   res.json({ orderHistory: orderHistory.rows, userData: userInfo.rows });
 }

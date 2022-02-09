@@ -11,14 +11,14 @@ function CheckOutBtn({ emptyCart_, currentTotal, discount }) {
     const token = localStorage.getItem('token');
 
     if (token) {
-      const endPoint = 'http://localhost:5000/user/cart/checkout';
+      const endPoint = '/user/cart/checkout';
       const body = {};
       const config = { headers: { authorization: token } };
       const response = await Axios.post(endPoint, body, config);
       if (response.data === 'Orders Submitted') emptyCart_();
     } else {
       const localCart = JSON.parse(localStorage.getItem('cart'));
-      const endPoint = 'http://localhost:5000/user/cart/guestCheckout';
+      const endPoint = '/user/cart/guestCheckout';
       const body = { localCart };
       const response = await Axios.post(endPoint, body);
       if (response.data === 'Orders Submitted') {

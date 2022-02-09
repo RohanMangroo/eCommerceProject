@@ -13,7 +13,7 @@ function OrderHistory({ items, updateCart_ }) {
     const token = localStorage.getItem('token');
     const movieData = JSON.parse(event.target.value);
     //Otherwise we call dwon to the server and have the item placed in redis storage
-    const endPoint = 'http://localhost:5000/user/cart/item';
+    const endPoint = '/user/cart/item';
 
     const body = { movieData };
     const config = { headers: { authorization: token } };

@@ -53,7 +53,7 @@ function LogIn({ toggleLogin_, updateAuth_, updateCart_, updateFav_, open }) {
     const localCart = JSON.parse(localStorage.getItem('cart'));
 
     //Sending down login info along with local storage cart
-    const logInEndPoint = 'http://localhost:5000/auth/logIn';
+    const logInEndPoint = '/auth/logIn';
     const requestBody = { username, password, localCart };
     const response = await Axios.post(logInEndPoint, requestBody);
 

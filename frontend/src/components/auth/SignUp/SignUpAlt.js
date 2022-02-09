@@ -42,7 +42,7 @@ function SignUpAlt({ signUp, toggleSignUp_, updateAuth_ }) {
     event.preventDefault();
 
     //Sending down login info along with local storage cart
-    const logInEndPoint = 'http://localhost:5000/auth/signUp';
+    const logInEndPoint = '/auth/signUp';
     const requestBody = { username, email, password };
     const response = await Axios.post(logInEndPoint, requestBody);
 

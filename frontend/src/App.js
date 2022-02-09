@@ -29,7 +29,7 @@ function App({ updateAuth_, updateCart_, updateFav_ }) {
       });
 
       async function getCartInfo() {
-        const endPoint = 'http://localhost:5000/user/cart';
+        const endPoint = '/user/cart';
         const config = { headers: { authorization: token } };
         const response = await Axios.get(endPoint, config);
         const cart = utils.processResponse(response.data);
@@ -38,7 +38,7 @@ function App({ updateAuth_, updateCart_, updateFav_ }) {
       }
 
       async function getUserFavorites() {
-        const endPoint = 'http://localhost:5000/user/fav';
+        const endPoint = '/user/fav';
         const config = { headers: { authorization: token } };
         const response = await Axios.get(endPoint, config);
 
