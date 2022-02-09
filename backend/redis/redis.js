@@ -34,7 +34,7 @@ const client = redis.createClient({
   url: process.env.REDIS_URL,
 });
 
-redisClient.on('error', (err) => console.log('Redis Client Error', err));
+client.on('error', (err) => console.log('Redis Client Error', err));
 
 await client.connect();
 
