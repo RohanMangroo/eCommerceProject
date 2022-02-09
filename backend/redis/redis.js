@@ -18,7 +18,7 @@
 // export default redisClient;
 
 import redis from 'redis';
-const fs = require('fs');
+import fs from 'fs';
 
 const client = redis.createClient({
   url: process.env.REDIS_URL,
