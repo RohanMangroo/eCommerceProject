@@ -38,4 +38,6 @@ await client.connect();
 
 await client.ping();
 
+await client.quit();
+
 export default client;
