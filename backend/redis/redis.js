@@ -32,10 +32,6 @@ import redis from 'redis';
 
 const client = redis.createClient({
   url: process.env.REDIS_URL,
-  socket: {
-    tls: true,
-    rejectUnauthorized: false,
-  },
 });
 
 await client.connect();
