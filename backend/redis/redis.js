@@ -36,8 +36,8 @@ const client = redis.createClient({
 
 await client.connect();
 
-await client.ping();
+// await client.ping();
 
-await client.quit();
+// await client.quit();
 
 export default client;
