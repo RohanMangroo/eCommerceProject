@@ -23,19 +23,21 @@ app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.use(setHeaders);
 
-app.use('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-});
+// app.use('/', (req, res) => {
+//   console.log('route hit...');
+//   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+// });
 
 app.use('/auth', authRouter);
 
 app.use('/user', cartRouter, infoRouter, favRouter);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   console.log('route hit, line 36');
+//   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+// });
 
-console.log(path.join(__dirname, '../frontend/build/index.html'));
+// console.log(path.join(__dirname, '../frontend/build/index.html'));
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
