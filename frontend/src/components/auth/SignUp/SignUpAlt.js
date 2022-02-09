@@ -20,7 +20,7 @@ function SignUpAlt({ signUp, toggleSignUp_, updateAuth_ }) {
   /**================================================================*/
 
   useEffect(() => {
-    if (!signUp.open) utils.resetInput([setUsername, setPassword, setPassword]);
+    if (!signUp.open) utils.resetInput([setUsername, setEmail, setPassword]);
   }, [signUp.open]);
 
   // When the user clicks outside the menu it will close(Need to better understand this
@@ -49,8 +49,12 @@ function SignUpAlt({ signUp, toggleSignUp_, updateAuth_ }) {
     if (response.data.isLoggedIn) {
       updateAuth_(response.data);
       toggleSignUp_(!signUp.open);
-      utils.updateLocalStorage(response.data.token, response.data.userId);
-      utils.resetInput([setUsername, setPassword, setPassword]);
+      utils.updateLocalStorage(
+        response.data.token,
+        response.data.userId,
+        response.data.username
+      );
+      utils.resetInput([setUsername, setEmail, setPassword]);
       return;
     }
   }

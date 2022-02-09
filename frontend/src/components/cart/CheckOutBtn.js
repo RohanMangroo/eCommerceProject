@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 import Modal from '../modal/Modal';
 
-function CheckOutBtn({ emptyCart_, total }) {
+function CheckOutBtn({ emptyCart_, currentTotal, discount }) {
   const [checkout, setCheckout] = useState(null);
 
   async function handleClick(setCheckout) {
@@ -30,6 +30,11 @@ function CheckOutBtn({ emptyCart_, total }) {
     setCheckout(null);
   }
 
+  if (!checkout) {
+    document.body.style.overflow = 'auto';
+    document.body.style.paddingRight = '0';
+  }
+
   function showModal() {
     setCheckout('checkout');
   }
@@ -37,6 +42,10 @@ function CheckOutBtn({ emptyCart_, total }) {
   function toggleModal() {
     setCheckout(null);
   }
+
+  const currentDiscount = discount !== 1 ? currentTotal * discount : 0;
+
+  const finalTotal = currentTotal - currentDiscount;
 
   return (
     <>
@@ -48,7 +57,7 @@ function CheckOutBtn({ emptyCart_, total }) {
           modalClass="open"
           error={checkout}
           toggle={() => handleClick(setCheckout)}
-          total={total}
+          total={finalTotal.toFixed(2)}
           cancel={toggleModal}
         />
       )}

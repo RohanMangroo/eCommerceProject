@@ -17,8 +17,6 @@ function NavBtns({
   toggleUserMenu_,
   cart,
 }) {
-  // console.log(open);
-
   function clickHandler(event) {
     const value = event.target.value;
     if (value === 'logIn') {

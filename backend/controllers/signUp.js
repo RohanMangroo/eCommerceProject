@@ -16,7 +16,7 @@ export default async function signUp(req, res) {
     const id = data.rows[0].id;
     const token = jwt.sign({ username: username, id: id }, 'mySuperSecret');
 
-    res.json({ userId: id, token, isLoggedIn: true });
+    res.json({ userId: id, token, username, isLoggedIn: true });
   } catch (err) {
     res.send('Username Taken');
   }

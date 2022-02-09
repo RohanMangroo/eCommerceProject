@@ -10,7 +10,7 @@ import { MdFavorite } from 'react-icons/md';
 import { AiFillStar } from 'react-icons/ai';
 import { updateProductType } from '../../store/productsReducer';
 
-function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
+function MovieCard({ movieData, updateCart_, updateFav_, myFavs, auth }) {
   const token = localStorage.getItem('token');
 
   async function favClickHandler() {
@@ -111,7 +111,7 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
             </span>
           </div>
         </div>
-        {movieData.removeRating ? '' : token && <>{favorite}</>}
+        {movieData.removeRating ? '' : auth.isLoggedIn && <>{favorite}</>}
       </div>
     </div>
   );
@@ -120,6 +120,7 @@ function MovieCard({ movieData, updateCart_, updateFav_, myFavs }) {
 const mapStateToProps = ({ favs, auth }) => {
   return {
     myFavs: favs,
+    auth,
   };
 };
 

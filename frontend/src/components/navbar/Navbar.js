@@ -25,7 +25,12 @@ function Navbar({
   const navigate = useNavigate();
 
   function handleLogOut() {
-    updateAuth_({ isLoggedIn: false, token: null, userId: null });
+    updateAuth_({
+      isLoggedIn: false,
+      token: null,
+      userId: null,
+      username: null,
+    });
     updateFav_({});
     navigate('/');
     localStorage.clear();

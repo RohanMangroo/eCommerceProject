@@ -49,7 +49,7 @@ function CartCheckoutInfo({ cart }) {
           currentTotal={total.toFixed(2)}
           disabled={disabled}
         />
-        <CheckOutBtn total={total.toFixed(2)} />
+        <CheckOutBtn currentTotal={total.toFixed(2)} discount={promoTotal} />
       </div>
     </div>
   );
@@ -81,15 +81,17 @@ function Total({ discount, savingsDrop, currentTotal }) {
     <div className="cart-total">
       <span>TOTAL</span>
       <span className="amount-txt">{`$${finalTotal.toFixed(2)}`}</span>
-      <div className={`savings ${savingsDrop}`}>
-        <span>Saved</span>
-        <span>{`$${currentDiscount.toFixed(2)}`}</span>
-      </div>
+      {currentDiscount > 0 && (
+        <div className={`savings ${savingsDrop}`}>
+          <span>Saved</span>
+          <span>{`$${currentDiscount.toFixed(2)}`}</span>
+        </div>
+      )}
     </div>
   );
 }
 
-function PromoCode({ setPromoTotal, currentTotal, disabled }) {
+function PromoCode({ setPromoTotal, disabled }) {
   const promoRef = useRef();
 
   const promoCodes = {
