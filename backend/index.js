@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, '../frontend', 'build')));
 app.use(setHeaders);
 
 app.use('/', (req, res) => {
-  res.send(path.join(__dirname, '../frontend', 'build/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend', 'build/index.html'));
 });
 
 app.use('/auth', authRouter);
