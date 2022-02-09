@@ -10,6 +10,7 @@
   height: 100%;
   width: 50%;
   font-family: sans-serif;
+  text-decoration: none;
 }
 
 .footer section:nth-child(1),
@@ -35,5 +36,9 @@
   width: 100%;
   background-color: rgb(30, 30, 30);
   color: rgb(142, 142, 142);
+  gap: 8px;
+}
+
+.right-footer {
   gap: 8px;
 }

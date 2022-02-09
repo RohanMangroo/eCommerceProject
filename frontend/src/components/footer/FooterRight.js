@@ -2,12 +2,13 @@ import React from 'react';
 
 export default function FooterRight() {
   return (
-    <section className="center-items">
-      <div className="flex-col">
+    <section>
+      <div className="flex-col right-footer">
         <header>Powered By</header>
         <span>The Movie Database API</span>
         <span>React / Redux</span>
         <span>Node / Express</span>
+        <span>Redis</span>
       </div>
     </section>
   );
