@@ -9,7 +9,6 @@ import favRouter from './routes/fav.js';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-console.log(__dirname);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -33,10 +32,10 @@ app.use('/auth', authRouter);
 app.use('/user', cartRouter, infoRouter, favRouter);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+  res.sendFile(path.join(__dirname, '..frontend/build/index.html'));
 });
 
-console.log(path.join(__dirname, '../frontend/build/index.html'));
+console.log(path.join(__dirname, '..frontend/build/index.html'));
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
@@ -44,3 +43,4 @@ app.listen(PORT, () => {
 
 ///Users/rohan/e-commerce/frontend/build/index.html
 //frontend/build
+///frontend/build/index.html
