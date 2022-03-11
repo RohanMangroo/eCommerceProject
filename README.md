@@ -70,4 +70,73 @@ In Javascript terms, the Redis cart has this shape...
   async function deleteItem(key, item) {
    client.HDEL(key, item);
   } 
+  ```
+
+
+### Guest User
+The Guest User's Cart is logged into local storage and for this project, GUEST CHEKOUT is calculating their payment and clearing local storage.
+
+
+# LogIn/LogOut
+I'm using JSON WebTokens to log users in an out and bcrypt to encrypt passwords. When a user logs in their username and password is varified on the backend and all the necessary information is sent back client side. 
+``` javascript
+res.json({
+      userId: id,
+      token,
+      isLoggedIn: true,
+      username,
+      cart,
+      favorites,
+    });
 ```
+
+The `username`, `token` and `id` are all logged into the browser's local storage.
+If a user added items to their cart before they logged in, upon log in their cart will be merged with their logged in cart in Redis.
+``` javascript
+ for (let i = 0; i < localCart.length; i++) {
+      const key = `${username}:${id}`;
+      const item = `${localCart[i].title}`;
+      const quantity = localCart[i].quantity;
+
+      const itemExists = await redisUtils.checkItemExsistance(key, item);
+
+      if (itemExists) await redisUtils.incrementBy(key, item, quantity);
+      else await redisUtils.setItem(key, item, quantity);
+    }
+```
+
+Logging Out is simply clearing the local storage and adding an empty array for the guest cart. No token in local storage means no auth when trying to make API calls to the backend.
+``` javascript
+localStorage.clear();
+localStorage.setItem('cart', JSON.stringify([]));
+```
+
+# Favorites
+Favorites are treated just like the cart, except that favorites are also logged into the database. I use Redis for quick access and PostgreSQL for persistence. 
+
+# Database
+PostgreSQL
+There are 3 tables in my database, `users`, `orders`, and `favorites`. Below are the tables and their columns.
+
+### Users
+    - id SERIAL PRIMARY KEY NOT NULL
+    - username VARCHAR(255) UNIQUE NOT NULL
+    - email VARCHAR(255) UNIQUE NOT NULL
+    - password VARCHAR(255) NOT NULL
+    - date DATE NOT NULL DEFAULT CURRENT_DATE 
+    
+### Orders
+    - id SERIAL PRIMARY KEY NOT NULL
+    - title VARCHAR(255) NOT NULL
+    - quantity INT
+    - price FLOAT
+    - date DATE NOT NULL DEFAULT CURRENT_DATE
+    - userId INTEGER REFERENCES Users(id)
+    
+### Favorites
+    - id SERIAL PRIMARY KEY NOT NULL
+    - userId INTEGER REFERENCES Users(id)
+    - title VARCHAR(55)
+    - media_type VARCHAR(55)
+    - movieId INTEGER NOT NULL	
+    
