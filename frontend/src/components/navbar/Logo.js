@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 function Logo({ updateProductType_ }) {
   const { width } = useViewport();
 
-  const value = width <= 414 ? 'C' : 'C E N I M A S';
+  const value = width <= 414 ? 'C' : 'C I N E M A S';
   const responsiveClass = width <= 414 ? 'resp-class' : '';
 
   function handleClick() {
