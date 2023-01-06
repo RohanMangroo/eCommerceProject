@@ -31,7 +31,7 @@
 import redis from 'redis';
 
 const client = redis.createClient({
-  url: process.env.REDIS_URL,
+  url: 'redis://red-cermjfmn6mpk5198s180:6379',
 });
 
 client.on('error', (err) => console.log('Redis Client Error', err));
